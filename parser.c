@@ -6,7 +6,7 @@
 /*   By: valentin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 18:08:01 by valentin          #+#    #+#             */
-/*   Updated: 2020/09/21 20:55:35 by valentin         ###   ########.fr       */
+/*   Updated: 2020/09/22 14:21:08 by vbeaufay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <errno.h>
@@ -33,6 +33,30 @@ int check_path(char *path)
 	return(1);
 }
 
+int parse_resolution(char *line)
+{
+	size_t	i;
+	int		x;
+	int		y;
+	i = 1;
+	x = ft_atoi(line + i);
+	while (ft_isspace(line[i]))
+		i++;
+	while (ft_isdigit(line[i]))
+		i++;
+	y = ft_atoi(line + i);
+	while (ft_isdigit(line[i]))
+		i++;
+	while (line[i])
+	{
+		if(line[i] != ' ')
+			ft_error("invalid file syntax");
+		i++;
+	}
+	if (x <= 0 || y <= 0)
+		ft_error("")
+}
+
 int	get_info(char *line)
 {
 	char	*trim;
@@ -42,8 +66,8 @@ int	get_info(char *line)
 	ret = 1;
 	if (!(trim = ft_strtrim(line, " ")))
 		ft_error(strerror(errno));
-	/*if (!ft_strncmp(trim, "R", 1))
-		//R
+	if (!ft_strncmp(trim, "R", 1))
+		parse_resolution(line);
 	else if (!ft_strncmp(trim, "NO", 2))
 		//NO
 	else if (!ft_strncmp(trim, "SO", 2))
@@ -57,8 +81,6 @@ int	get_info(char *line)
 	else if (!ft_strncmp(trim, "C", 1))
 		//C
 	else if(ft_strcmp(trim, "\0"))
-		ret = 0;*/
-	if(!ft_strncmp(trim, "1", 1))
 		ret = 0;
 free(trim);
 return (ret);
