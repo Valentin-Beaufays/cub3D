@@ -6,21 +6,22 @@
 /*   By: valentin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 18:08:01 by valentin          #+#    #+#             */
-/*   Updated: 2020/09/22 14:21:08 by vbeaufay         ###   ########.fr       */
+/*   Updated: 2020/09/22 15:49:01 by vbeaufay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <errno.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <string.h>
-#include "./get_next_line/get_next_line.h"
-#include "./libft/libft.h"
+
+#include "cub3d.h"
 
 void ft_error(char *error)
 {
 	printf("Error\n%s\n", error);
 	exit(-1);
+}
+
+void	free_error(char *error, void *to_free)
+{
+	free(to_free);
+	ft_error(error);
 }
 
 int check_path(char *path)
@@ -33,31 +34,35 @@ int check_path(char *path)
 	return(1);
 }
 
-int parse_resolution(char *line)
+void parse_resolution(char *line, t_param *data)
 {
-	size_t	i;
-	int		x;
-	int		y;
-	i = 1;
-	x = ft_atoi(line + i);
-	while (ft_isspace(line[i]))
-		i++;
-	while (ft_isdigit(line[i]))
-		i++;
-	y = ft_atoi(line + i);
-	while (ft_isdigit(line[i]))
-		i++;
-	while (line[i])
+	line++;
+	if (!ft_isspace(*line))
+		//invalid
+	while(ft_isspace(*line))
+		line++;
+	if (*line == '+' || *line == '-' || !(data->x = ft_atoi(line)))
+		//invalid size
+	while (ft_isdigit(*line))
+		line++;
+	if (!ft_isspace(*line))
+		//invalid
+	while(ft_isspace(*line))
+		line++;
+	if (*line == '+' || *line == '-' || !(data->y = ft_atoi(line)))
+		//invalid size
+	while (ft_isdigit(*line))
+		line++;
+	while(*line)
 	{
-		if(line[i] != ' ')
-			ft_error("invalid file syntax");
-		i++;
+		if (!(ft_isspace(*line)))
+		{
+			//invalid
+		}
 	}
-	if (x <= 0 || y <= 0)
-		ft_error("")
 }
 
-int	get_info(char *line)
+int	get_info(char *line, t_param *data)
 {
 	char	*trim;
 	int		ret;
@@ -67,7 +72,7 @@ int	get_info(char *line)
 	if (!(trim = ft_strtrim(line, " ")))
 		ft_error(strerror(errno));
 	if (!ft_strncmp(trim, "R", 1))
-		parse_resolution(line);
+		parse_resolution(line, data);
 	else if (!ft_strncmp(trim, "NO", 2))
 		//NO
 	else if (!ft_strncmp(trim, "SO", 2))
@@ -92,7 +97,7 @@ int	get_map(char *line)
 	return (1);
 }
 
-int	cub_parser(char *path)
+int	cub_parser(char *path, t_param *data)
 {
 	int		fd;
 	char	*line;
@@ -105,7 +110,7 @@ int	cub_parser(char *path)
 		ft_error(strerror(errno));
 	while(get_next_line(fd, &line))
 	{
-		if(is_map || !get_info(line))
+		if(is_map || !get_info(line, data))
 		{	
 			is_map = 1;
 			if (!get_map(line))
