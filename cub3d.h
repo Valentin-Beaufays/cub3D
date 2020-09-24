@@ -12,10 +12,10 @@
 typedef struct	s_param
 {
 
+	int			err;
 	int			x;
 	int			y;
 	char		*prev_line;
-	char		*error;
 
 }				t_param;
 
