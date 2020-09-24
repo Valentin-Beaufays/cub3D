@@ -14,10 +14,12 @@ typedef struct	s_param
 
 	int			x;
 	int			y;
+	char		*prev_line;
+	char		*error;
 
 }				t_param;
 
 void			ft_error(char *error);
-int				cub_parser(char *path);
+int				cub_parser(char *path, t_param *data);
 
 #endif
