@@ -157,5 +157,5 @@ int	cub_parser(char *path, t_param *data)
 		free_error(ft_strerror(data->err) ,data);
 	}
 	close(fd);
-	return (1);
+	return (1); 
 }
