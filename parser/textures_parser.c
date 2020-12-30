@@ -6,11 +6,11 @@ void    parse_no_texture(t_temp *temp)
 
     line = temp->trim + 2;
     if (!(*line == ' '))
-        free_temp_error("invalid NO line", temp);
+        free_tmp_err("invalid NO line", temp, 3);
     while(*line == ' ')
         line++;
     if(!check_path(line, ".xpm"))
-        free_temp_error("NO texture file must be an xpm file", temp);
+        free_tmp_err("NO texture file must be an xpm file", temp, 3);
     temp->north = ft_strdup(line);
 }
 
@@ -20,11 +20,11 @@ void    parse_so_texture(t_temp *temp)
 
     line = temp->trim + 2;
     if (!(*line == ' '))
-        free_temp_error("invalid SO line", temp);
+        free_tmp_err("invalid SO line", temp, 3);
     while(*line == ' ')
         line++;
     if(!check_path(line, ".xpm"))
-        free_temp_error("SO texture file must be an xpm file", temp);
+        free_tmp_err("SO texture file must be an xpm file", temp, 3);
     temp->south = ft_strdup(line);
 }
 
@@ -34,11 +34,11 @@ void    parse_we_texture(t_temp *temp)
 
     line = temp->trim + 2;
     if (!(*line == ' '))
-        free_temp_error("invalid WE line", temp);
+        free_tmp_err("invalid WE line", temp, 3);
     while(*line == ' ')
         line++;
     if(!check_path(line, ".xpm"))
-        free_temp_error("WE texture file must be an xpm file", temp);
+        free_tmp_err("WE texture file must be an xpm file", temp, 3);
     temp->west = ft_strdup(line);
 }
 
@@ -48,11 +48,11 @@ void    parse_ea_texture(t_temp *temp)
 
     line = temp->trim + 2;
     if (!(*line == ' '))
-        free_temp_error("invalid EA line", temp);
+        free_tmp_err("invalid EA line", temp, 3);
     while(*line == ' ')
         line++;
     if(!check_path(line, ".xpm"))
-        free_temp_error("EA texture file must be an xpm file", temp);
+        free_tmp_err("EA texture file must be an xpm file", temp, 3);
     temp->east = ft_strdup(line);
 }
 
@@ -60,12 +60,12 @@ void    parse_s_texture(t_temp *temp)
 {
     char    *line;
 
-    line = temp->trim + 2;
+    line = temp->trim + 1;
     if (!(*line == ' '))
-        free_temp_error("invalid S line", temp);
+        free_tmp_err("invalid S line", temp, 3);
     while(*line == ' ')
         line++;
     if(!check_path(line, ".xpm"))
-        free_temp_error("S texture file must be an xpm file", temp);
+        free_tmp_err("S texture file must be an xpm file", temp, 3);
     temp->sprite = ft_strdup(line);
 }

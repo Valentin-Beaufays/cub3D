@@ -10,34 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-
-void	init_param(t_param **data)
-{
-	if (!(*data = malloc(sizeof(t_param))))
-		ft_error(strerror(errno));
-	(*data)->x = 0;
-	(*data)->y = 0;
-	(*data)->prev_line = NULL;
-	(*data)->error = NULL;
-}
-
-t_param	*init_data(char *path)
-{
-	t_param	*data;
-
-	init_param(&data);
-	cub_parser(path, data);
-	return (data);
-}
+#include "./includes/cub3d.h"
 
 int		main(int argc, char **argv)
 {
+	char *test;
+
+	test = NULL;
+	free(test);
 	if (argc == 1 || argc > 3)
 		ft_error("usage: cub3d [--save] file");
 	if (argc == 3 && !(ft_strcmp(argv[1], "--save")))
-		ft_error("invalid argument");
+		ft_error("usage: cub3d [--save] file");
 	if (argc == 2 || argc == 3)
-		init_data(argv[argc - 1]);
+		cub_parser(argv[1]);
+	printf("done\n");
 	return (0);
 }

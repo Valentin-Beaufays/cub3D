@@ -1,161 +1,131 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: valentin <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/21 18:08:01 by valentin          #+#    #+#             */
-/*   Updated: 2020/09/24 15:59:02 by vbeaufay         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include "../includes/cub3d.h"
 
-#include "cub3d.h"
-
-void	print_error(char	*error)
-{
-	printf("Error\n%s\n", error);
-}
-
-void	ft_error(char *error)
-{
-	print_error(error);
-	exit(-1);
-}
-
-void	free_error(char *error, t_param *data)
-{
-	int quit;
-
-	quit = 0;
-	if (data->err)
-	{
-		print_error(error);
-		free(error);
-		quit = 1;
-	}
-	if (data->prev_line)
-		free(data->prev_line);
-	free(data);
-	if (quit)
-		exit(-1);
-	ft_error(error);
-}
-
-char	*ft_strerror(int no)
-{
-	if (no == -1)
-		return (ft_strdup("resolution line is invalid"));
-	else
-		return (NULL);
-}
-
-int check_path(char *path)
+int check_path(char *path, char *ext)
 {
 	size_t len;
 
 	len = ft_strlen(path);
-	if (ft_strcmp(path + (len - 4), ".cub"))
+	if (ft_strcmp(path + (len - 4), ext))
 		return (0);
-	return(1);
+    return (1);
 }
 
-int	parse_resolution(char *line, t_param *data)
+void init_temp(t_temp *temp, int fd)
 {
+    temp->fd = fd;
+    temp->line = NULL;
+    temp->trim = NULL;
+    temp->x = 0;
+    temp->y = 0;
+    temp->north = NULL;
+    temp->south = NULL;
+    temp->west = NULL;
+    temp->east = NULL;
+    temp->sprite = NULL;
+    temp->floor_R = 0;
+    temp->floor_G = 0;
+    temp->floor_B = 0;
+    temp->ceiling_R = 0;
+    temp->ceiling_G = 0;
+    temp->ceiling_B = 0;
+    temp->map = NULL;
+}
+
+void	parse_resolution(t_temp *temp)
+{
+    char *line;
+
+    line = temp->trim + 1;
 	if (!(*line == ' '))
-		return(-1);
+		free_tmp_err("invalid resolution line", temp, 3);
 	while(*line == ' ')
 		line++;
-	if (*line == '+' || *line == '-' || !(data->x = ft_atoi(line)))
-		return(-1);
+	if (*line == '+' || *line == '-' || !(temp->x = ft_atoi(line)))
+		free_tmp_err("invalid resolution line", temp, 3);
 	while (ft_isdigit(*line))
 		line++;
 	if (!(*line == ' '))
-		return (-1);
+        free_tmp_err("invalid R line", temp, 3);
 	while(*line == ' ')
 		line++;
-	if (*line == '+' || *line == '-' || !(data->y = ft_atoi(line)))
-		return (-1);
+	if (*line == '+' || *line == '-' || !(temp->y = ft_atoi(line)))
+		free_tmp_err("invalid R line", temp, 3);
 	while (ft_isdigit(*line))
 		line++;
 	while(*line)
 	{
 		if (!(*line == ' '))
-		{
-			return (-1);
-		}
+			free_tmp_err("invalid R line", temp, 3);
+        line++;
 	}
-	return(1);
 }
 
-int	get_info(char *line, t_param *data)
+int	get_arg(t_temp *temp)
 {
-	int		ret;
-
-	if (!ft_strncmp(line, "R", 1))
-		ret = parse_resolution(line, data);
-	/*else if (!ft_strncmp(line + 1, "NO", 2))
-		//NO
-	else if (!ft_strncmp(line, "SO", 2))
-		//SO
-	else if (!ft_strncmp(line, "WE", 2))
-		//WE
-	else if (!ft_strncmp(line, "EA", 2))
-		//EA
-	else if (!ft_strncmp(line, "F", 1))
+	if (!ft_strncmp(temp->trim, "R", 1))
+		parse_resolution(temp);
+	else if (!ft_strncmp(temp->trim, "NO", 2))
+		parse_no_texture(temp);
+	else if (!ft_strncmp(temp->trim, "SO", 2))
+		parse_so_texture(temp);
+	else if (!ft_strncmp(temp->trim, "WE", 2))
+		parse_we_texture(temp);
+	else if (!ft_strncmp(temp->trim, "EA", 2))
+		parse_ea_texture(temp);
+    else if (!ft_strncmp(temp->trim, "S", 1))
+        parse_s_texture(temp);
+	/*else if (!ft_strncmp(line, "F", 1))
 		//F
 	else if (!ft_strncmp(line, "C", 1))
 		//C*/
-	else if(ft_strcmp(line, "\0"))
-		ret = 0;
-return (ret);
+	else if (!ft_strncmp(temp->trim, "1", 1))
+		return (0);
+    else
+        free_tmp_err("invalid line found", temp, 3);
+return (1);
 }
 
-int	get_map(char *line, t_param *data)
+void    parse_map(t_temp *temp)
 {
-	printf("%s\n", line);
-	return (1);
+    //TO-DO
 }
 
-int	parse_arg(int fd, t_param *data)
+void    parse_args(t_temp *temp)
 {
-	char	*line;
-	char	*trim;
-	int		ret;
+    int     is_map;
+    int     ret;
 
-	while (ret && ret > 0  && get_next_line(fd, &line))
-	{
-		if (!(trim = ft_strtrim(line, " ")))
-		{
-			data->err = errno;
-			return (0);
-		}
-		ret = get_info(trim, data);
-		if (!ret)
-			data->prev_line = ft_strdup(line);
-		if (ret < 0)
-			data->err = ret;
-		free(trim);
-		free(line);
-	}
-	return (ret);
+    is_map = 0;
+    while(!is_map && (ret = get_next_line(temp->fd, &(temp->line))))
+    {
+        if (ret == -1 )
+            free_tmp_err(strerror(errno), temp, 0);
+        if ((temp->trim = ft_strtrim(temp->line, " ")) == 0)
+            free_tmp_err(strerror(errno), temp, 1);
+        if(*(temp->trim) != 0)
+        {
+            if(!get_arg(temp))
+                is_map = 1;
+        }
+        if (!is_map)
+            free(temp->line);
+        free(temp->trim);
+    }
+    if (!is_map)
+        free_tmp_err("no map has been found", temp, 0);
+    parse_map(temp);
 }
 
-int	cub_parser(char *path, t_param *data)
+t_data *cub_parser(char *path)
 {
-	int		fd;
-	int		is_map;
+    int fd;
+    t_temp temp;
 
-	is_map = 0;
-	if(!check_path(path))
-		free_error("file must end with .cub", data);
+    if (!check_path(path, ".cub"))
+       ft_error("file must end with .cub");
 	if ((fd = open(path, O_RDONLY)) == -1)
-		free_error(strerror(errno), data);
-	if (parse_arg(fd, data) < 0)
-	{
-		close(fd);
-		free_error(ft_strerror(data->err) ,data);
-	}
-	close(fd);
-	return (1); 
+        ft_error(strerror(errno));
+    init_temp(&temp, fd);
+    parse_args(&temp);
+    return (NULL);
 }

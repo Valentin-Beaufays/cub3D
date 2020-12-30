@@ -1,14 +1,14 @@
 R 1280 720
 
-NO ./testN
+NO ./testN.xpm
 
-SO ./testS
+SO ./testS.xpm
 
-WE ./testW
+WE ./testW.xpm
 
-EA ./testE
+EA ./testE.xpm
 
-S ./testSprite
+S ./testSprite.xpm
 
 F 220, 100, 0
 

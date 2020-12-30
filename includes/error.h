@@ -2,6 +2,6 @@
 # define ERROR_H
 
 void    ft_error(char *error);
-void    free_temp_error(char *error, t_temp *temp);
+void    free_tmp_err(char *error, t_temp *temp, int select);
 
 #endif
