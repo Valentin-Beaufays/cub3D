@@ -38,5 +38,7 @@ void            parse_so_texture(t_temp *temp);
 void            parse_we_texture(t_temp *temp);
 void            parse_ea_texture(t_temp *temp);
 void            parse_s_texture(t_temp *temp);
+void            parse_floor(t_temp *temp);
+void            parse_ceiling(t_temp *temp);
 
 #endif

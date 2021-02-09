@@ -60,52 +60,6 @@ void	parse_resolution(t_temp *temp)
 	}
 }
 
-void parse_floor(t_temp *temp)
-{
-    char *line;
-
-    line = temp->trim + 1;
-    if (!(*line == ' '))
-        free_tmp_err("invalid floor line", temp, 3);
-    while (*line == ' ')
-        line++;
-    temp->floor_R = ft_atoi(line);
-    if (*line == '+' || *line == '-' || temp->floor_R < 0 || temp->floor_R > 255)
-		free_tmp_err("invalid floor line", temp, 3);
-    while (ft_isdigit(*line))
-        line++;
-    while (*line == ' ')
-        line++;
-    if (*line != ',')
-        free_tmp_err("missing \',\' in floor line", temp, 3);
-    line++;
-    while (*line == ' ')
-        line++;
-    temp->floor_G = ft_atoi(line);
-    if (*line == '+' || *line == '-' || temp->floor_G < 0 || temp->floor_G > 255)
-		free_tmp_err("invalid floor line", temp, 3);
-    while (ft_isdigit(*line))
-        line++;
-    while (*line == ' ')
-        line++;
-    if (*line != ',')
-        free_tmp_err("missing \',\' in floor line", temp, 3);
-    line++;
-    while (*line == ' ')
-        line++;
-    temp->floor_B = ft_atoi(line);
-    if (*line == '+' || *line == '-' || temp->floor_B < 0 || temp->floor_B > 255)
-		free_tmp_err("invalid floor line", temp, 3);
-    while (ft_isdigit(*line))
-        line++;
-    while (*line)
-    {
-        if (*line != ' ')
-            free_tmp_err("invalid floor line", temp, 3);
-        line++;
-    }
-}
-
 int	get_arg(t_temp *temp)
 {
 	if (!ft_strncmp(temp->trim, "R", 1))
@@ -122,8 +76,8 @@ int	get_arg(t_temp *temp)
         parse_s_texture(temp);
 	else if (!ft_strncmp(temp->trim, "F", 1))
 		parse_floor(temp);
-	/*else if (!ft_strncmp(line, "C", 1))
-		//C*/
+	else if (!ft_strncmp(line, "C", 1))
+		parse_ceiling(temp);
 	else if (!ft_strncmp(temp->trim, "1", 1))
 		return (0);
     else
