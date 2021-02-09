@@ -76,7 +76,7 @@ int	get_arg(t_temp *temp)
         parse_s_texture(temp);
 	else if (!ft_strncmp(temp->trim, "F", 1))
 		parse_floor(temp);
-	else if (!ft_strncmp(line, "C", 1))
+	else if (!ft_strncmp(temp->trim, "C", 1))
 		parse_ceiling(temp);
 	else if (!ft_strncmp(temp->trim, "1", 1))
 		return (0);

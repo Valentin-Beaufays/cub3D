@@ -1,35 +1,44 @@
 #include "../includes/cub3d.h"
 
-int get_value(char **line)
+static int get_value(char **line)
 {
     int temp;
+    int size;
 
-    if (**value == '+' || **value == '-')
+    size = 0;
+    if (**line == '+' || **line == '-')
         return (-1);
     temp = ft_atoi(*line);
     if (temp < 0 || temp > 255)
         return (-1);
-    while (ft_isdigit(**line))
-        *line++;
+    while (ft_isdigit(*(*line + size)))
+        size++;
+    *line += size;
     return (temp);
 }
 
-int next_value(char **line)
+static int next_value(char **line)
 {
-    while (**line == ' ')
-        *line++;
-    if (**line != ',')
+    int size;
+
+    size = 0;
+    while (*(*line + size) == ' ')
+        size++;
+    if (*(*line + size) != ',')
         return (0);
-    *line++;
-    while (**line == ' ')
-        *line++;
+    size++;
+    while (*(*line + size) == ' ')
+        size++;
+    *line += size;
     return (1);
 }
 
 void parse_floor(t_temp *temp)
 {
     char *line;
+    char size;
 
+    size = 0;
     line = temp->trim + 1;
     if (!(*line == ' '))
         free_tmp_err("invalid floor line", temp, 3);
@@ -75,7 +84,7 @@ void parse_ceiling(t_temp *temp)
     while (*line)
     {
         if (*line != ' ')
-            free_tmp_err("invalid floor line", temp, 3);
+            free_tmp_err("invalid ceiling line", temp, 3);
         line++;
     }
 }
