@@ -36,9 +36,7 @@ static int next_value(char **line)
 void parse_floor(t_temp *temp)
 {
     char *line;
-    char size;
 
-    size = 0;
     line = temp->trim + 1;
     if (!(*line == ' '))
         free_tmp_err("invalid floor line", temp, 3);
