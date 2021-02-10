@@ -1,6 +1,6 @@
 #include "../includes/cub3d.h"
 
-void copy_map(char **dest, char **src)
+static void copy_map(char **dest, char **src)
 {
     int i;
 
@@ -23,7 +23,7 @@ void    parse_map(t_temp *temp)
         free_tmp_err(strerror(errno), temp, 1);
     temp->map[size] = NULL;
     temp->map[size - 1] = ft_strdup(temp->line);
-    while (ret = get_next_line(temp->fd, &(temp->line)))
+    while ((ret = get_next_line(temp->fd, &(temp->line))))
     {
         if (ret == -1)
             free_tmp_err(strerror(errno), temp, 0);
@@ -31,7 +31,6 @@ void    parse_map(t_temp *temp)
         if (!(tmp = malloc(sizeof(char*) * (size + 1))))
             free_tmp_err(strerror(errno), temp, 1);
         tmp[size] = NULL;
-        while (temp->map[i])
         copy_map(tmp, temp->map);
         if(!(tmp[size - 1] = ft_strdup(temp->line)))
             free_tmp_err(strerror(errno), temp, 1);
