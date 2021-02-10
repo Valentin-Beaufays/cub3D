@@ -78,16 +78,11 @@ int	get_arg(t_temp *temp)
 		parse_floor(temp);
 	else if (!ft_strncmp(temp->trim, "C", 1))
 		parse_ceiling(temp);
-	else if (!ft_strncmp(temp->trim, "1", 1))
+	else if (!ft_strncmp(temp->trim, "1", 1) || !ft_strncmp(temp->trim, "0", 1))
 		return (0);
     else
         free_tmp_err("invalid line found", temp, 3);
 return (1);
-}
-
-void    parse_map(t_temp *temp)
-{
-    //TO-DO
 }
 
 void    parse_args(t_temp *temp)

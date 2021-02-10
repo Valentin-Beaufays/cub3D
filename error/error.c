@@ -6,6 +6,22 @@ void    ft_error(char *error)
     exit(-1);
 }
 
+void free_map(char **map)
+{
+    size_t i;
+
+    i = 0;
+    if (map)
+    {
+        while (map[i])
+        {
+            free(map[i]);
+            i++;
+        }
+        free(map);
+    }
+}
+
 void free_tmp_err(char *error, t_temp *temp, int select)
 {
     if ((select == 1 || select == 3) && temp->line)
@@ -22,7 +38,6 @@ void free_tmp_err(char *error, t_temp *temp, int select)
         free(temp->east);
     if (temp->sprite)
         free(temp->sprite);
-    if (temp->map)
-        free(temp->map);
+    free_map(temp->map);
     ft_error(error);
 }

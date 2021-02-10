@@ -26,7 +26,7 @@ typedef struct	s_temp
     int         ceiling_R;
     int         ceiling_G;
     int         ceiling_B;
-    int         **map;
+    char         **map;
 }				t_temp;
 
 void            init_temp(t_temp *temp, int fd);
@@ -40,5 +40,6 @@ void            parse_ea_texture(t_temp *temp);
 void            parse_s_texture(t_temp *temp);
 void            parse_floor(t_temp *temp);
 void            parse_ceiling(t_temp *temp);
+void            parse_map(t_temp *temp);
 
 #endif
