@@ -1,12 +1,14 @@
 #ifndef PARSER_H
 # define PARSER_H
 
+# include "./cub3d.h"
 # include <errno.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
 # include <string.h>
 # include "../get_next_line/get_next_line.h"
+# include "./cub3d.h"
 
 typedef struct	s_temp
 {
@@ -20,12 +22,8 @@ typedef struct	s_temp
     char        *west;
     char        *east;
     char        *sprite;
-    int         floor_R;
-    int         floor_G;
-    int         floor_B;
-    int         ceiling_R;
-    int         ceiling_G;
-    int         ceiling_B;
+    int         floor[3];
+    int         ceiling[3];
     char         **map;
 }				t_temp;
 
@@ -41,5 +39,9 @@ void            parse_s_texture(t_temp *temp);
 void            parse_floor(t_temp *temp);
 void            parse_ceiling(t_temp *temp);
 void            parse_map(t_temp *temp);
+t_cub3d         *get_data(t_temp *temp);
+void            get_resolution(t_temp *temp, t_cub3d *data);
+void            get_textures(t_temp *temp, t_cub3d *data);
+void            get_fc(t_temp *temp, t_cub3d *data);
 
 #endif

@@ -11,11 +11,14 @@
 /* ************************************************************************** */
 
 #include "./includes/cub3d.h"
+#include "./includes/error.h"
 
 int		main(int argc, char **argv)
 {
 	char *test;
+	t_cub3d *data;
 
+	(void)data;
 	test = NULL;
 	free(test);
 	if (argc == 1 || argc > 3)

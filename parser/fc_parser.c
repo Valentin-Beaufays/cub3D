@@ -42,15 +42,15 @@ void parse_floor(t_temp *temp)
         free_tmp_err("invalid floor line", temp, 3);
     while (*line == ' ')
         line++;
-    if ((temp->floor_R = get_value(&line)) < 0)
+    if ((temp->floor[0] = get_value(&line)) < 0)
 		free_tmp_err("invalid floor line", temp, 3);
     if (!(next_value(&line)))
         free_tmp_err("missing \',\' in floor line", temp, 3);
-    if ((temp->floor_G = get_value(&line)) < 0)
+    if ((temp->floor[1] = get_value(&line)) < 0)
 		free_tmp_err("invalid floor line", temp, 3);
     if (!(next_value(&line)))
         free_tmp_err("missing \',\' in floor line", temp, 3);
-    if ((temp->floor_B = get_value(&line)) < 0)
+    if ((temp->floor[2] = get_value(&line)) < 0)
 		free_tmp_err("invalid floor line", temp, 3);
     while (*line)
     {
@@ -69,15 +69,15 @@ void parse_ceiling(t_temp *temp)
         free_tmp_err("invalid ceiling line", temp, 3);
     while (*line == ' ')
         line++;
-    if ((temp->ceiling_R = get_value(&line)) < 0)
+    if ((temp->ceiling[0] = get_value(&line)) < 0)
 		free_tmp_err("invalid ceiling line", temp, 3);
     if (!(next_value(&line)))
         free_tmp_err("missing \',\' in ceiling line", temp, 3);
-    if ((temp->ceiling_G = get_value(&line)) < 0)
+    if ((temp->ceiling[1] = get_value(&line)) < 0)
 		free_tmp_err("invalid ceiling line", temp, 3);
     if (!(next_value(&line)))
         free_tmp_err("missing \',\' in ceiling line", temp, 3);
-    if ((temp->ceiling_B = get_value(&line)) < 0)
+    if ((temp->ceiling[2] = get_value(&line)) < 0)
 		free_tmp_err("invalid ceiling line", temp, 3);
     while (*line)
     {

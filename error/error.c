@@ -1,5 +1,6 @@
 #include "../includes/cub3d.h"
-
+#include "../includes/error.h"
+ 
 void    ft_error(char *error)
 {
     printf("Error: %s\n", error);
@@ -39,5 +40,13 @@ void free_tmp_err(char *error, t_temp *temp, int select)
     if (temp->sprite)
         free(temp->sprite);
     free_map(temp->map);
+    free(temp);
     ft_error(error);
+}
+
+void free_data_err(char *error, t_temp *temp, t_cub3d *data, int select)
+{
+
+    free(data);
+    free_tmp_err(error, temp, 0);
 }
