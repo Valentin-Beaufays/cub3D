@@ -16,6 +16,6 @@
 # include "error.h"
 # include "parser.h"
 
-t_cub3d			*cub_parser(char *path);
+t_cub3D			*cub_parser(char *path);
 
 #endif

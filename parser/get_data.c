@@ -21,7 +21,7 @@ int intpow(int x, int y)
     return (res);
 }
 
-void get_resolution(t_temp *temp, t_cub3d *data)
+void get_resolution(t_temp *temp, t_cub3D *data)
 {
     if (temp->x < MIN_RES || temp->x > MAX_RES)
         free_data_err("invalid horizontal resolution", temp, data, 0);
@@ -32,7 +32,7 @@ void get_resolution(t_temp *temp, t_cub3d *data)
     printf("resolution: %i x %i\n", data->def[0], data->def[1]);
 }
 
-void get_textures(t_temp *temp, t_cub3d *data)
+void get_textures(t_temp *temp, t_cub3D *data)
 {
     get_no_texture(temp, data);
     get_so_texture(temp, data);
@@ -41,7 +41,7 @@ void get_textures(t_temp *temp, t_cub3d *data)
     get_s_texture(temp, data);
 }
 
-void get_fc(t_temp *temp, t_cub3d *data)
+void get_fc(t_temp *temp, t_cub3D *data)
 {
     size_t i;
     int floor;
@@ -68,9 +68,9 @@ void get_fc(t_temp *temp, t_cub3d *data)
     printf("f_color: %i\nc_color: %i\n", data->color_floor, data->color_ceil);
 }
 
-t_cub3d *get_data(t_temp *temp)
+t_cub3D *get_data(t_temp *temp)
 {
-    t_cub3d *data;
+    t_cub3D *data;
 
     if (!(data = malloc(sizeof(*data))))
         free_tmp_err(strerror(errno), temp, 0);

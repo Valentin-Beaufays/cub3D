@@ -11,12 +11,11 @@
 /* ************************************************************************** */
 
 #include "./includes/cub3d.h"
-#include "./includes/error.h"
 
 int		main(int argc, char **argv)
 {
 	char *test;
-	t_cub3d *data;
+	t_cub3D *data;
 
 	test = NULL;
 	free(test);
@@ -25,7 +24,7 @@ int		main(int argc, char **argv)
 	if (argc == 3 && !(ft_strcmp(argv[1], "--save")))
 		ft_error("usage: cub3d [--save] file");
 	if (argc == 2 || argc == 3)
-		cub_parser(argv[1]);
+		data = cub_parser(argv[1]);
 	printf("done\n");
 	return (0);
 }

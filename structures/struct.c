@@ -21,7 +21,7 @@ void init_temp(t_temp *temp, int fd)
     temp->map = NULL;
 }
 
-void init_cub3d(t_cub3d *data)
+void init_cub3D(t_cub3D *data)
 {
     data->x = 0;
 	data->y = 0;

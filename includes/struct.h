@@ -32,6 +32,6 @@ typedef struct s_cub3d
 	int color_ceil;
 	int color_floor;
 	int	def[2];
-}				t_cub3d;
+}				t_cub3D;
 
 #endif

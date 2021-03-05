@@ -101,11 +101,11 @@ void    parse_args(t_temp *temp)
     parse_map(temp);
 }
 
-t_cub3d *cub_parser(char *path)
+t_cub3D *cub_parser(char *path)
 {
     int fd;
     t_temp temp;
-    t_cub3d *data;
+    t_cub3D *data;
 
     if (!check_path(path, ".cub"))
        ft_error("file must end with .cub");
@@ -114,5 +114,5 @@ t_cub3d *cub_parser(char *path)
     init_temp(&temp, fd);
     parse_args(&temp);
     data = get_data(&temp);
-    return (NULL);
+    return (data);
 }
