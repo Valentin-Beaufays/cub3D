@@ -50,7 +50,7 @@ t_cub3d *get_data(t_temp *temp)
     if (!(data = malloc(sizeof(*data))))
         free_tmp_err(strerror(errno), temp, 0);
     get_resolution(temp, data);
-    get_texture(temp, data);
+    get_textures(temp, data);
     get_fc(temp, data);
     //get_map(temp, data);
     //free_temp(temp);

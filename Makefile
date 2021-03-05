@@ -16,7 +16,7 @@ FILES=			error/error.c\
 				get_next_line/get_next_line_utils.c\
 				main.c
 
-LIB=			libft/libft.a
+LIB=			libft/libft.a -lm
 
 all: $(NAME)
 

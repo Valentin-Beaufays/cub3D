@@ -46,7 +46,7 @@ void free_tmp_err(char *error, t_temp *temp, int select)
 
 void free_data_err(char *error, t_temp *temp, t_cub3d *data, int select)
 {
-
+	(void)select;
     free(data);
     free_tmp_err(error, temp, 0);
 }
