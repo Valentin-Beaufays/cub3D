@@ -16,6 +16,11 @@ void            parse_map(t_temp *temp);
 t_cub3d         *get_data(t_temp *temp);
 void            get_resolution(t_temp *temp, t_cub3d *data);
 void            get_textures(t_temp *temp, t_cub3d *data);
+void            get_no_texture(t_temp *temp, t_cub3d *data);
+void            get_so_texture(t_temp *temp, t_cub3d *data);
+void            get_we_texture(t_temp *temp, t_cub3d *data);
+void            get_ea_texture(t_temp *temp, t_cub3d *data);
+void            get_s_texture(t_temp *temp, t_cub3d *data);
 void            get_fc(t_temp *temp, t_cub3d *data);
 
 #endif

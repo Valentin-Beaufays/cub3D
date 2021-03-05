@@ -55,7 +55,7 @@ void free_data_err(char *error, t_temp *temp, t_cub3d *data, int select)
     if (data->text_E)
         free(data->text_E);
     if (data->text_sprite)
-        free(data->text_sprite;
+        free(data->text_sprite);
     free(data);
     free_tmp_err(error, temp, 0);
 }

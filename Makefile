@@ -22,7 +22,7 @@ LIB=			libft/libft.a -lm
 all: $(NAME)
 
 $(NAME):
-	$(CC) -o $(NAME) -I ./includes -D BUFFER_SIZE=$(BUFFER_SIZE) $(FILES) $(LIB)
+	$(CC) $(CFLAGS) -o $(NAME) -I ./includes -D BUFFER_SIZE=$(BUFFER_SIZE) $(FILES) $(LIB)
 
 clean:
 	@rm -rf $(NAME)
