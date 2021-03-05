@@ -22,12 +22,12 @@ void init_temp(t_temp *temp, int fd)
     temp->west = NULL;
     temp->east = NULL;
     temp->sprite = NULL;
-    temp->floor_R = 0;
-    temp->floor_G = 0;
-    temp->floor_B = 0;
-    temp->ceiling_R = 0;
-    temp->ceiling_G = 0;
-    temp->ceiling_B = 0;
+    temp->floor[0] = 0;
+    temp->floor[1] = 0;
+    temp->floor[2] = 0;
+    temp->ceiling[0] = 0;
+    temp->ceiling[1] = 0;
+    temp->ceiling[2] = 0;
     temp->map = NULL;
 }
 
