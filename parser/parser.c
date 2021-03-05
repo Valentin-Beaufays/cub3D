@@ -1,15 +1,5 @@
 #include "../includes/cub3d.h"
 
-int check_path(char *path, char *ext)
-{
-	size_t len;
-
-	len = ft_strlen(path);
-	if (ft_strcmp(path + (len - 4), ext))
-		return (0);
-    return (1);
-}
-
 void init_temp(t_temp *temp, int fd)
 {
     temp->fd = fd;

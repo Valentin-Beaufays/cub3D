@@ -1,5 +1,26 @@
 #include "../includes/cub3d.h"
 
+int intpow(int x, int y)
+{
+    int res;
+    
+    res = 1;
+    if (x < 0 || y < 0)
+     return (0);
+    if (y >= 1)
+        res = x; 
+    if (y > 1)
+    {
+        y--;
+        while (y > 0)
+        {
+         res = res * x;
+         y--;
+        }
+    }
+    return (res);
+}
+
 void get_resolution(t_temp *temp, t_cub3d *data)
 {
     if (temp->x < MIN_RES || temp->x > MAX_RES)
@@ -13,7 +34,11 @@ void get_resolution(t_temp *temp, t_cub3d *data)
 
 void get_textures(t_temp *temp, t_cub3d *data)
 {
-
+    get_no_texture(temp, data);
+    get_so_texture(temp, data);
+    get_we_texture(temp, data);
+    get_ea_texture(temp, data);
+    get_s_texture(temp, data);
 }
 
 void get_fc(t_temp *temp, t_cub3d *data)
@@ -36,8 +61,8 @@ void get_fc(t_temp *temp, t_cub3d *data)
     i = 0;
     while (i < 3)
     {
-        data->color_floor += (pow(256, (2 - i) * temp->floor[i]));
-        data->color_ceil += (pow(256, (2 - i) * temp->ceiling[i]));
+        data->color_floor += (intpow(256, 2 - i) * temp->floor[i]);
+        data->color_ceil += (intpow(256, 2 - i) * temp->ceiling[i]);
         i++;
     }
     printf("f_color: %i\nc_color: %i\n", data->color_floor, data->color_ceil);

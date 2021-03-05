@@ -46,6 +46,16 @@ void free_tmp_err(char *error, t_temp *temp, int select)
 
 void free_data_err(char *error, t_temp *temp, t_cub3d *data, int select)
 {
+    if (data->text_N)
+        free(data->text_N);
+    if (data->text_S)
+        free(data->text_S);
+    if (data->text_W)
+        free(data->text_W);
+    if (data->text_E)
+        free(data->text_E);
+    if (data->text_sprite)
+        free(data->text_sprite;
     free(data);
     free_tmp_err(error, temp, 0);
 }

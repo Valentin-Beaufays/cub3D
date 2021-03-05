@@ -12,6 +12,7 @@ FILES=			error/error.c\
 				parser/fc_parser.c\
 				parser/map_parser.c\
 				parser/get_data.c\
+				parser/get_textures.c\
 				get_next_line/get_next_line.c\
 				get_next_line/get_next_line_utils.c\
 				main.c
@@ -21,7 +22,7 @@ LIB=			libft/libft.a -lm
 all: $(NAME)
 
 $(NAME):
-	$(CC) $(CFLAGS) -o $(NAME) -I ./includes -D BUFFER_SIZE=$(BUFFER_SIZE) $(FILES) $(LIB)
+	$(CC) -o $(NAME) -I ./includes -D BUFFER_SIZE=$(BUFFER_SIZE) $(FILES) $(LIB)
 
 clean:
 	@rm -rf $(NAME)
