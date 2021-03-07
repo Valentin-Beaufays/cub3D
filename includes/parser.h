@@ -22,5 +22,6 @@ void	get_we_texture(t_temp *temp, t_cub3d *data);
 void	get_ea_texture(t_temp *temp, t_cub3d *data);
 void	get_s_texture(t_temp *temp, t_cub3d *data);
 void	get_fc(t_temp *temp, t_cub3d *data);
+void	get_map(t_temp *temp, t_cube3d *data);
 
 #endif

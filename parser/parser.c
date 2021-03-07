@@ -58,7 +58,7 @@ void	parse_args(t_temp *temp)
 {
 	int	is_map;
 	int	ret;
-:
+
 	is_map = 0;
 	while(!is_map && (ret = get_next_line(temp->fd, &(temp->line))))
 	{
