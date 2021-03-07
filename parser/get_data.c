@@ -36,7 +36,7 @@ void check_missing_data(t_temp *temp)
         free_tmp_err("ceiling is missing", temp, 0);
 }
 
-void get_resolution(t_temp *temp, t_cub3D *data)
+void get_resolution(t_temp *temp, t_cub3d *data)
 {
     if (temp->x < MIN_RES || temp->x > MAX_RES)
         free_data_err("invalid horizontal resolution", temp, data, 0);
@@ -47,7 +47,7 @@ void get_resolution(t_temp *temp, t_cub3D *data)
     printf("resolution: %i x %i\n", data->def[0], data->def[1]);
 }
 
-void get_textures(t_temp *temp, t_cub3D *data)
+void get_textures(t_temp *temp, t_cub3d *data)
 {
     get_no_texture(temp, data);
     get_so_texture(temp, data);
@@ -56,7 +56,7 @@ void get_textures(t_temp *temp, t_cub3D *data)
     get_s_texture(temp, data);
 }
 
-void get_fc(t_temp *temp, t_cub3D *data)
+void get_fc(t_temp *temp, t_cub3d *data)
 {
     size_t i;
     int floor;
@@ -83,9 +83,9 @@ void get_fc(t_temp *temp, t_cub3D *data)
     printf("f_color: %i\nc_color: %i\n", data->color_floor, data->color_ceil);
 }
 
-t_cub3D *get_data(t_temp *temp)
+t_cub3d *get_data(t_temp *temp)
 {
-    t_cub3D *data;
+    t_cub3d *data;
 
     check_missing_data(temp);
     if (!(data = malloc(sizeof(*data))))

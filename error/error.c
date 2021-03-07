@@ -44,10 +44,10 @@ void free_tmp_err(char *error, t_temp *temp, int select)
     ft_error(error);
 }
 
-void free_data_err(char *error, t_temp *temp, t_cub3D *data, int select)
+void free_data_err(char *error, t_temp *temp, t_cub3d *data, int select)
 {
-    if (data->text_N)
-        free(data->text_N);
+    if (data->text_n)
+        free(data->text_n);
     if (data->text_S)
         free(data->text_S);
     if (data->text_W)

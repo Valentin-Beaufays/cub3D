@@ -15,7 +15,7 @@ int check_path(char *path, char *ext)
     return (1);
 }
 
-void get_no_texture(t_temp *temp, t_cub3D *data)
+void get_no_texture(t_temp *temp, t_cub3d *data)
 {
     size_t  i;
     int space;
@@ -30,13 +30,13 @@ void get_no_texture(t_temp *temp, t_cub3D *data)
             free_data_err("NO texture contains too many arguments", temp, data, 0);
         i++;
     }
-    if (!(data->text_N = ft_strtrim(temp->north, " ")))
+    if (!(data->text_n = ft_strtrim(temp->north, " ")))
         free_data_err(strerror(errno), temp, data, 0);
-    if (check_path(data->text_N, ".xpm"))
+    if (check_path(data->text_n, ".xpm"))
         free_data_err("NO texture must be an xpm file", temp, data, 1);
 }
 
-void get_so_texture(t_temp *temp, t_cub3D *data)
+void get_so_texture(t_temp *temp, t_cub3d *data)
 {
     size_t  i;
     int space;
@@ -57,7 +57,7 @@ void get_so_texture(t_temp *temp, t_cub3D *data)
         free_data_err("SO texture must be an xpm file", temp, data, 1);
 }
 
-void get_we_texture(t_temp *temp, t_cub3D *data)
+void get_we_texture(t_temp *temp, t_cub3d *data)
 {
     size_t  i;
     int space;
@@ -78,7 +78,7 @@ void get_we_texture(t_temp *temp, t_cub3D *data)
         free_data_err("WE texture must be an xpm file", temp, data, 1);
 }
 
-void get_ea_texture(t_temp *temp, t_cub3D *data)
+void get_ea_texture(t_temp *temp, t_cub3d *data)
 {
     size_t  i;
     int space;
@@ -99,7 +99,7 @@ void get_ea_texture(t_temp *temp, t_cub3D *data)
         free_data_err("EA texture must be an xpm file", temp, data, 1);
 }
 
-void get_s_texture(t_temp *temp, t_cub3D *data)
+void get_s_texture(t_temp *temp, t_cub3d *data)
 {
     size_t  i;
     int space;
