@@ -1,88 +1,88 @@
 #include "../includes/cub3d.h"
 
-static int get_value(char **line)
+static int	get_value(char **line)
 {
-    int temp;
-    int size;
+	int	temp;
+	int	size;
 
-    size = 0;
-    if (**line == '+' || **line == '-')
-        return (-1);
-    temp = ft_atoi(*line);
-    if (temp < 0 || temp > 255)
-        return (-1);
-    while (ft_isdigit(*(*line + size)))
-        size++;
-    *line += size;
-    return (temp);
+	size = 0;
+	if (**line == '+' || **line == '-')
+		return (-1);
+	temp = ft_atoi(*line);
+	if (temp < 0 || temp > 255)
+		return (-1);
+	while (ft_isdigit(*(*line + size)))
+		size++;
+	*line += size;
+	return (temp);
 }
 
-static int next_value(char **line)
+static int	next_value(char **line)
 {
-    int size;
+	int	size;
 
-    size = 0;
-    while (*(*line + size) == ' ')
-        size++;
-    if (*(*line + size) != ',')
-        return (0);
-    size++;
-    while (*(*line + size) == ' ')
-        size++;
-    *line += size;
-    return (1);
+	size = 0;
+	while (*(*line + size) == ' ')
+		size++;
+	if (*(*line + size) != ',')
+		return (0);
+	size++;
+	while (*(*line + size) == ' ')
+		size++;
+	*line += size;
+	return (1);
 }
 
-void parse_floor(t_temp *temp)
+void		parse_floor(t_temp *temp)
 {
-    char *line;
+	char	*line;
 
-    line = temp->trim + 1;
-    if (!(*line == ' '))
-        free_tmp_err("invalid floor line", temp, 3);
-    while (*line == ' ')
-        line++;
-    if ((temp->floor[0] = get_value(&line)) < 0)
+	line = temp->trim + 1;
+	if (!(*line == ' '))
 		free_tmp_err("invalid floor line", temp, 3);
-    if (!(next_value(&line)))
-        free_tmp_err("missing \',\' in floor line", temp, 3);
-    if ((temp->floor[1] = get_value(&line)) < 0)
+	while (*line == ' ')
+		line++;
+	if ((temp->floor[0] = get_value(&line)) < 0)
 		free_tmp_err("invalid floor line", temp, 3);
-    if (!(next_value(&line)))
-        free_tmp_err("missing \',\' in floor line", temp, 3);
-    if ((temp->floor[2] = get_value(&line)) < 0)
+	if (!(next_value(&line)))
+		free_tmp_err("missing \',\' in floor line", temp, 3);
+	if ((temp->floor[1] = get_value(&line)) < 0)
 		free_tmp_err("invalid floor line", temp, 3);
-    while (*line)
-    {
-        if (*line != ' ')
-            free_tmp_err("invalid floor line", temp, 3);
-        line++;
-    }
+	if (!(next_value(&line)))
+		free_tmp_err("missing \',\' in floor line", temp, 3);
+	if ((temp->floor[2] = get_value(&line)) < 0)
+		free_tmp_err("invalid floor line", temp, 3);
+	while (*line)
+	{
+		if (*line != ' ')
+			free_tmp_err("invalid floor line", temp, 3);
+		line++;
+	}
 }
 
-void parse_ceiling(t_temp *temp)
+void		parse_ceiling(t_temp *temp)
 {
-    char *line;
+	char	*line;
 
-    line = temp->trim + 1;
-    if (!(*line == ' '))
-        free_tmp_err("invalid ceiling line", temp, 3);
-    while (*line == ' ')
-        line++;
-    if ((temp->ceiling[0] = get_value(&line)) < 0)
+	line = temp->trim + 1;
+	if (!(*line == ' '))
 		free_tmp_err("invalid ceiling line", temp, 3);
-    if (!(next_value(&line)))
-        free_tmp_err("missing \',\' in ceiling line", temp, 3);
-    if ((temp->ceiling[1] = get_value(&line)) < 0)
+	while (*line == ' ')
+		line++;
+	if ((temp->ceiling[0] = get_value(&line)) < 0)
 		free_tmp_err("invalid ceiling line", temp, 3);
-    if (!(next_value(&line)))
-        free_tmp_err("missing \',\' in ceiling line", temp, 3);
-    if ((temp->ceiling[2] = get_value(&line)) < 0)
+	if (!(next_value(&line)))
+		free_tmp_err("missing \',\' in ceiling line", temp, 3);
+	if ((temp->ceiling[1] = get_value(&line)) < 0)
 		free_tmp_err("invalid ceiling line", temp, 3);
-    while (*line)
-    {
-        if (*line != ' ')
-            free_tmp_err("invalid ceiling line", temp, 3);
-        line++;
-    }
+	if (!(next_value(&line)))
+		free_tmp_err("missing \',\' in ceiling line", temp, 3);
+	if ((temp->ceiling[2] = get_value(&line)) < 0)
+		free_tmp_err("invalid ceiling line", temp, 3);
+	while (*line)
+	{
+		if (*line != ' ')
+			free_tmp_err("invalid ceiling line", temp, 3);
+		line++;
+	}
 }

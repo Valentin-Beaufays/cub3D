@@ -14,8 +14,8 @@
 
 int		main(int argc, char **argv)
 {
-	char *test;
-	t_cub3D *data;
+	char	*test;
+	t_cub3D	*data;
 
 	test = NULL;
 	free(test);
