@@ -51,9 +51,9 @@ void get_so_texture(t_temp *temp, t_cub3d *data)
             free_data_err("SO texture contains too many arguments", temp, data, 0);
         i++;
     }
-    if (!(data->text_S = ft_strtrim(temp->south, " ")))
+    if (!(data->text_s = ft_strtrim(temp->south, " ")))
         free_data_err(strerror(errno), temp, data, 0);
-    if (check_path(data->text_S, ".xpm"))
+    if (check_path(data->text_s, ".xpm"))
         free_data_err("SO texture must be an xpm file", temp, data, 1);
 }
 
@@ -72,9 +72,9 @@ void get_we_texture(t_temp *temp, t_cub3d *data)
             free_data_err("WE texture contains too many arguments", temp, data, 0);
         i++;
     }
-    if (!(data->text_W = ft_strtrim(temp->west, " ")))
+    if (!(data->text_w = ft_strtrim(temp->west, " ")))
         free_data_err(strerror(errno), temp, data, 0);
-    if (check_path(data->text_W, ".xpm"))
+    if (check_path(data->text_w, ".xpm"))
         free_data_err("WE texture must be an xpm file", temp, data, 1);
 }
 
@@ -93,9 +93,9 @@ void get_ea_texture(t_temp *temp, t_cub3d *data)
             free_data_err("EA texture contains too many arguments", temp, data, 0);
         i++;
     }
-    if (!(data->text_E = ft_strtrim(temp->east, " ")))
+    if (!(data->text_e = ft_strtrim(temp->east, " ")))
         free_data_err(strerror(errno), temp, data, 0);
-    if (check_path(data->text_E, ".xpm"))
+    if (check_path(data->text_e, ".xpm"))
         free_data_err("EA texture must be an xpm file", temp, data, 1);
 }
 
