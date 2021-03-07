@@ -13,6 +13,7 @@ FILES=			error/error.c\
 				parser/map_parser.c\
 				parser/get_data.c\
 				parser/get_textures.c\
+				parser/get_map.c\
 				get_next_line/get_next_line.c\
 				get_next_line/get_next_line_utils.c\
 				main.c
