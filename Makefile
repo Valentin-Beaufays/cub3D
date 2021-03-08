@@ -7,6 +7,7 @@ BUFFER_SIZE=	10
 NAME=			cub3D
 
 FILES=			error/error.c\
+				structures/struct.c\
 				parser/parser.c\
 				parser/textures_parser.c\
 				parser/fc_parser.c\

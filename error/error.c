@@ -40,7 +40,6 @@ void free_tmp_err(char *error, t_temp *temp, int select)
     if (temp->sprite)
         free(temp->sprite);
     free_map(temp->map);
-    free(temp);
     ft_error(error);
 }
 

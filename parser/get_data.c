@@ -54,6 +54,7 @@ void get_textures(t_temp *temp, t_cub3d *data)
     get_we_texture(temp, data);
     get_ea_texture(temp, data);
     get_s_texture(temp, data);
+	printf("n: %s, s: %s, e: %s, w: %s, sprite: %s\n", data->text_n, data->text_s, data->text_e, data->text_w, data->text_sprite);
 }
 
 void get_fc(t_temp *temp, t_cub3d *data)
@@ -90,8 +91,9 @@ t_cub3d *get_data(t_temp *temp)
     check_missing_data(temp);
     if (!(data = malloc(sizeof(*data))))
         free_tmp_err(strerror(errno), temp, 0);
-    get_resolution(temp, data);
-    get_textures(temp, data);
+	init_cub3d(data);
+	get_resolution(temp, data);
+	get_textures(temp, data);
     get_fc(temp, data);
     get_map(temp, data);
     //free_temp(temp);

@@ -73,7 +73,7 @@ void	parse_args(t_temp *temp)
 		}
 		if (!is_map)
 			free(temp->line);
-			free(temp->trim);
+		free(temp->trim);
 	}
 	if (!is_map)
 		free_tmp_err("no map has been found", temp, 0);

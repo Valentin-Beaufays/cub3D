@@ -34,4 +34,7 @@ typedef struct	s_cub3d
 	int			def[2];
 }				t_cub3d;
 
+void	init_temp(t_temp *temp, int fd);
+void	init_cub3d(t_cub3d *data);
+
 #endif
