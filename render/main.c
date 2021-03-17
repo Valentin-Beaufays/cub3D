@@ -3,37 +3,17 @@
 #include <math.h>
 #include "../libft/libft.h"
 
-#define mapWidth 24
-#define mapHeight 24
+#define mapWidth 4
+#define mapHeight 4
 #define screenWidth 640
 #define screenHeight 480
 
 int Map[mapWidth][mapHeight]=
 {
-  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
+  {1,1,1,1},
+  {1,0,0,1},
+  {1,0,0,1},
+  {1,1,1,1}
 };
 
 typedef struct	mlx
@@ -87,6 +67,7 @@ void caster(t_mlx *mlx)
 
     t_ray ray;
     int x;
+	  int y;
 
     x = 0;
     while (x < screenWidth)
@@ -103,6 +84,8 @@ void caster(t_mlx *mlx)
 	     //length of ray from one x or y-side to next x or y-side
 	    ray.deltaDistX = ABS(1 / ray.rayDirX);
 	    ray.deltaDistY = ABS(1 / ray.rayDirY);
+
+      printf("%f, %f, %f, %i, %i, %f, %f\n", ray.cameraX, ray.rayDirX, ray.rayDirY, ray.mapX, ray.mapY, ray.deltaDistX, ray.deltaDistY);
 
       //initial SideDist
 
@@ -154,8 +137,6 @@ void caster(t_mlx *mlx)
         ray.perpWallDist = (ray.mapY - mlx->posY + (1 - ray.stepY) / 2) / ray.rayDirY;
 
       //trace
-      int y;
-
       y = 0;
       ray.lineHeight = (int)(screenHeight / ray.perpWallDist);
       ray.drawStart = (int)(((screenHeight - ray.lineHeight) / 2) + 1);
@@ -196,13 +177,12 @@ void key_hook(int key, t_mlx *mlx)
 int main()
 {
   t_mlx	mlx;
-  mlx.posX = 4, mlx.posY = 6;  //x and y start position
+  mlx.posX = 1.1, mlx.posY = 1.1;  //x and y start position
   mlx.dirX = -1, mlx.dirY = 0; //initial direction vector
   mlx.planeX = 0, mlx.planeY = 0.66; //the 2d raycaster version of camera plane
 
   double time = 0; //time of current frame
   double oldTime = 0; //time of previous fr
-  double test = 1.25;
 
 	//init mlx
 	mlx.mlx = mlx_init();
@@ -210,7 +190,8 @@ int main()
   mlx.img = mlx_new_image(mlx.mlx, screenWidth, screenHeight);
   mlx.addr = mlx_get_data_addr(mlx.img, &mlx.bpp, &mlx.line_length, &mlx.endian);
   mlx_key_hook(mlx.win, key_hook, &mlx);
-  mlx_loop_hook(mlx.mlx, render, &mlx);
+  //mlx_loop_hook(mlx.mlx, render, &mlx);
+  render(&mlx);
   mlx_loop(mlx.mlx);
 	return(0);
 }
