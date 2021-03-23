@@ -25,19 +25,23 @@ typedef struct	mlx
 	double		fov;
 }				t_mlx;
 
+typedef struct s_point
+{
+	double 		x;
+	double		y;
+}				t_point;
+
+
 typedef struct  s_ray
 {
-	int			up = 0;
-	int			left = 0;
-	double		hX = -1;
-	double		hY = -1;
-	double		vX = -1;
-	double		vY = -1;
-	double		x = -1; 
-	double		y = -1; 
+	int			up;
+	int			left;
+	t_point		h_intersect;
+	t_point		v_intersect;
+	t_point		intersect;
 	double		stepX;
 	double		stepY;
-	double		rayAngle = mlx->angle + (mlx->fov / 2); //check if > 2 * M_PI;
+	double		rayAngle;
 }               t_ray;
 
 int Map[mapWidth][mapHeight]=
@@ -62,7 +66,7 @@ void getRayDir(double angle, int *up, int *left)
 
 int	check_hit(t_ray *ray/*, char **map*/)
 {
-	if (ray->x >= 0 && ray->y >= 0 && ray->x < mapWidth && ray->y < mapHeight)
+	if (ray->intersect.x >= 0 && ray->intersect.y >= 0 && ray->intersect.x < mapWidth && ray->intersect.y < mapHeight)
 	{
 		int up;
 		int left;
@@ -73,7 +77,7 @@ int	check_hit(t_ray *ray/*, char **map*/)
 			up = 1;
 		if (ray->left == 1)
 			left = 1;
-		if (Map[(int)ray->x - left][(int)ray->y - up] == 1)
+		if (Map[(int)ray->intersect.x - left][(int)ray->intersect.y - up] == 1)
 			return (1);
 		else
 			return (0);
@@ -88,8 +92,8 @@ int check_hit_loop(t_ray *ray)
 	hit = check_hit(ray);
 	while (!hit)
 	{
-		ray->x += ray->stepX;
-		ray->x += ray->stepY;
+		ray->intersect.x += ray->stepX;
+		ray->intersect.x += ray->stepY;
 		hit = check_hit(ray);
 	}
 	return (hit);
@@ -101,22 +105,22 @@ int	find_h_intersection(t_ray *ray, t_mlx *mlx)
 	{
 		if (ray->up == 1)
 		{
-			ray->y = floor(mlx->posY);
+			ray->intersect.y = floor(mlx->posY);
 			ray->stepY = -1;
 		}
 		else
 		{
-			ray->y = floor(mlx->posY) + 1;
+			ray->intersect.y = floor(mlx->posY) + 1;
 			ray->stepY = 1;
 		}
 		if (ray->left != 0)
 		{
-			ray->x = mlx->posX + (mlx->posY - ray->y) / tan(ray->rayAngle);
+			ray->intersect.x = mlx->posX + (mlx->posY - ray->intersect.y) / tan(ray->rayAngle);
 			ray->stepX = (1 / tan(ray->rayAngle)) * ray->up;
 		}
 		else
 		{
-			ray->x = mlx->posX;
+			ray->intersect.x = mlx->posX;
 			ray->stepX = 0;
 		}
 		return (check_hit_loop(ray));
@@ -129,15 +133,15 @@ int	find_v_intersection(t_ray *ray, t_mlx *mlx)
 	{
 		if (ray->left == 1)
 		{
-			ray->x = floor(mlx->posX);
+			ray->intersect.x = floor(mlx->posX);
 			ray->stepX = -1;
 		}
 		else
 		{
-			ray->x = floor(mlx->posX) + 1;
+			ray->intersect.x = floor(mlx->posX) + 1;
 			ray->stepX = 1;
 		}
-		ray->y = mlx->posY + (mlx->posX - ray->x) * tan(ray->rayAngle);
+		ray->intersect.y = mlx->posY + (mlx->posX - ray->intersect.x) * tan(ray->rayAngle);
 		ray->stepY = tan(ray->rayAngle) * ray->left;
 		return (check_hit_loop(ray));
 	}
@@ -148,34 +152,39 @@ void find_nearest_intersection(t_ray *ray, t_mlx *mlx)
 {
 	double distH;
 	double distV;
-	if (ray->hX != -1)
+	if (ray->h_intersect.x != -1)
 	{
-		distH = ABS(mlx->posX - ray->hX) + ABS(mlx->posY - ray->hY);
-		distV = ABS(mlx->posX - ray->vY) + ABS(mlx->posY - ray->vY);
-		if (ray->vX == -1 || distH < distV)
+		distH = ABS(mlx->posX - ray->h_intersect.x) + ABS(mlx->posY - ray->h_intersect.y);
+		distV = ABS(mlx->posX - ray->v_intersect.y) + ABS(mlx->posY - ray->v_intersect.y);
+		if (ray->v_intersect.x == -1 || distH < distV)
 		{
-			ray->x = ray->hX;
-			ray->y = ray->hY;
+			ray->intersect.x = ray->h_intersect.x;
+			ray->intersect.y = ray->h_intersect.y;
 		}
 	}
 }
 
 void find_intersection(t_ray *ray, t_mlx *mlx)
 {
-		getRayDir(ray->rayAngle, ray->up, ray->left);
-		if (find_h_intersection(&ray, mlx) == 1)
+		getRayDir(ray->rayAngle, &ray->up, &ray->left);
+		if (find_h_intersection(ray, mlx) == 1)
 		{
-			ray->hX = ray->x;
-			ray->hY = ray->y;
+			ray->h_intersect.x = ray->intersect.x;
+			ray->h_intersect.y = ray->intersect.y;
 		}
-		if (find_v_intersection(&ray, mlx) == 1)
+		if (find_v_intersection(ray, mlx) == 1)
 		{
-			ray->vX = ray->x;
-			ray->vY = ray->y;
+			ray->v_intersect.x = ray->intersect.x;
+			ray->v_intersect.y = ray->intersect.y;
 		}
-		find_nearest_intersection(&ray, mlx);
-		printf("(%f;%f)\n", ray->x, ray->y);
+		find_nearest_intersection(ray, mlx);
+		printf("(%f;%f)\n", ray->intersect.x, ray->intersect.y);
 		ray->rayAngle -= mlx->stepRad;
+}
+
+void render_column(t_ray *ray, t_mlx *mlx)
+{
+
 }
 
 void	render(t_mlx *mlx)
@@ -184,15 +193,13 @@ void	render(t_mlx *mlx)
 	int		x;
 	//init_ray
 	ray.rayAngle = mlx->angle + (mlx->fov / 2); //check if > 2 * M_PI
-	int x;
-
 	x = 0;
 	while(x < screenW)
 	{
-		find_intersection(&ray, mlx)
-		
+		find_intersection(&ray, mlx);
+		render_column(&ray);
 		x++;
-	{
+	}
 }
 
 int	main()
