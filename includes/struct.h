@@ -18,12 +18,38 @@ typedef struct	s_temp
 	char		**map;
 }				t_temp;
 
-typedef struct	s_cub3d
+typedef struct	s_point
 {
 	double		x;
 	double		y;
-	double		rotation;
+}				t_point;
+
+typedef struct	s_map
+{
+	int			w;
+	int			h;
 	char		**map;
+}				t_map;
+
+typedef struct	s_mlx
+{
+	void		*ptr;
+	void		*win;
+	void		*img;
+	void		*addr;
+	int			bpp;
+	int			length;
+	int			endian;
+}				t_mlx;
+
+typedef struct	s_cub3d
+{
+	t_mlx		mlx;
+	t_point		pos;
+	double		fov;
+	double		angle;
+	double		stepRad;
+	t_map		map;
 	char		*text_sprite;
 	char		*text_n;
 	char		*text_s;
@@ -31,10 +57,23 @@ typedef struct	s_cub3d
 	char		*text_w;
 	int			color_ceil;
 	int			color_floor;
-	int			def[2];
+	t_point		def;
 }				t_cub3d;
+
+typedef struct	s_ray
+{
+	int			up;
+	int			left;
+	t_point		h_intersect;
+	t_point		v_intersect;
+	t_point		intersect;
+	double		rayAngle;
+	double		stepX;
+	double		stepY;
+}				t_ray;
 
 void	init_temp(t_temp *temp, int fd);
 void	init_cub3d(t_cub3d *data);
+void 	init_ray(t_ray *ray);
 
 #endif

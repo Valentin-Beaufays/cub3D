@@ -66,28 +66,39 @@ double  round_rad(double rad)
 
 //actual code
 
-int	check_hit(t_ray *ray, t_cub3d *data)
+int	check_h_hit(t_ray *ray, t_cub3d *data)
 {
+    int up;
+    up = 0;
+    if  (ray->up == 1)
+        up = 1;
 	if (ray->intersect.x >= 0 && ray->intersect.y >= 0 && ray->intersect.x < data->map.w && ray->intersect.y < data->map.h)
 	{
-		int up;
-		int left;
-
-		up = 0;
-		left = 0;
-		if (ray->up == 1)
-			up = 1;
-		if (ray->left == 1)
-			left = 1;
-		if (Map[(int)ray->intersect.y - up][(int)ray->intersect.x - left] == 1)
-			return (1);
-		else
-			return (0);
+		if (Map[(int)ray->intersect.y - up][(int)ray->intersect.x] == 1)
+            return (1);
+        else
+            return (0);
 	}
 	return (-1);
 }
 
-int check_hit_loop(t_ray *ray, t_cub3d *data)
+int	check_v_hit(t_ray *ray, t_cub3d *data)
+{
+    int left;
+    left = 0;
+    if (ray->left == 1)
+        left = 1;
+	if (ray->intersect.x >= 0 && ray->intersect.y >= 0 && ray->intersect.x < data->map.w && ray->intersect.y < data->map.h)
+	{
+		if (Map[(int)ray->intersect.y][(int)ray->intersect.x - left] == 1)
+            return (1);
+        else
+            return (0);
+	}
+	return (-1);
+}
+
+int check_hit_loop(t_ray *ray, t_cub3d *data, int (*check_hit)(t_ray *ray, t_cub3d *data))
 {
 	int	hit;
 
@@ -95,8 +106,8 @@ int check_hit_loop(t_ray *ray, t_cub3d *data)
 	while (!hit)
 	{
 		ray->intersect.x += ray->stepX;
-		ray->intersect.x += ray->stepY;
-		hit = check_hit(ray, data);
+		ray->intersect.y += ray->stepY;
+		hit = (*check_hit)(ray, data);
 	}
     if (hit == -1)
 	    return (0);
@@ -128,7 +139,7 @@ int find_h_intersect(t_ray *ray, t_cub3d *data)
 			ray->stepX = 0;
 		}
         //printf("%f %f %f %f\n", ray->intersect.x, ray->intersect.y, data->pos.x, data->pos.y);
-		return (check_hit_loop(ray, data));
+		return (check_hit_loop(ray, data, &check_h_hit));
 	}
 	return (0);
 }
@@ -149,9 +160,27 @@ int	find_v_intersection(t_ray *ray, t_cub3d *data)
 		}
 		ray->intersect.y = data->pos.y + (data->pos.x - ray->intersect.x) * tan(ray->rayAngle);
 		ray->stepY = tan(ray->rayAngle) * ray->left;
-		return (check_hit_loop(ray, data));
+        printf("go\n");
+		return (check_hit_loop(ray, data, &check_v_hit));
 	}
 	return (0);
+}
+
+void find_nearest_intersection(t_ray *ray, t_cub3d *data)
+{
+	double distH;
+	double distV;
+	if (ray->h_intersect.x != -1)
+	{
+		distH = sqrt(pow(data->pos.x - ray->h_intersect.x, 2) + pow(data->pos.y - ray->h_intersect.y, 2));
+		distV = sqrt(pow(data->pos.x - ray->v_intersect.x, 2) + pow(data->pos.y - ray->v_intersect.y, 2));
+		printf("%f %f\n", distH, distV);
+        if (ray->v_intersect.x == -1 || distH < distV)
+		{
+			ray->intersect.x = ray->h_intersect.x;
+			ray->intersect.y = ray->h_intersect.y;
+		}
+	}
 }
 
 void    find_intersection(t_ray *ray, t_cub3d *data)
@@ -168,8 +197,10 @@ void    find_intersection(t_ray *ray, t_cub3d *data)
 		ray->v_intersect.x = ray->intersect.x;
 		ray->v_intersect.y = ray->intersect.y;
 	}
+    find_nearest_intersection(ray, data);
     printf("h_intersect: (%f;%f)\n", ray->h_intersect.x, ray->h_intersect.y);
     printf("v_intersect: (%f;%f)\n", ray->v_intersect.x, ray->v_intersect.y);
+    printf("intersect: (%f;%f)\n", ray->intersect.x, ray->intersect.y);
 }
 
 void    render(t_cub3d *data)
@@ -201,11 +232,10 @@ int main()
     data.map.h = mapHeight;
     data.map.w = mapWidth;
     printf("pos: (%f;%f)\n", data.pos.x, data.pos.y);
-	data.angle = round_rad(deg2rad(-30));
+	data.angle = round_rad(deg2rad(10));
 	data.fov = round_rad(deg2rad(60));
 	data.stepRad = data.fov / data.def.x;
     data.color_ceil = rgb_to_int(0, 191, 255);
 	data.color_floor = rgb_to_int(204, 102, 0);
     render(&data);
-    return (0);
 }
