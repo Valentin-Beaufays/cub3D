@@ -26,13 +26,13 @@ void    print_column(t_ray *ray, t_cub3d *data, int x)
     wall_h = 1;
     distToWall = sqrt(pow(data->pos.x - ray->intersect.x, 2) + pow(data->pos.y - ray->intersect.y, 2));
     distToScreen = (data->def.x / 2) / tan(data->fov / 2);
-    projWall_h = ((wall_h / distToWall) * distToScreen) / 2;
+    projWall_h = ((wall_h / distToWall) * distToScreen);
     if (projWall_h > data->def.y)
         projWall_h = data->def.y;
     else if (projWall_h < 0)
         projWall_h = 0;
     //printf("wall_h: %f, distToWall: %f, distToScreen:%f, projWall_h: %f", wall_h, distToWall, distToScreen, projWall_h);
-    start = (data->def.x / 2) - projWall_h;
+    start = (data->def.y / 2) - projWall_h / 2;
     end = start + projWall_h;
     wallColor = rgb_to_int(0,255,0);
 
