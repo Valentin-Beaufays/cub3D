@@ -54,3 +54,4 @@ dkms.conf
 # Libraries
 libft/
 get_next_line/
+.vscode/

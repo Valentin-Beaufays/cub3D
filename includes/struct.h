@@ -70,10 +70,14 @@ typedef struct	s_ray
 	double		rayAngle;
 	double		stepX;
 	double		stepY;
+	int			text_dir;
 }				t_ray;
 
 void	init_temp(t_temp *temp, int fd);
 void	init_cub3d(t_cub3d *data);
 void 	init_ray(t_ray *ray);
+void	init_point(t_point *point);
+void	init_map(t_map *map);
+void	init_mlx(t_mlx *mlx);
 
 #endif

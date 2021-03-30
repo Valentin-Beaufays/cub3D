@@ -1,5 +1,29 @@
 #include "../includes/cub3d.h"
 
+void	init_point(t_point *point)
+{
+	point->x = -1;
+	point->y = -1;
+}
+
+void	init_map(t_map *map)
+{
+	map->h = 0;
+	map->w = 0;
+	map->map = NULL;
+}
+
+void	init_mlx(t_mlx *mlx)
+{
+	mlx->ptr = NULL;
+	mlx->win = NULL;
+	mlx->img = NULL;
+	mlx->addr = NULL;
+	mlx->bpp = 0;
+	mlx->length = 0;
+	mlx->endian = 0;
+}
+
 void	init_temp(t_temp *temp, int fd)
 {
 	temp->fd = fd;
@@ -23,12 +47,10 @@ void	init_temp(t_temp *temp, int fd)
 
 void	init_cub3d(t_cub3d *data)
 {
-	data->pos.x = 0;
-	data->pos.y = 0;
+	init_point(&data->pos);
+	init_point(&data->def);
+	init_map(&data->map);
 	data->angle = 0;
-	data->map.map = NULL;
-	data->map.h = 0;
-	data->map.w = 0;
 	data->text_sprite = NULL;
 	data->text_n = NULL;
 	data->text_s = NULL;
@@ -36,22 +58,17 @@ void	init_cub3d(t_cub3d *data)
 	data->text_w = NULL;
 	data->color_ceil = 0;
 	data->color_floor = 0;
-	data->def.x = 0;
-	data->def.y = 0;
 }
 
 void init_ray(t_ray *ray)
 {
 	ray->up = 0;
 	ray->left = 0;
-	ray->h_intersect.x = -1;
-	ray->h_intersect.y = -1;
-	ray->v_intersect.x = -1;
-	ray->v_intersect.y = -1;
-	ray->h_intersect.y = -1;
-	ray->intersect.x = -1;
-	ray->intersect.y = -1;
+	init_point(&ray->h_intersect);
+	init_point(&ray->v_intersect);
+	init_point(&ray->intersect);
 	ray->stepX = 0;
 	ray->stepY = 0;
 	ray->rayAngle = 0;
+	ray->text_dir = 0;
 }
