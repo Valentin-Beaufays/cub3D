@@ -3,8 +3,8 @@
 
 # include "struct.h"
 
-# define screenW 480
-# define screenH 480
+# define screenW 1280
+# define screenH 720
 # define mapWidth 13
 # define mapHeight 3
 # define SIZE 64
@@ -20,5 +20,7 @@ int     find_h_intersect(t_ray *ray, t_cub3d *data);
 int	    find_v_intersection(t_ray *ray, t_cub3d *data);
 void    find_nearest_intersection(t_ray *ray, t_cub3d *data);
 void    find_intersection(t_ray *ray, t_cub3d *data);
+void    print_column(t_ray *ray, t_cub3d *data, int x);
+int     rgb_to_int(int r, int g, int b);
 
 #endif

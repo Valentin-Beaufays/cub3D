@@ -30,6 +30,6 @@ double  round_rad(double rad)
 	rad = deg2rad(in);
 	round = round_rad(rad);
 	deg = rad2deg(round);
-	printf("in: %f° rad: %frad round: %frad deg: %f°\n", in, rad, round, deg);
+	//printf("in: %f° rad: %frad round: %frad deg: %f°\n", in, rad, round, deg);
 	return (0);
 }*/

@@ -170,7 +170,7 @@ void find_intersection(t_ray *ray, t_cub3d *data)
 			ray->v_intersect.y = ray->intersect.y;
 		}
 		find_nearest_intersection(ray, data);
-		printf("h: (%f;%f), v (%f;%f), (%f;%f)\n", ray->intersect.x, ray->intersect.y);
+		//printf("h: (%f;%f), v (%f;%f), (%f;%f)\n", ray->intersect.x, ray->intersect.y);
 }
 
 void            ft_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
@@ -198,8 +198,8 @@ void render_column(t_ray *ray, t_cub3d *data, int x)
 	start = (data->def.y / 2) - (perceived / 2);
 	end = (data->def.y / 2) + (perceived / 2);
 	y = 0;
-	printf("start : %d , end : %d\n", start, end);
-	printf("%f %f %d\n", distWall, perceived, y);
+	//printf("start : %d , end : %d\n", start, end);
+	//printf("%f %f %d\n", distWall, perceived, y);
 
 	while (y < start)
 	{
