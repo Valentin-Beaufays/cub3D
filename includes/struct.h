@@ -75,6 +75,7 @@ typedef struct	s_ray
 }				t_ray;
 
 void	init_temp(t_temp *temp, int fd);
+void	free_temp(t_temp *temp);
 void	init_cub3d(t_cub3d *data);
 void 	init_ray(t_ray *ray);
 void	init_point(t_point *point);

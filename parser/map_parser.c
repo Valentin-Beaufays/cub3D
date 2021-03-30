@@ -23,6 +23,7 @@ void		parse_map(t_temp *temp)
 		free_tmp_err(strerror(errno), temp, 1);
 	temp->map[size] = NULL;
 	temp->map[size - 1] = ft_strdup(temp->line);
+	free(temp->line);
 	while ((ret = get_next_line(temp->fd, &(temp->line))))
 	{
 		if (ret == -1)

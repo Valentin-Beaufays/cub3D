@@ -47,10 +47,13 @@ void	init_temp(t_temp *temp, int fd)
 
 void	init_cub3d(t_cub3d *data)
 {
+	init_mlx(&data->mlx);
 	init_point(&data->pos);
 	init_point(&data->def);
 	init_map(&data->map);
 	data->angle = 0;
+	data->fov = round_rad(deg2rad(60));
+	data->stepRad = 0;
 	data->text_sprite = NULL;
 	data->text_n = NULL;
 	data->text_s = NULL;

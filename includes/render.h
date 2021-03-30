@@ -3,8 +3,8 @@
 
 # include "struct.h"
 
-# define screenW 1280
-# define screenH 720
+# define screenW 20
+# define screenH 20
 # define mapWidth 13
 # define mapHeight 6
 # define SIZE 64

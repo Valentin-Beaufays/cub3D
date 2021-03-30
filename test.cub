@@ -6,13 +6,13 @@ SO ./testS.xpm
 
 WE ./testW.xpm
 
-EA ./testE.xpm abcd.xpm
+EA ./testE.xpm
 
 S ./testSprite.xpm
 
 F 255,255,255
 
-C 255,255, 255
+C 255,255,255
 
 111111111111
 100000000001

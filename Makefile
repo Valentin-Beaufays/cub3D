@@ -8,6 +8,7 @@ NAME=			cub3D
 
 FILES=			error/error.c\
 				structures/struct.c\
+				structures/free_struct.c\
 				parser/parser.c\
 				parser/textures_parser.c\
 				parser/fc_parser.c\
@@ -15,6 +16,9 @@ FILES=			error/error.c\
 				parser/get_data.c\
 				parser/get_textures.c\
 				parser/get_map.c\
+				utils/checkPath.c\
+				utils/rgbToInt.c\
+				render/rad_utils.c\
 				get_next_line/get_next_line.c\
 				get_next_line/get_next_line_utils.c\
 				main.c
