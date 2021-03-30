@@ -71,4 +71,5 @@ void init_ray(t_ray *ray)
 	ray->stepY = 0;
 	ray->rayAngle = 0;
 	ray->text_dir = 0;
+	ray->dir = 0;
 }

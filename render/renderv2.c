@@ -42,6 +42,15 @@ int    render(t_cub3d *data)
         //if (x == 0 || x == data->def.x - 1)
             //printf ("ray angle: %f°\n", rad2deg(ray.rayAngle));
         print_column(&ray, data, x);
+        if (x == data->def.x / 2)
+        {
+            printf(" (%f;%f) text: %d\n", ray.intersect.x, ray.intersect.y, ray.text_dir);
+            	printf("angle rad: %f, up: %d, left: %d\n", ray.rayAngle, ray.up, ray.left);
+    printf("h_intersect: (%f;%f)\n", ray.h_intersect.x, ray.h_intersect.y);
+    printf("v_intersect: (%f;%f)\n", ray.v_intersect.x, ray.v_intersect.y);
+    printf("intersect: (%f;%f)\n", ray.intersect.x, ray.intersect.y);
+    printf("wall: %d\n", ray.text_dir);
+        }
         ray.rayAngle = round_rad(ray.rayAngle - data->stepRad);
         x++;
     }
@@ -51,8 +60,8 @@ int    render(t_cub3d *data)
 
 int key_hook(int key, t_cub3d *data)
 {
-    data->angle = round_rad(data->angle + 0.1);
-    printf("key: %d, angle: %f", key, data->angle);
+    data->angle = round_rad(data->angle + 0.05);
+    printf("key: %d, angle: %f", key, rad2deg(data->angle));
     render(data);
     return (0);
 }

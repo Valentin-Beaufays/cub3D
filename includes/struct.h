@@ -70,6 +70,7 @@ typedef struct	s_ray
 	double		rayAngle;
 	double		stepX;
 	double		stepY;
+	int			dir;
 	int			text_dir;
 }				t_ray;
 

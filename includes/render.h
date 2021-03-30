@@ -6,7 +6,7 @@
 # define screenW 1280
 # define screenH 720
 # define mapWidth 13
-# define mapHeight 3
+# define mapHeight 6
 # define SIZE 64
 
 double  deg2rad(double deg);
