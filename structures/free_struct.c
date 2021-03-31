@@ -1,10 +1,23 @@
 #include "../includes/cub3d.h"
 
-void free_temp(t_temp *temp)
+void free_map(t_map *map)
 {
     size_t i;
 
     i = 0;
+    if (map->map)
+    {
+        while (map->map[i])
+        {
+            free(map->map[i]);
+            i++;
+        }
+        free(map->map);
+    }
+}
+
+void free_temp(t_temp *temp)
+{
     if (temp->north)
         free(temp->north);
     if (temp->south)
@@ -15,13 +28,4 @@ void free_temp(t_temp *temp)
         free(temp->east);
     if (temp->sprite)
         free(temp->sprite);
-    if (temp->map)
-    {
-        while (temp->map[i])
-        {
-            free(temp->map[i]);
-            i++;
-        }
-        free(temp->map);
-    }
 }

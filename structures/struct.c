@@ -42,7 +42,7 @@ void	init_temp(t_temp *temp, int fd)
 	temp->ceiling[0] = -1;
 	temp->ceiling[1] = -1;
 	temp->ceiling[2] = -1;
-	temp->map = NULL;
+	init_map(&temp->map);
 }
 
 void	init_cub3d(t_cub3d *data)

@@ -18,12 +18,11 @@ void check_missing_data(t_temp *temp)
 void get_resolution(t_temp *temp, t_cub3d *data)
 {
     if (temp->x < MIN_RES || temp->x > MAX_RES)
-        free_data_err("invalid horizontal resolution", temp, data, 0);
+        free_data_err("invalid horizontal resolution", temp, data);
     if (temp->y < MIN_RES || temp->y > MAX_RES)
-        free_data_err("invalid vertical resolution", temp, data, 0);
+        free_data_err("invalid vertical resolution", temp, data);
     data->def.x = temp->x;
     data->def.y = temp->y;
-    printf("resolution: %f x %f\n", data->def.x, data->def.y);
 }
 
 void get_textures(t_temp *temp, t_cub3d *data)
@@ -33,7 +32,6 @@ void get_textures(t_temp *temp, t_cub3d *data)
     get_we_texture(temp, data);
     get_ea_texture(temp, data);
     get_s_texture(temp, data);
-	printf("n: %s, s: %s, e: %s, w: %s, sprite: %s\n", data->text_n, data->text_s, data->text_e, data->text_w, data->text_sprite);
 }
 
 void get_fc(t_temp *temp, t_cub3d *data)
@@ -48,14 +46,13 @@ void get_fc(t_temp *temp, t_cub3d *data)
     while (i < 3)
     {
         if (temp->ceiling[i] < 0 || temp->ceiling[i] > 255)
-            free_data_err("invalid RGB values for ceiling", temp, data, 1);
+            free_data_err("invalid RGB values for ceiling", temp, data);
         if (temp->floor[i] < 0 || temp->floor[i] > 255)
-            free_data_err("invalid RGB values for floor", temp, data, 1);
+            free_data_err("invalid RGB values for floor", temp, data);
         i++;
     }
         data->color_floor = rgb_to_int(temp->floor[0], temp->floor[1], temp->floor[2]);
         data->color_ceil = rgb_to_int(temp->ceiling[0], temp->ceiling[1], temp->ceiling[2]);
-    printf("f_color: %i\nc_color: %i\n", data->color_floor, data->color_ceil);
 }
 
 t_cub3d *get_data(t_temp *temp)

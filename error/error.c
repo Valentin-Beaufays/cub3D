@@ -17,7 +17,7 @@ void free_tmp_err(char *error, t_temp *temp, int select)
     ft_error(error);
 }
 
-void free_data_err(char *error, t_temp *temp, t_cub3d *data, int select)
+void free_data_err(char *error, t_temp *temp, t_cub3d *data)
 {
     if (data->text_n)
         free(data->text_n);
@@ -31,5 +31,6 @@ void free_data_err(char *error, t_temp *temp, t_cub3d *data, int select)
         free(data->text_sprite);
     free(data);
     free_temp(temp);
+    free_map(&temp->map);
     ft_error(error);
 }

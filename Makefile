@@ -16,9 +16,11 @@ FILES=			error/error.c\
 				parser/get_data.c\
 				parser/get_textures.c\
 				parser/get_map.c\
+				parser/get_pos.c\
+				parser/check_valid_map.c\
 				utils/checkPath.c\
 				utils/rgbToInt.c\
-				render/rad_utils.c\
+				utils/rad_utils.c\
 				get_next_line/get_next_line.c\
 				get_next_line/get_next_line_utils.c\
 				main.c
