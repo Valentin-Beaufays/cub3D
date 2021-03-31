@@ -18,6 +18,10 @@ FILES=			error/error.c\
 				parser/get_map.c\
 				parser/get_pos.c\
 				parser/check_valid_map.c\
+				render/print_column.c\
+				render/find_intersection.c\
+				render/check_hit.c\
+				render/render.c\
 				utils/checkPath.c\
 				utils/rgbToInt.c\
 				utils/rad_utils.c\
