@@ -23,5 +23,7 @@ void	get_ea_texture(t_temp *temp, t_cub3d *data);
 void	get_s_texture(t_temp *temp, t_cub3d *data);
 void	get_fc(t_temp *temp, t_cub3d *data);
 void	get_map(t_temp *temp, t_cub3d *data);
+void    check_valid(t_temp *temp, t_cub3d *data);
+int     get_pos(char **map, t_cub3d *data);
 
 #endif

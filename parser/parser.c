@@ -92,6 +92,8 @@ t_cub3d *cub_parser(char *path)
 		ft_error(strerror(errno));
 	init_temp(&temp, fd);
 	parse_args(&temp);
+	if (close(fd))
+		free_tmp_err(strerror(errno), &temp, 0);
 	data = get_data(&temp);
 	return (data);
 }

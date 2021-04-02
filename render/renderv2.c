@@ -5,10 +5,6 @@
 #include <mlx.h>
 
 //utils
-int	rgb_to_int(int r, int g, int b)
-{
-	return (((256*256) * r) + (256 * g) + b);
-}
 
 void getRayDir(double angle, int *up, int *left)
 {
@@ -91,3 +87,4 @@ int main()
     //mlx_loop_hook(data.mlx.ptr, &render, &data);
 	mlx_loop(data.mlx.ptr);
 }
+//gcc -lm render/renderv2.c structures/struct.c render/rad_utils.c render/find_intersection.c render/check_hit.c render/print_column.c utils/rgbToInt.c libft/libft.a -lmlx -lXext -lX11

@@ -7,43 +7,17 @@ void    ft_error(char *error)
     exit(-1);
 }
 
-void free_map(char **map)
-{
-    size_t i;
-
-    i = 0;
-    if (map)
-    {
-        while (map[i])
-        {
-            free(map[i]);
-            i++;
-        }
-        free(map);
-    }
-}
-
 void free_tmp_err(char *error, t_temp *temp, int select)
 {
     if ((select == 1 || select == 3) && temp->line)
         free(temp->line);
     if ((select == 2 || select == 3) && temp->trim)
         free(temp->trim);
-    if (temp->north)
-        free(temp->north);
-    if (temp->south)
-        free(temp->south);
-    if (temp->west)
-        free(temp->west);
-    if (temp->east)
-        free(temp->east);
-    if (temp->sprite)
-        free(temp->sprite);
-    free_map(temp->map);
+    free_temp(temp);
     ft_error(error);
 }
 
-void free_data_err(char *error, t_temp *temp, t_cub3d *data, int select)
+void free_data_err(char *error, t_temp *temp, t_cub3d *data)
 {
     if (data->text_n)
         free(data->text_n);
@@ -56,5 +30,7 @@ void free_data_err(char *error, t_temp *temp, t_cub3d *data, int select)
     if (data->text_sprite)
         free(data->text_sprite);
     free(data);
-    free_tmp_err(error, temp, 0);
+    free_temp(temp);
+    free_map(&temp->map);
+    ft_error(error);
 }

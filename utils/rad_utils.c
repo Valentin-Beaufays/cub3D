@@ -18,18 +18,3 @@ double  round_rad(double rad)
         rad += 2 * M_PI;
     return (rad);
 }
-
-/*int main(int argc, char **argv)
-{
-	double in;
-	double rad;
-	double round;
-	double deg;
-
-	in = (double)ft_atoi(argv[1]);
-	rad = deg2rad(in);
-	round = round_rad(rad);
-	deg = rad2deg(round);
-	//printf("in: %f° rad: %frad round: %frad deg: %f°\n", in, rad, round, deg);
-	return (0);
-}*/

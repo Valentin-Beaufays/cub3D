@@ -1,6 +1,19 @@
 #ifndef STRUCT_H
 # define STRUCT_H
 
+typedef struct	s_point
+{
+	double		x;
+	double		y;
+}				t_point;
+
+typedef struct	s_map
+{
+	size_t			w;
+	size_t			h;
+	char		**map;
+}				t_map;
+
 typedef struct	s_temp
 {
 	int			fd;
@@ -15,21 +28,8 @@ typedef struct	s_temp
 	char		*sprite;
 	int			floor[3];
 	int			ceiling[3];
-	char		**map;
+	t_map		map;
 }				t_temp;
-
-typedef struct	s_point
-{
-	double		x;
-	double		y;
-}				t_point;
-
-typedef struct	s_map
-{
-	int			w;
-	int			h;
-	char		**map;
-}				t_map;
 
 typedef struct	s_mlx
 {
@@ -75,10 +75,12 @@ typedef struct	s_ray
 }				t_ray;
 
 void	init_temp(t_temp *temp, int fd);
+void	free_temp(t_temp *temp);
 void	init_cub3d(t_cub3d *data);
 void 	init_ray(t_ray *ray);
 void	init_point(t_point *point);
 void	init_map(t_map *map);
+void 	free_map(t_map *map);
 void	init_mlx(t_mlx *mlx);
 
 #endif
