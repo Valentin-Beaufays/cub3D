@@ -6,13 +6,6 @@ void	init_point(t_point *point)
 	point->y = -1;
 }
 
-void	init_map(t_map *map)
-{
-	map->h = 0;
-	map->w = 0;
-	map->map = NULL;
-}
-
 void	init_mlx(t_mlx *mlx)
 {
 	mlx->ptr = NULL;
@@ -42,7 +35,9 @@ void	init_temp(t_temp *temp, int fd)
 	temp->c[0] = -1;
 	temp->c[1] = -1;
 	temp->c[2] = -1;
-	init_map(&temp->map);
+	temp->map.h = 0;
+	temp->map.w = 0;
+	temp->map.map = NULL;
 }
 
 void	init_cub3d(t_cub3d *data)
@@ -50,7 +45,9 @@ void	init_cub3d(t_cub3d *data)
 	init_mlx(&data->mlx);
 	init_point(&data->pos);
 	init_point(&data->def);
-	init_map(&data->map);
+	data->map.h = 0;
+	data->map.w = 0;
+	data->map.map = NULL;
 	data->angle = 0;
 	data->fov = round_rad(deg2rad(60));
 	data->step_rad = 0;
@@ -63,7 +60,7 @@ void	init_cub3d(t_cub3d *data)
 	data->color_floor = 0;
 }
 
-void init_ray(t_ray *ray)
+void	init_ray(t_ray *ray)
 {
 	ray->up = 0;
 	ray->left = 0;
