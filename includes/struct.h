@@ -11,8 +11,8 @@ typedef struct	s_point
 
 typedef struct	s_map
 {
-	size_t			w;
-	size_t			h;
+	size_t		w;
+	size_t		h;
 	char		**map;
 }				t_map;
 
@@ -28,8 +28,8 @@ typedef struct	s_temp
 	char		*west;
 	char		*east;
 	char		*sprite;
-	int			floor[3];
-	int			ceiling[3];
+	int			f[3];
+	int			c[3];
 	t_map		map;
 }				t_temp;
 
@@ -50,7 +50,7 @@ typedef struct	s_cub3d
 	t_point		pos;
 	double		fov;
 	double		angle;
-	double		stepRad;
+	double		step_rad;
 	t_map		map;
 	char		*text_sprite;
 	char		*text_n;
@@ -66,23 +66,23 @@ typedef struct	s_ray
 {
 	int			up;
 	int			left;
-	t_point		h_intersect;
-	t_point		v_intersect;
-	t_point		intersect;
-	double		rayAngle;
-	double		stepX;
-	double		stepY;
+	t_point		h_i;
+	t_point		v_i;
+	t_point		i;
+	double		angle;
+	double		step_x;
+	double		step_y;
 	int			dir;
 	int			text_dir;
 }				t_ray;
 
-void	init_temp(t_temp *temp, int fd);
-void	free_temp(t_temp *temp);
-void	init_cub3d(t_cub3d *data);
-void 	init_ray(t_ray *ray);
-void	init_point(t_point *point);
-void	init_map(t_map *map);
-void 	free_map(t_map *map);
-void	init_mlx(t_mlx *mlx);
+void			init_temp(t_temp *temp, int fd);
+void			free_temp(t_temp *temp);
+void			init_cub3d(t_cub3d *data);
+void			init_ray(t_ray *ray);
+void			init_point(t_point *point);
+void			init_map(t_map *map);
+void			free_map(t_map *map);
+void			init_mlx(t_mlx *mlx);
 
 #endif

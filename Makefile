@@ -6,6 +6,8 @@ BUFFER_SIZE=	10
 
 NAME=			cub3D
 
+INCLUDES=		-I ./includes/ -I ./libft/ -I ./get_next_line/
+
 FILES=			error/error.c\
 				structures/struct.c\
 				structures/free_struct.c\
@@ -22,8 +24,8 @@ FILES=			error/error.c\
 				render/find_intersection.c\
 				render/check_hit.c\
 				render/render.c\
-				utils/checkPath.c\
-				utils/rgbToInt.c\
+				utils/check_path.c\
+				utils/rgb_to_int.c\
 				utils/rad_utils.c\
 				get_next_line/get_next_line.c\
 				get_next_line/get_next_line_utils.c\
@@ -34,7 +36,7 @@ LIB=			libft/libft.a -lm -lmlx -lXext -lX11
 all: $(NAME)
 
 $(NAME):
-	$(CC) -o $(NAME) -I ./includes -D BUFFER_SIZE=$(BUFFER_SIZE) $(FILES) $(LIB)
+	$(CC) -o $(NAME) $(INCLUDES) -D BUFFER_SIZE=$(BUFFER_SIZE) $(FILES) $(LIB)
 
 clean:
 	@rm -rf $(NAME)
