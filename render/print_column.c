@@ -24,7 +24,7 @@ void    print_column(t_ray *ray, t_cub3d *data, int x)
 
     y = 0;
     wall_h = 1;
-    distToWall = sqrt(pow(data->pos.x - ray->intersect.x, 2) + pow(data->pos.y - ray->intersect.y, 2)) * cos(ray->rayAngle - data->angle);
+    distToWall = sqrt(pow(data->pos.x - ray->intersect.x, 2) + pow(data->pos.y - ray->intersect.y, 2)) * cos(ray->ray_angle - data->angle);
     distToScreen = (data->def.x / 2) / tan(data->fov / 2);
     projWall_h = ((wall_h / distToWall) * distToScreen) ;
     if (projWall_h > data->def.y)

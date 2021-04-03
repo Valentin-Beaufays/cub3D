@@ -9,22 +9,22 @@ static int find_h_intersect(t_ray *ray, t_cub3d *data)
 		if (ray->up == 1)
 		{
 			ray->intersect.y = floor(data->pos.y);
-			ray->stepY = -1;
+			ray->step_y = -1;
 		}
 		else
 		{
 			ray->intersect.y = floor(data->pos.y) + 1;
-			ray->stepY = 1;
+			ray->step_y = 1;
 		}
 		if (ray->left != 0)
 		{
-			ray->intersect.x = data->pos.x + (data->pos.y - ray->intersect.y) / tan(ray->rayAngle);
-			ray->stepX = (1 / tan(ray->rayAngle)) * ray->up;
+			ray->intersect.x = data->pos.x + (data->pos.y - ray->intersect.y) / tan(ray->ray_angle);
+			ray->step_x = (1 / tan(ray->ray_angle)) * ray->up;
 		}
 		else
 		{
 			ray->intersect.x = data->pos.x;
-			ray->stepX = 0;
+			ray->step_x = 0;
 		}
 		return (check_hit_loop(ray, data, &check_h_hit));
 	}
@@ -38,15 +38,15 @@ static int	find_v_intersection(t_ray *ray, t_cub3d *data)
 		if (ray->left == 1)
 		{
 			ray->intersect.x = floor(data->pos.x);
-			ray->stepX = -1;
+			ray->step_x = -1;
 		}
 		else
 		{
 			ray->intersect.x = floor(data->pos.x) + 1;
-			ray->stepX = 1;
+			ray->step_x = 1;
 		}
-		ray->intersect.y = data->pos.y + (data->pos.x - ray->intersect.x) * tan(ray->rayAngle);
-		ray->stepY = tan(ray->rayAngle) * ray->left;
+		ray->intersect.y = data->pos.y + (data->pos.x - ray->intersect.x) * tan(ray->ray_angle);
+		ray->step_y = tan(ray->ray_angle) * ray->left;
 		return (check_hit_loop(ray, data, &check_v_hit));
 	}
 	return (0);

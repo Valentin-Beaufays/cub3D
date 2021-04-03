@@ -23,16 +23,16 @@ int    render(t_cub3d *data)
 
     init_ray(&ray);
     x = 0;
-    ray.rayAngle = round_rad(data->angle + (data->fov / 2));
+    ray.ray_angle = round_rad(data->angle + (data->fov / 2));
     while (x < (int)data->def.x)
     {
-        getRayDir(ray.rayAngle, &ray.up, &ray.left);
+        getRayDir(ray.ray_angle, &ray.up, &ray.left);
         init_point(&ray.h_intersect);
         init_point(&ray.v_intersect);
 	    ray.dir = 0;
         find_intersection(&ray, data);
         print_column(&ray, data, x);
-        ray.rayAngle = round_rad(ray.rayAngle - data->stepRad);
+        ray.ray_angle = round_rad(ray.ray_angle - data->step_rad);
         x++;
     }
     mlx_put_image_to_window(data->mlx.ptr, data->mlx.win, data->mlx.img, 0, 0);

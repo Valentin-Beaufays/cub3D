@@ -28,9 +28,9 @@ void init_ray(t_ray *ray)
 	ray->h_intersect.y = -1;
 	ray->intersect.x = -1;
 	ray->intersect.y = -1;
-	ray->stepX = 0;
-	ray->stepY = 0;
-	ray->rayAngle = 0;
+	ray->step_x = 0;
+	ray->step_y = 0;
+	ray->ray_angle = 0;
 }
 
 void copy_map(t_map *map)
@@ -84,8 +84,8 @@ int check_hit_loop(t_ray *ray, t_cub3d *data)
 	hit = check_hit(ray, data);
 	while (!hit)
 	{
-		ray->intersect.x += ray->stepX;
-		ray->intersect.x += ray->stepY;
+		ray->intersect.x += ray->step_x;
+		ray->intersect.x += ray->step_y;
 		hit = check_hit(ray, data);
 	}
 	return (hit);
@@ -98,22 +98,22 @@ int	find_h_intersection(t_ray *ray, t_cub3d *data)
 		if (ray->up == 1)
 		{
 			ray->intersect.y = floor(data->pos.x);
-			ray->stepY = -1;
+			ray->step_y = -1;
 		}
 		else
 		{
 			ray->intersect.y = floor(data->pos.y) + 1;
-			ray->stepY = 1;
+			ray->step_y = 1;
 		}
 		if (ray->left != 0)
 		{
-			ray->intersect.x = data->pos.x + (data->pos.y - ray->intersect.y) / tan(ray->rayAngle);
-			ray->stepX = (1 / tan(ray->rayAngle)) * ray->up;
+			ray->intersect.x = data->pos.x + (data->pos.y - ray->intersect.y) / tan(ray->ray_angle);
+			ray->step_x = (1 / tan(ray->ray_angle)) * ray->up;
 		}
 		else
 		{
 			ray->intersect.x = data->pos.x;
-			ray->stepX = 0;
+			ray->step_x = 0;
 		}
 		return (check_hit_loop(ray, data));
 	}
@@ -126,15 +126,15 @@ int	find_v_intersection(t_ray *ray, t_cub3d *data)
 		if (ray->left == 1)
 		{
 			ray->intersect.x = floor(data->pos.x);
-			ray->stepX = -1;
+			ray->step_x = -1;
 		}
 		else
 		{
 			ray->intersect.x = floor(data->pos.x) + 1;
-			ray->stepX = 1;
+			ray->step_x = 1;
 		}
-		ray->intersect.y = data->pos.y + (data->pos.x - ray->intersect.x) * tan(ray->rayAngle);
-		ray->stepY = tan(ray->rayAngle) * ray->left;
+		ray->intersect.y = data->pos.y + (data->pos.x - ray->intersect.x) * tan(ray->ray_angle);
+		ray->step_y = tan(ray->ray_angle) * ray->left;
 		return (check_hit_loop(ray, data));
 	}
 	return (-1);
@@ -158,7 +158,7 @@ void find_nearest_intersection(t_ray *ray, t_cub3d *data)
 
 void find_intersection(t_ray *ray, t_cub3d *data)
 {
-		getRayDir(ray->rayAngle, &ray->up, &ray->left);
+		getRayDir(ray->ray_angle, &ray->up, &ray->left);
 		if (find_h_intersection(ray, data) == 1)
 		{
 			ray->h_intersect.x = ray->intersect.x;
@@ -232,13 +232,13 @@ void	render(t_cub3d *data)
 	t_ray	ray;
 	int		x;
 	init_ray(&ray);
-	ray.rayAngle = data->angle + (data->fov / 2); //check if > 2 * M_PI
+	ray.ray_angle = data->angle + (data->fov / 2); //check if > 2 * M_PI
 	x = 0;
 	while(x <1)
 	{
 		find_intersection(&ray, data);
 
-		ray.rayAngle -= data->stepRad;
+		ray.ray_angle -= data->step_rad;
 		render_column(&ray, data , x);
 		x++;
 	}
@@ -253,7 +253,7 @@ int	main()
 	data.pos.x = 1.5, data.pos.y = 1.5;  //x and y start position
 	data.angle = 0 * M_PI / 180;
 	data.fov = 60 * M_PI / 180;
-	data.stepRad = data.fov / data.def.x;
+	data.step_rad = data.fov / data.def.x;
 	data.distCam = (data.def.x / 2) / tan(data.fov / 2);
 	data.wallHeight = 64;
 	data.color_ceil = rgb_to_int(0, 191, 255);

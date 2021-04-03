@@ -53,7 +53,7 @@ void	init_cub3d(t_cub3d *data)
 	init_map(&data->map);
 	data->angle = 0;
 	data->fov = round_rad(deg2rad(60));
-	data->stepRad = 0;
+	data->step_rad = 0;
 	data->text_sprite = NULL;
 	data->text_n = NULL;
 	data->text_s = NULL;
@@ -70,9 +70,9 @@ void init_ray(t_ray *ray)
 	init_point(&ray->h_intersect);
 	init_point(&ray->v_intersect);
 	init_point(&ray->intersect);
-	ray->stepX = 0;
-	ray->stepY = 0;
-	ray->rayAngle = 0;
+	ray->step_x = 0;
+	ray->step_y = 0;
+	ray->ray_angle = 0;
 	ray->text_dir = 0;
 	ray->dir = 0;
 }

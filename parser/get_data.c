@@ -57,11 +57,11 @@ t_cub3d *get_data(t_temp *temp)
         free_tmp_err(strerror(errno), temp, 0);
 	init_cub3d(data);
 	get_resolution(temp, data);
-    data->stepRad = round_rad(data->fov / data->def.x);
+    data->step_rad = round_rad(data->fov / data->def.x);
 	get_textures(temp, data);
     get_fc(temp, data);
     get_map(temp, data);
-    data->stepRad = data->fov / data->def.x;
+    data->step_rad = data->fov / data->def.x;
     free_temp(temp);
     return (data);
 }

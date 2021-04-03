@@ -39,8 +39,8 @@ int check_hit_loop(t_ray *ray, t_cub3d *data, int (*c_h)(t_ray *ray, t_cub3d *da
 	hit = (*c_h)(ray, data);
 	while (!hit)
 	{
-		ray->intersect.x += ray->stepX;
-		ray->intersect.y += ray->stepY;
+		ray->intersect.x += ray->step_x;
+		ray->intersect.y += ray->step_y;
 		hit = (*c_h)(ray, data);
 	}
     if (hit == -1)
