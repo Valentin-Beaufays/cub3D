@@ -1,15 +1,5 @@
 #include "../includes/render.h"
 
-char Map[mapHeight][mapWidth]=
-{
-  {1,1,1,1,1,1,1,1,1,1,1,1,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,1,0,0,1,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,1,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,1,1,1,1,1,1,1,1,1,1,1,1}
-};
-
 int	check_h_hit(t_ray *ray, t_cub3d *data)
 {
     int up;
@@ -18,7 +8,7 @@ int	check_h_hit(t_ray *ray, t_cub3d *data)
         up = 1;
 	if (ray->intersect.x >= 0 && ray->intersect.y >= 0 && ray->intersect.x < data->map.w && ray->intersect.y < data->map.h)
 	{
-		if (Map[(int)ray->intersect.y - up][(int)ray->intersect.x] == 1)
+		if (data->map.map[(int)ray->intersect.y - up][(int)ray->intersect.x] == 1)
             return (1);
         else
             return (0);
@@ -34,7 +24,7 @@ int	check_v_hit(t_ray *ray, t_cub3d *data)
         left = 1;
 	if (ray->intersect.x >= 0 && ray->intersect.y >= 0 && ray->intersect.x < data->map.w && ray->intersect.y < data->map.h)
 	{
-		if (Map[(int)ray->intersect.y][(int)ray->intersect.x - left] == 1)
+		if (data->map.map[(int)ray->intersect.y][(int)ray->intersect.x - left] == 1)
             return (1);
         else
             return (0);

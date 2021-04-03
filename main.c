@@ -14,8 +14,8 @@
 
 static void print_map(t_map *map)
 {
-	printf("map:\nh: %d, w: %d\n\n", map->h, map->w);
-	for(int i = 0; i < map->h; i++)
+	printf("map:\nh: %ld, w: %ld\n\n", map->h, map->w);
+	for(size_t i = 0; i < map->h; i++)
 	{
 		printf("%s\n", map->map[i]);
 	}
@@ -28,6 +28,25 @@ static void print_data(t_cub3d *data)
 	printf("n: %s, s: %s, e: %s, w: %s, sprite: %s\n", data->text_n, data->text_s, data->text_e, data->text_w, data->text_sprite);
 	printf("f_color: %i\nc_color: %i\n", data->color_floor, data->color_ceil);
 	print_map(&data->map);
+}
+
+int key_hook(int key, t_cub3d *data)
+{
+	(void)key;
+    data->angle = round_rad(data->angle + 0.05);
+    render(data);
+    return (0);
+}
+
+void	game_loop(t_cub3d *data)
+{
+	data->mlx.ptr = mlx_init();
+	data->mlx.win = mlx_new_window(data->mlx.ptr, (int)data->def.x,(int)data->def.y, "raycaster");
+	data->mlx.img = mlx_new_image(data->mlx.ptr, (int)data->def.x,(int)data->def.y);
+	data->mlx.addr = mlx_get_data_addr(data->mlx.img, &data->mlx.bpp, &data->mlx.length, &data->mlx.endian);
+	mlx_key_hook(data->mlx.win, &key_hook, data);
+	mlx_loop_hook(data->mlx.ptr, &render, data);
+	mlx_loop(data->mlx.ptr);
 }
 
 int		main(int argc, char **argv)
@@ -44,6 +63,7 @@ int		main(int argc, char **argv)
 	if (argc == 2 || argc == 3)
 		data = cub_parser(argv[1]);
 	print_data(data);
+	game_loop(data);
 	printf("done\n");
 	return (0);
 }

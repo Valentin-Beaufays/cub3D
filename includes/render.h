@@ -13,6 +13,7 @@ double  deg2rad(double deg);
 double  rad2deg(double rad);
 double  round_rad(double rad);
 void    getRayDir(double angle, int *up, int *left);
+int    render(t_cub3d *data);
 int	    check_h_hit(t_ray *ray, t_cub3d *data);
 int	    check_v_hit(t_ray *ray, t_cub3d *data);
 int     check_hit_loop(t_ray *ray, t_cub3d *data, int (*c_h)(t_ray *ray, t_cub3d *data));

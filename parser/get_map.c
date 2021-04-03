@@ -2,7 +2,7 @@
 
 static void map_to_data(t_map *dst, t_map *src)
 {
-    /*size_t  x;
+    size_t  x;
     size_t  y;
 
     y = 0;
@@ -18,7 +18,7 @@ static void map_to_data(t_map *dst, t_map *src)
             x++;
         }
         y++;
-    }*/
+    }
     dst->h = src->h;
     dst->w = src->w;
     dst->map = src->map;

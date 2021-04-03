@@ -26,7 +26,6 @@ int find_h_intersect(t_ray *ray, t_cub3d *data)
 			ray->intersect.x = data->pos.x;
 			ray->stepX = 0;
 		}
-        //printf("%f %f %f %f\n", ray->intersect.x, ray->intersect.y, data->pos.x, data->pos.y);
 		return (check_hit_loop(ray, data, &check_h_hit));
 	}
 	return (0);
@@ -48,7 +47,6 @@ int	find_v_intersection(t_ray *ray, t_cub3d *data)
 		}
 		ray->intersect.y = data->pos.y + (data->pos.x - ray->intersect.x) * tan(ray->rayAngle);
 		ray->stepY = tan(ray->rayAngle) * ray->left;
-        //printf("go\n");
 		return (check_hit_loop(ray, data, &check_v_hit));
 	}
 	return (0);
@@ -93,11 +91,6 @@ void find_nearest_intersection(t_ray *ray, t_cub3d *data)
 
 void    find_intersection(t_ray *ray, t_cub3d *data)
 {
-    getRayDir(ray->rayAngle, &ray->up, &ray->left);
-    init_point(&ray->h_intersect);
-    init_point(&ray->v_intersect);
-	ray->dir = 0;
-    //printf("angle rad: %f, up: %d, left: %d\n", ray->rayAngle, ray->up, ray->left);
     if (find_h_intersect(ray, data))
     {
 		ray->h_intersect.x = ray->intersect.x;
@@ -109,9 +102,4 @@ void    find_intersection(t_ray *ray, t_cub3d *data)
 		ray->v_intersect.y = ray->intersect.y;
 	}
     find_nearest_intersection(ray, data);
-	//printf("angle rad: %f, up: %d, left: %d\n", ray->rayAngle, ray->up, ray->left);
-    //printf("h_intersect: (%f;%f)\n", ray->h_intersect.x, ray->h_intersect.y);
-    //printf("v_intersect: (%f;%f)\n", ray->v_intersect.x, ray->v_intersect.y);
-    //printf("intersect: (%f;%f)\n", ray->intersect.x, ray->intersect.y);
-    //printf("wall: %d\n", ray->text_dir);
 }

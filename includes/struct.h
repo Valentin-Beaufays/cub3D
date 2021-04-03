@@ -1,6 +1,8 @@
 #ifndef STRUCT_H
 # define STRUCT_H
 
+# include <stddef.h>
+
 typedef struct	s_point
 {
 	double		x;
