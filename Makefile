@@ -6,6 +6,8 @@ BUFFER_SIZE=	10
 
 NAME=			cub3D
 
+INCLUDES=		-I ./includes/ -I ./libft/ -I ./get_next_line/
+
 FILES=			error/error.c\
 				structures/struct.c\
 				structures/free_struct.c\
@@ -34,7 +36,7 @@ LIB=			libft/libft.a -lm -lmlx -lXext -lX11
 all: $(NAME)
 
 $(NAME):
-	$(CC) -o $(NAME) -I ./includes -D BUFFER_SIZE=$(BUFFER_SIZE) $(FILES) $(LIB)
+	$(CC) -o $(NAME) $(INCLUDES) -D BUFFER_SIZE=$(BUFFER_SIZE) $(FILES) $(LIB)
 
 clean:
 	@rm -rf $(NAME)
