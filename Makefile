@@ -18,6 +18,10 @@ FILES=			error/error.c\
 				parser/get_map.c\
 				parser/get_pos.c\
 				parser/check_valid_map.c\
+				render/print_column.c\
+				render/find_intersection.c\
+				render/check_hit.c\
+				render/render.c\
 				utils/checkPath.c\
 				utils/rgbToInt.c\
 				utils/rad_utils.c\
@@ -25,7 +29,7 @@ FILES=			error/error.c\
 				get_next_line/get_next_line_utils.c\
 				main.c
 
-LIB=			libft/libft.a -lm
+LIB=			libft/libft.a -lm -lmlx -lXext -lX11
 
 all: $(NAME)
 
