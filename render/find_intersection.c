@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <math.h>
 
-int find_h_intersect(t_ray *ray, t_cub3d *data)
+static int find_h_intersect(t_ray *ray, t_cub3d *data)
 {
 	if (ray->up != 0)
 	{
@@ -31,7 +31,7 @@ int find_h_intersect(t_ray *ray, t_cub3d *data)
 	return (0);
 }
 
-int	find_v_intersection(t_ray *ray, t_cub3d *data)
+static int	find_v_intersection(t_ray *ray, t_cub3d *data)
 {
 	if (ray->left != 0)
 	{
@@ -52,7 +52,7 @@ int	find_v_intersection(t_ray *ray, t_cub3d *data)
 	return (0);
 }
 
-void getTextDir(t_ray *ray)
+static void getTextDir(t_ray *ray)
 {
 	if (ray->dir == 1)
 	{
@@ -70,7 +70,7 @@ void getTextDir(t_ray *ray)
 	}
 }
 
-void find_nearest_intersection(t_ray *ray, t_cub3d *data)
+static void find_nearest_intersection(t_ray *ray, t_cub3d *data)
 {
 	double distH;
 	double distV;

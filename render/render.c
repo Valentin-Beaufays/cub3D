@@ -1,12 +1,6 @@
-#include "../libft/libft.h"
 #include "../includes/cub3d.h"
-#include <stdio.h>
-#include <math.h>
-#include <mlx.h>
 
-//utils
-
-void getRayDir(double angle, int *up, int *left)
+static void getRayDir(double angle, int *up, int *left)
 {
 	if (angle > 0 && angle < M_PI)
 		*up = 1;
@@ -21,8 +15,6 @@ void getRayDir(double angle, int *up, int *left)
     else
         *left = 0;
 }
-
-//actual code
 
 int    render(t_cub3d *data)
 {
