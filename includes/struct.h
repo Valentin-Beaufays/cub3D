@@ -66,10 +66,10 @@ typedef struct	s_ray
 {
 	int			up;
 	int			left;
-	t_point		h_intersect;
-	t_point		v_intersect;
-	t_point		intersect;
-	double		ray_angle;
+	t_point		h_i;
+	t_point		v_i;
+	t_point		i;
+	double		angle;
 	double		step_x;
 	double		step_y;
 	int			dir;

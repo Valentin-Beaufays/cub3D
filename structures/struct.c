@@ -67,12 +67,12 @@ void init_ray(t_ray *ray)
 {
 	ray->up = 0;
 	ray->left = 0;
-	init_point(&ray->h_intersect);
-	init_point(&ray->v_intersect);
-	init_point(&ray->intersect);
+	init_point(&ray->h_i);
+	init_point(&ray->v_i);
+	init_point(&ray->i);
 	ray->step_x = 0;
 	ray->step_y = 0;
-	ray->ray_angle = 0;
+	ray->angle = 0;
 	ray->text_dir = 0;
 	ray->dir = 0;
 }

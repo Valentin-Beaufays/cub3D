@@ -2,28 +2,28 @@
 #include <stdio.h>
 #include <math.h>
 
-static int find_h_intersect(t_ray *ray, t_cub3d *data)
+static int	find_h_intersect(t_ray *ray, t_cub3d *data)
 {
 	if (ray->up != 0)
 	{
 		if (ray->up == 1)
 		{
-			ray->intersect.y = floor(data->pos.y);
+			ray->i.y = floor(data->pos.y);
 			ray->step_y = -1;
 		}
 		else
 		{
-			ray->intersect.y = floor(data->pos.y) + 1;
+			ray->i.y = floor(data->pos.y) + 1;
 			ray->step_y = 1;
 		}
 		if (ray->left != 0)
 		{
-			ray->intersect.x = data->pos.x + (data->pos.y - ray->intersect.y) / tan(ray->ray_angle);
-			ray->step_x = (1 / tan(ray->ray_angle)) * ray->up;
+			ray->i.x = data->pos.x + (data->pos.y - ray->i.y) / tan(ray->angle);
+			ray->step_x = (1 / tan(ray->angle)) * ray->up;
 		}
 		else
 		{
-			ray->intersect.x = data->pos.x;
+			ray->i.x = data->pos.x;
 			ray->step_x = 0;
 		}
 		return (check_hit_loop(ray, data, &check_h_hit));
@@ -37,69 +37,69 @@ static int	find_v_intersection(t_ray *ray, t_cub3d *data)
 	{
 		if (ray->left == 1)
 		{
-			ray->intersect.x = floor(data->pos.x);
+			ray->i.x = floor(data->pos.x);
 			ray->step_x = -1;
 		}
 		else
 		{
-			ray->intersect.x = floor(data->pos.x) + 1;
+			ray->i.x = floor(data->pos.x) + 1;
 			ray->step_x = 1;
 		}
-		ray->intersect.y = data->pos.y + (data->pos.x - ray->intersect.x) * tan(ray->ray_angle);
-		ray->step_y = tan(ray->ray_angle) * ray->left;
+		ray->i.y = data->pos.y + (data->pos.x - ray->i.x) * tan(ray->angle);
+		ray->step_y = tan(ray->angle) * ray->left;
 		return (check_hit_loop(ray, data, &check_v_hit));
 	}
 	return (0);
 }
 
-static void getTextDir(t_ray *ray)
+static void	get_text_dir(t_ray *ray)
 {
 	if (ray->dir == 1)
 	{
 		if (ray->up == 1)
 			ray->text_dir = 1;
-		else 
+		else
 			ray->text_dir = 3;
 	}
 	else
 	{
 		if (ray->left == 1)
 			ray->text_dir = 0;
-		else 
+		else
 			ray->text_dir = 2;
 	}
 }
 
-static void find_nearest_intersection(t_ray *ray, t_cub3d *data)
+static void	find_nearest_intersection(t_ray *ray, t_cub3d *d)
 {
-	double distH;
-	double distV;
+	double h;
+	double v;
 
-    distH = sqrt(pow(data->pos.x - ray->h_intersect.x, 2) + pow(data->pos.y - ray->h_intersect.y, 2));
-	distV = sqrt(pow(data->pos.x - ray->v_intersect.x, 2) + pow(data->pos.y - ray->v_intersect.y, 2));
-	if (ray->h_intersect.x != -1)
+	h = sqrt(pow(d->pos.x - ray->h_i.x, 2) + pow(d->pos.y - ray->h_i.y, 2));
+	v = sqrt(pow(d->pos.x - ray->v_i.x, 2) + pow(d->pos.y - ray->v_i.y, 2));
+	if (ray->h_i.x != -1)
 	{
-        if (ray->v_intersect.x == -1 || distH < distV)
+		if (ray->v_i.x == -1 || h < v)
 		{
-			ray->intersect.x = ray->h_intersect.x;
-			ray->intersect.y = ray->h_intersect.y;
+			ray->i.x = ray->h_i.x;
+			ray->i.y = ray->h_i.y;
 			ray->dir = 1;
 		}
 	}
-    getTextDir(ray);
+	get_text_dir(ray);
 }
 
-void    find_intersection(t_ray *ray, t_cub3d *data)
+void		find_intersection(t_ray *ray, t_cub3d *data)
 {
-    if (find_h_intersect(ray, data))
-    {
-		ray->h_intersect.x = ray->intersect.x;
-		ray->h_intersect.y = ray->intersect.y;
-	}
-    if (find_v_intersection(ray, data))
+	if (find_h_intersect(ray, data))
 	{
-		ray->v_intersect.x = ray->intersect.x;
-		ray->v_intersect.y = ray->intersect.y;
+		ray->h_i.x = ray->i.x;
+		ray->h_i.y = ray->i.y;
 	}
-    find_nearest_intersection(ray, data);
+	if (find_v_intersection(ray, data))
+	{
+		ray->v_i.x = ray->i.x;
+		ray->v_i.y = ray->i.y;
+	}
+	find_nearest_intersection(ray, data);
 }
