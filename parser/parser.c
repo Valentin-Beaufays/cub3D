@@ -7,7 +7,7 @@ void	parse_resolution(t_temp *temp)
 	line = temp->trim + 1;
 	if (!(*line == ' '))
 		free_tmp_err("invalid resolution line", temp, 3);
-	while(*line == ' ')
+	while (*line == ' ')
 		line++;
 	if (*line == '+' || *line == '-' || !(temp->x = ft_atoi(line)))
 		free_tmp_err("invalid resolution line", temp, 3);
@@ -15,13 +15,13 @@ void	parse_resolution(t_temp *temp)
 		line++;
 	if (!(*line == ' '))
 		free_tmp_err("invalid R line", temp, 3);
-	while(*line == ' ')
+	while (*line == ' ')
 		line++;
 	if (*line == '+' || *line == '-' || !(temp->y = ft_atoi(line)))
 		free_tmp_err("invalid R line", temp, 3);
 	while (ft_isdigit(*line))
 		line++;
-	while(*line)
+	while (*line)
 	{
 		if (!(*line == ' '))
 			free_tmp_err("invalid R line", temp, 3);
@@ -60,16 +60,16 @@ void	parse_args(t_temp *temp)
 	int	ret;
 
 	is_map = 0;
-	while(!is_map && (ret = get_next_line(temp->fd, &(temp->line))))
+	while (!is_map && (ret = get_next_line(temp->fd, &(temp->line))))
 	{
-		if (ret == -1 )
+		if (ret == -1)
 			free_tmp_err(strerror(errno), temp, 0);
 		if ((temp->trim = ft_strtrim(temp->line, " ")) == 0)
 			free_tmp_err(strerror(errno), temp, 1);
-		if(*(temp->trim) != 0)
+		if (*(temp->trim) != 0)
 		{
-			if(!get_arg(temp))
-			is_map = 1;
+			if (!get_arg(temp))
+				is_map = 1;
 		}
 		if (!is_map)
 			free(temp->line);
@@ -80,7 +80,7 @@ void	parse_args(t_temp *temp)
 	parse_map(temp);
 }
 
-t_cub3d *cub_parser(char *path)
+t_cub3d	*cub_parser(char *path)
 {
 	int		fd;
 	t_temp	temp;

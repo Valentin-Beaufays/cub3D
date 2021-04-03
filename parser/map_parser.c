@@ -1,6 +1,6 @@
 #include "../includes/cub3d.h"
 
-static void	copy_map(char **dest, char **src)
+static void		copy_map(char **dest, char **src)
 {
 	int	i;
 
@@ -12,7 +12,7 @@ static void	copy_map(char **dest, char **src)
 	}
 }
 
-static size_t get_max_len(char** map)
+static size_t	get_max_len(char **map)
 {
 	size_t	max_len;
 	size_t	curr_len;
@@ -30,7 +30,7 @@ static size_t get_max_len(char** map)
 	return (max_len);
 }
 
-static char *resize_line(char *line, size_t size)
+static char		*resize_line(char *line, size_t size)
 {
 	char	*new;
 	size_t	x;
@@ -52,17 +52,17 @@ static char *resize_line(char *line, size_t size)
 	return (new);
 }
 
-static int square_map(t_map *map)
+static int		square_map(t_map *map)
 {
 	size_t	y;
 	char	*tmp;
-	
+
 	y = 0;
 	map->w = get_max_len(map->map);
-	while(map->map[y])
+	while (map->map[y])
 	{
 		if (!(tmp = resize_line(map->map[y], map->w)))
-			return(0);
+			return (0);
 		free(map->map[y]);
 		map->map[y] = tmp;
 		y++;
@@ -70,7 +70,7 @@ static int square_map(t_map *map)
 	return (1);
 }
 
-void		parse_map(t_temp *temp)
+void			parse_map(t_temp *temp)
 {
 	char	**tmp;
 	size_t	size;

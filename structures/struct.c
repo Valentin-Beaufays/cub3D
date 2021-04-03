@@ -36,12 +36,12 @@ void	init_temp(t_temp *temp, int fd)
 	temp->west = NULL;
 	temp->east = NULL;
 	temp->sprite = NULL;
-	temp->floor[0] = -1;
-	temp->floor[1] = -1;
-	temp->floor[2] = -1;
-	temp->ceiling[0] = -1;
-	temp->ceiling[1] = -1;
-	temp->ceiling[2] = -1;
+	temp->f[0] = -1;
+	temp->f[1] = -1;
+	temp->f[2] = -1;
+	temp->c[0] = -1;
+	temp->c[1] = -1;
+	temp->c[2] = -1;
 	init_map(&temp->map);
 }
 

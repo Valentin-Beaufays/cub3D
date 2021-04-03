@@ -28,8 +28,8 @@ typedef struct	s_temp
 	char		*west;
 	char		*east;
 	char		*sprite;
-	int			floor[3];
-	int			ceiling[3];
+	int			f[3];
+	int			c[3];
 	t_map		map;
 }				t_temp;
 
