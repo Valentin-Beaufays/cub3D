@@ -2,9 +2,6 @@
 
 void check_missing_data(t_temp *temp)
 {
-    int i;
-
-    i = 0;
     if (temp->x == 0 || temp->y == 0)
         free_tmp_err("resolution is missing", temp, 0);
     if (!temp->north || !temp->south || !temp->west || !temp->east || !temp->sprite)
@@ -37,12 +34,8 @@ void get_textures(t_temp *temp, t_cub3d *data)
 void get_fc(t_temp *temp, t_cub3d *data)
 {
     size_t i;
-    int floor;
-    int ceiling;
 
     i = 0;
-    floor = 0;
-    ceiling = 0;
     while (i < 3)
     {
         if (temp->ceiling[i] < 0 || temp->ceiling[i] > 255)
@@ -68,6 +61,7 @@ t_cub3d *get_data(t_temp *temp)
 	get_textures(temp, data);
     get_fc(temp, data);
     get_map(temp, data);
+    data->stepRad = data->fov / data->def.x;
     free_temp(temp);
     return (data);
 }
