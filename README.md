@@ -1,1 +1,1 @@
-gcc -D BUFFER_SIZE=10 error/error.c parser/parser.c parser/textures_parser.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c parser/fc_parser.c main.c libft/libft.a
+Cub3D project from 42 network
