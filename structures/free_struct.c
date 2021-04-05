@@ -1,4 +1,5 @@
 #include <stddef.h>
+#include <unistd.h>
 #include <stdlib.h>
 #include "struct.h"
 
@@ -30,4 +31,6 @@ void	free_temp(t_temp *temp)
 		free(temp->east);
 	if (temp->sprite)
 		free(temp->sprite);
+	if (temp->fd < 0)
+		close(temp->fd);
 }
