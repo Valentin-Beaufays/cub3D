@@ -17,6 +17,20 @@ void	init_mlx(t_mlx *mlx)
 	mlx->endian = 0;
 }
 
+void	init_ray(t_ray *ray)
+{
+	ray->up = 0;
+	ray->left = 0;
+	init_point(&ray->h_i);
+	init_point(&ray->v_i);
+	init_point(&ray->i);
+	ray->step_x = 0;
+	ray->step_y = 0;
+	ray->angle = 0;
+	ray->text_dir = 0;
+	ray->dir = 0;
+}
+
 void	init_temp(t_temp *temp, int fd)
 {
 	temp->fd = fd;
@@ -49,6 +63,7 @@ void	init_cub3d(t_cub3d *data)
 	data->map.w = 0;
 	data->map.map = NULL;
 	data->angle = 0;
+	init_ray(&data->ray);
 	data->fov = round_rad(deg2rad(60));
 	data->step_rad = 0;
 	data->text_sprite = NULL;
@@ -58,18 +73,4 @@ void	init_cub3d(t_cub3d *data)
 	data->text_w = NULL;
 	data->color_ceil = 0;
 	data->color_floor = 0;
-}
-
-void	init_ray(t_ray *ray)
-{
-	ray->up = 0;
-	ray->left = 0;
-	init_point(&ray->h_i);
-	init_point(&ray->v_i);
-	init_point(&ray->i);
-	ray->step_x = 0;
-	ray->step_y = 0;
-	ray->angle = 0;
-	ray->text_dir = 0;
-	ray->dir = 0;
 }

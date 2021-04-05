@@ -18,21 +18,15 @@ static void	get_ray_dir(double angle, int *up, int *left)
 
 int			render(t_cub3d *data)
 {
-	t_ray	ray;
 	int		x;
 
-	init_ray(&ray);
 	x = 0;
-	ray.angle = round_rad(data->angle + (data->fov / 2));
+	data->ray.angle = round_rad(data->angle + (data->fov / 2));
 	while (x < (int)data->def.x)
 	{
-		get_ray_dir(ray.angle, &ray.up, &ray.left);
-		init_point(&ray.h_i);
-		init_point(&ray.v_i);
-		ray.dir = 0;
-		find_intersection(&ray, data);
-		print_column(&ray, data, x);
-		ray.angle = round_rad(ray.angle - data->step_rad);
+		find_intersection(&data->ray, data);
+		print_column(&data->ray, data, x);
+		data->ray.angle = round_rad(data->ray.angle - data->step_rad);
 		x++;
 	}
 	mlx_put_image_to_window(data->mlx.ptr, data->mlx.win, data->mlx.img, 0, 0);

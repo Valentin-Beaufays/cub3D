@@ -44,24 +44,6 @@ typedef struct	s_mlx
 	int			endian;
 }				t_mlx;
 
-typedef struct	s_cub3d
-{
-	t_mlx		mlx;
-	t_point		pos;
-	double		fov;
-	double		angle;
-	double		step_rad;
-	t_map		map;
-	char		*text_sprite;
-	char		*text_n;
-	char		*text_s;
-	char		*text_e;
-	char		*text_w;
-	int			color_ceil;
-	int			color_floor;
-	t_point		def;
-}				t_cub3d;
-
 typedef struct	s_ray
 {
 	int			up;
@@ -75,6 +57,25 @@ typedef struct	s_ray
 	int			dir;
 	int			text_dir;
 }				t_ray;
+
+typedef struct	s_cub3d
+{
+	t_mlx		mlx;
+	t_point		pos;
+	double		fov;
+	double		angle;
+	t_ray		ray;
+	double		step_rad;
+	t_map		map;
+	char		*text_sprite;
+	char		*text_n;
+	char		*text_s;
+	char		*text_e;
+	char		*text_w;
+	int			color_ceil;
+	int			color_floor;
+	t_point		def;
+}				t_cub3d;
 
 void			init_temp(t_temp *temp, int fd);
 void			free_temp(t_temp *temp);
