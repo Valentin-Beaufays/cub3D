@@ -91,18 +91,16 @@ static void	find_nearest_intersection(t_ray *ray, t_cub3d *d)
 
 void		find_intersection(t_ray *ray, t_cub3d *data)
 {
+	ray->up = 0;
+	ray->left = 0;
 	if (ray->angle > 0 && ray->angle < M_PI)
 		ray->up = 1;
 	else if (ray->angle > M_PI)
 		ray->up = -1;
-	else
-		ray->up = 0;
 	if (ray->angle > M_PI / 2 && ray->angle < 3 * M_PI / 2)
 		ray->left = 1;
 	else if (ray->angle < M_PI / 2 || ray->angle > 3 * M_PI / 2)
 		ray->left = -1;
-	else
-		ray->left = 0;
 	init_point(&ray->h_i);
 	init_point(&ray->v_i);
 	ray->dir = 0;

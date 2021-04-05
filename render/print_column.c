@@ -1,15 +1,4 @@
-#include "../includes/render.h"
-#include <math.h>
-#include <stdio.h>
-#include <mlx.h>
-
-void    ft_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
-{
-	char    *dst;
-
-	dst = mlx->addr + (y * mlx->length + x * (mlx->bpp / 8));
-	*(unsigned int*)dst = mlx_get_color_value(mlx->ptr, color);
-}
+#include "../includes/cub3d.h"
 
 void    print_column(t_ray *ray, t_cub3d *data, int x)
 {

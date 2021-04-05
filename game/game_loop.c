@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-double ft_abs(double val)
+double		ft_abs(double val)
 {
 	if (val < 0)
 		val *= -1;
@@ -34,50 +34,49 @@ static void	get_step(t_cub3d *data, double *step_x, double *step_y)
 	}
 }
 
-int key_hook(int key, t_cub3d *data)
+static void	update_pos(int key, t_cub3d *data)
 {
 	double	step_x;
 	double	step_y;
 
+	if (key == DOWN)
+		data->ray.angle += M_PI;
+	find_intersection(&data->ray, data);
+	get_step(data, &step_x, &step_y);
+	if (key == DOWN)
+	{
+		step_x = data->pos.x - step_x;
+		step_y = data->pos.y + step_y;
+	}
+	else
+	{
+		step_x = data->pos.x + step_x;
+		step_y = data->pos.y - step_y;
+	}
+	if (data->map.map[(int)step_y][(int)step_x] != 1)
+	{
+		data->pos.x = step_x;
+		data->pos.y = step_y;
+	}
+}
+
+int			key_hook(int key, t_cub3d *data)
+{
 	if (key == LEFT)
 		data->angle = round_rad(data->angle + 0.05);
 	else if (key == RIGHT)
 		data->angle = round_rad(data->angle - 0.05);
-	if (key == UP)
+	if (key == UP || key == DOWN)
 	{
-		find_intersection(&data->ray, data);
-		get_step(data, &step_x, &step_y);
-		step_x = data->pos.x + step_x;
-		step_y = data->pos.y - step_y;
-		if (data->map.map[(int)step_y][(int)step_x] != 1)
-		{
-			data->pos.x = step_x;
-			data->pos.y = step_y;
-		}
+		update_pos(key, data);
 	}
-	if (key == DOWN)
-	{
-		data->ray.angle += M_PI;
-		find_intersection(&data->ray, data);
-		get_step(data, &step_x, &step_y);
-		step_x = data->pos.x - step_x;
-		step_y = data->pos.y + step_y;
-		if (data->map.map[(int)step_y][(int)step_x] != 1)
-		{
-			data->pos.x = step_x;
-			data->pos.y = step_y;
-		}
-	}
-    render(data);
-    return (0);
+	render(data);
+	return (0);
 }
 
-void	game_loop(t_cub3d *data)
+void		game_loop(t_cub3d *data)
 {
-	data->mlx.ptr = mlx_init();
-	data->mlx.win = mlx_new_window(data->mlx.ptr, (int)data->def.x,(int)data->def.y, "raycaster");
-	data->mlx.img = mlx_new_image(data->mlx.ptr, (int)data->def.x,(int)data->def.y);
-	data->mlx.addr = mlx_get_data_addr(data->mlx.img, &data->mlx.bpp, &data->mlx.length, &data->mlx.endian);
+	mlx_setup(&data->mlx, data);
 	mlx_key_hook(data->mlx.win, &key_hook, data);
 	mlx_loop_hook(data->mlx.ptr, &render, data);
 	mlx_loop(data->mlx.ptr);

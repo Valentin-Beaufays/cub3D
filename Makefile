@@ -28,6 +28,7 @@ FILES=			error/error.c\
 				utils/check_path.c\
 				utils/rgb_to_int.c\
 				utils/rad_utils.c\
+				utils/mlx_utils.c\
 				get_next_line/get_next_line.c\
 				get_next_line/get_next_line_utils.c\
 				main.c

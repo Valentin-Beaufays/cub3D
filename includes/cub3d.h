@@ -19,7 +19,7 @@
 # include "render.h"
 # include "utils.h"
 # include "key.h"
-#include "game.h"
+# include "game.h"
 
 t_cub3d			*cub_parser(char *path);
 
