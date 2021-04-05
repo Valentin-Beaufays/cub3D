@@ -1,4 +1,6 @@
-#include "../includes/cub3d.h"
+#include <stddef.h>
+#include "struct.h"
+#include "utils.h"
 
 static double	set_angle(char dir)
 {

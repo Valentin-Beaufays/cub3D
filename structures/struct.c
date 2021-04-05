@@ -1,4 +1,5 @@
-#include "../includes/cub3d.h"
+#include "struct.h"
+#include "utils.h"
 
 void	init_point(t_point *point)
 {
@@ -31,9 +32,9 @@ void	init_ray(t_ray *ray)
 	ray->dir = 0;
 }
 
-void	init_temp(t_temp *temp, int fd)
+void	init_temp(t_temp *temp)
 {
-	temp->fd = fd;
+	temp->fd = -1;
 	temp->line = NULL;
 	temp->trim = NULL;
 	temp->x = 0;

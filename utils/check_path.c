@@ -1,4 +1,5 @@
-#include "../includes/cub3d.h"
+#include <stddef.h>
+#include "libft.h"
 
 int		check_path(char *path, char *ext)
 {

@@ -1,6 +1,6 @@
-#include "../includes/render.h"
-#include <stdio.h>
 #include <math.h>
+#include "struct.h"
+#include "render.h"
 
 static int	find_h_intersect(t_ray *ray, t_cub3d *data)
 {

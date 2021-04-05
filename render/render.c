@@ -1,4 +1,8 @@
-#include "../includes/cub3d.h"
+#include <math.h>
+#include <mlx.h>
+#include "render.h"
+#include "struct.h"
+#include "utils.h"
 
 static void	get_ray_dir(double angle, int *up, int *left)
 {

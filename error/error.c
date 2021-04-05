@@ -1,5 +1,6 @@
-#include "../includes/cub3d.h"
-#include "../includes/error.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include "struct.h"
 
 void	ft_error(char *error)
 {

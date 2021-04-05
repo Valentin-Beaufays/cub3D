@@ -1,4 +1,7 @@
-#include "../includes/cub3d.h"
+#include <stddef.h>
+#include "libft.h"
+#include "struct.h"
+#include "error.h"
 
 static int	check_valid_map_char(char **map)
 {

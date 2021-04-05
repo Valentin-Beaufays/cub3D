@@ -1,4 +1,6 @@
-#include "../includes/cub3d.h"
+#include "libft.h"
+#include "struct.h"
+#include "error.h"
 
 static int	get_value(char **line)
 {
