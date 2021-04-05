@@ -1,4 +1,11 @@
-#include "../includes/cub3d.h"
+#include <stddef.h>
+#include <stdlib.h>
+#include <errno.h>
+#include <string.h>
+#include "parser.h"
+#include "struct.h"
+#include "utils.h"
+#include "error.h"
 
 void	check_missing_data(t_temp *temp)
 {

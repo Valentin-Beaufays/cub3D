@@ -1,4 +1,5 @@
-#include "../includes/cub3d.h"
+#include "struct.h"
+#include "utils.h"
 
 void	init_point(t_point *point)
 {

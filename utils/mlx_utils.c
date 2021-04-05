@@ -1,4 +1,5 @@
-#include "../includes/cub3d.h"
+#include <mlx.h>
+#include "struct.h"
 
 void	ft_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 {

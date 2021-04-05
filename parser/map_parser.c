@@ -1,4 +1,11 @@
-#include "../includes/cub3d.h"
+#include <stddef.h>
+#include <stdlib.h>
+#include <string.h>
+#include <errno.h>
+#include "get_next_line.h"
+#include "libft.h"
+#include "struct.h"
+#include "error.h"
 
 static void		copy_map(char **dest, char **src)
 {

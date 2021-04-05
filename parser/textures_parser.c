@@ -1,4 +1,6 @@
-#include "../includes/cub3d.h"
+#include "libft.h"
+#include "struct.h"
+#include "error.h"
 
 void	parse_no_texture(t_temp *temp)
 {

@@ -1,4 +1,14 @@
-#include "../includes/cub3d.h"
+#include <fcntl.h>
+#include <stdlib.h>
+#include <string.h>
+#include <errno.h>
+#include <unistd.h>
+#include <errno.h>
+#include "libft.h"
+#include "get_next_line.h"
+#include "parser.h"
+#include "struct.h"
+#include "error.h"
 
 void	parse_resolution(t_temp *temp)
 {

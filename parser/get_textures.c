@@ -1,4 +1,10 @@
-#include "../includes/cub3d.h"
+#include <stddef.h>
+#include <errno.h>
+#include <string.h>
+#include "libft.h"
+#include "struct.h"
+#include "utils.h"
+#include "error.h"
 
 void	get_no_texture(t_temp *temp, t_cub3d *data)
 {

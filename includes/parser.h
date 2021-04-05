@@ -1,6 +1,11 @@
 #ifndef PARSER_H
 # define PARSER_H
 
+# define MIN_RES 1
+# define MAX_RES 4000
+# include "struct.h"
+
+t_cub3d	*cub_parser(char *path);
 void	init_temp(t_temp *temp, int fd);
 int		check_path(char *path, char *ext);
 int		get_arg(t_temp *temp);

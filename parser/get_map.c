@@ -1,4 +1,7 @@
-#include "../includes/cub3d.h"
+#include <stddef.h>
+#include "parser.h"
+#include "struct.h"
+#include "error.h"
 
 static void	map_to_data(t_map *dst, t_map *src)
 {

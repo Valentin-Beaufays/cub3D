@@ -1,4 +1,6 @@
-#include "../includes/cub3d.h"
+#include <math.h>
+#include "struct.h"
+#include "utils.h"
 
 void    print_column(t_ray *ray, t_cub3d *data, int x)
 {

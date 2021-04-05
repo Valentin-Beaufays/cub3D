@@ -3,7 +3,6 @@
 
 # include "struct.h"
 
-double	round_rad(double rad);
 int		render(t_cub3d *data);
 int		check_h_hit(t_ray *ray, t_map *map);
 int		check_v_hit(t_ray *ray, t_map *map);

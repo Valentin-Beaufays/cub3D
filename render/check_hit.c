@@ -1,4 +1,4 @@
-#include "../includes/render.h"
+#include "struct.h"
 
 int	check_h_hit(t_ray *ray, t_map *map)
 {

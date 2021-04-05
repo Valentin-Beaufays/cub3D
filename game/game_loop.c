@@ -1,4 +1,9 @@
-#include "cub3d.h"
+#include <math.h>
+#include <mlx.h>
+#include "render.h"
+#include "key.h"
+#include "struct.h"
+#include "utils.h"
 
 double		ft_abs(double val)
 {

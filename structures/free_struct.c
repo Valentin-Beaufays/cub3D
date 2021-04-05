@@ -1,4 +1,6 @@
-#include "../includes/cub3d.h"
+#include <stddef.h>
+#include <stdlib.h>
+#include "struct.h"
 
 void	free_map(t_map *map)
 {

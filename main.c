@@ -10,7 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/cub3d.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include "libft.h"
+#include "struct.h"
+#include "parser.h"
+#include "game.h"
+#include "error.h"
 
 static void print_map(t_map *map)
 {
