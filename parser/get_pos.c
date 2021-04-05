@@ -31,7 +31,8 @@ int				get_pos(char **map, t_cub3d *data)
 		x = 0;
 		while (map[y][x])
 		{
-			if (map[y][x] == 'N' || map[y][x] == 'S' || map[y][x] == 'E' || map[y][x] == 'W')
+			if (map[y][x] == 'N' || map[y][x] == 'S'
+				|| map[y][x] == 'E' || map[y][x] == 'W')
 			{
 				find++;
 				set_pos(&data->pos, (double)x, (double)y);

@@ -24,9 +24,11 @@ FILES=			error/error.c\
 				render/find_intersection.c\
 				render/check_hit.c\
 				render/render.c\
+				game/game_loop.c\
 				utils/check_path.c\
 				utils/rgb_to_int.c\
 				utils/rad_utils.c\
+				utils/mlx_utils.c\
 				get_next_line/get_next_line.c\
 				get_next_line/get_next_line_utils.c\
 				main.c
