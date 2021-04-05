@@ -23,7 +23,11 @@ static void print_map(t_map *map)
 	printf("map:\nh: %ld, w: %ld\n\n", map->h, map->w);
 	for(size_t i = 0; i < map->h; i++)
 	{
-		printf("%s\n", map->map[i]);
+		for(size_t j = 0; j < map->w; j++)
+		{
+			printf("%c",map->map[i][j] + 48);
+		}
+		printf("\n");
 	}
 }
 
