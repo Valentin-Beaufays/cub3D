@@ -75,10 +75,12 @@ typedef struct	s_cub3d
 	int			color_ceil;
 	int			color_floor;
 	t_point		def;
+	double		*z_buf;
 }				t_cub3d;
 
 void			init_temp(t_temp *temp);
 void			free_temp(t_temp *temp);
+void			free_data(t_cub3d *data);
 void			init_cub3d(t_cub3d *data);
 void			init_ray(t_ray *ray);
 void			init_point(t_point *point);
