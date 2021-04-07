@@ -1,16 +1,10 @@
 #include <math.h>
 #include <mlx.h>
+#include <stdlib.h>
 #include "render.h"
 #include "key.h"
 #include "struct.h"
 #include "utils.h"
-
-double		ft_abs(double val)
-{
-	if (val < 0)
-		val *= -1;
-	return (val);
-}
 
 static void	get_step(t_cub3d *data, double *step_x, double *step_y)
 {
@@ -79,9 +73,18 @@ int			key_hook(int key, t_cub3d *data)
 	return (0);
 }
 
+int			exit_hook(t_cub3d	*data)
+{
+	mlx_destroy_window(data->mlx.ptr, data->mlx.win);
+	mlx_destroy_image(data->mlx.ptr, data->mlx.img);
+	free_data(data);
+	exit(0);
+}
+
 void		game_loop(t_cub3d *data)
 {
 	mlx_setup(&data->mlx, data);
+	mlx_hook(data->mlx.win, 33, 1L << 17, &exit_hook, data);
 	mlx_key_hook(data->mlx.win, &key_hook, data);
 	mlx_loop_hook(data->mlx.ptr, &render, data);
 	mlx_loop(data->mlx.ptr);

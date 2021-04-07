@@ -30,6 +30,7 @@ FILES=			error/error.c\
 				utils/rgb_to_int.c\
 				utils/rad_utils.c\
 				utils/mlx_utils.c\
+				utils/ft_abs.c\
 				get_next_line/get_next_line.c\
 				get_next_line/get_next_line_utils.c\
 				main.c

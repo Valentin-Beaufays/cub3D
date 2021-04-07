@@ -15,7 +15,7 @@ int	check_h_hit(t_cub3d *data, t_ray *ray, t_map *map)
 		if (map->map[(int)(ray->i.y - up)][(int)ray->i.x] == 1)
 			return (1);
 		else if (map->map[(int)(ray->i.y - up)][(int)ray->i.x] == 2)
-			sprite_found(data, floor(ray->i.y - up) + 0.5, floor(ray->i.x) + 0.5);
+			sprite_found(data, floor(ray->i.x) + 0.5, floor(ray->i.y - up) + 0.5);
 		return (0);
 	}
 	return (-1);
@@ -34,7 +34,7 @@ int	check_v_hit(t_cub3d *data, t_ray *ray, t_map *map)
 		if (map->map[(int)ray->i.y][(int)(ray->i.x - left)] == 1)
 			return (1);
 		else if (map->map[(int)ray->i.y][(int)(ray->i.x - left)] == 2)
-			sprite_found(data, floor(ray->i.y) + 0.5, floor(ray->i.x - left) + 0.5);
+			sprite_found(data, floor(ray->i.x - left) + 0.5, floor(ray->i.y) + 0.5);
 		return (0);
 	}
 	return (-1);

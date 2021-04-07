@@ -1,4 +1,5 @@
 #include <stddef.h>
+#include <mlx.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include "struct.h"
@@ -17,6 +18,14 @@ void	free_map(t_map *map)
 		}
 		free(map->map);
 	}
+}
+
+void	free_mlx(t_mlx	*mlx)
+{
+	if (mlx->ptr && mlx->win)
+		mlx_destroy_window(mlx->ptr, mlx->win);
+	if (mlx->ptr && mlx->img)
+		mlx_destroy_image(mlx->ptr, mlx->img);
 }
 
 void	free_sprite(t_sprite *sprite)

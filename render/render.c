@@ -17,6 +17,13 @@ int			render(t_cub3d *data)
 		x++;
 	}
 	//print sprite
+	/*t_sprite	*cur;
+	cur = data->sprite;
+	while (cur)
+	{
+		printf("sprite: (%f;%f)\n", cur->pos.x, cur->pos.y);
+		cur = cur->next;
+	}*/
 	free_sprite(data->sprite);
 	data->sprite = NULL;
 	mlx_put_image_to_window(data->mlx.ptr, data->mlx.win, data->mlx.img, 0, 0);
