@@ -24,6 +24,7 @@ FILES=			error/error.c\
 				render/find_intersection.c\
 				render/check_hit.c\
 				render/render.c\
+				render/sprite.c\
 				game/game_loop.c\
 				utils/check_path.c\
 				utils/rgb_to_int.c\

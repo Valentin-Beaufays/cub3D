@@ -9,6 +9,13 @@ typedef struct	s_point
 	double		y;
 }				t_point;
 
+typedef struct	s_sprite
+{
+	t_point		pos;
+	double		dist;
+	void		*next;
+}				t_sprite;
+
 typedef struct	s_map
 {
 	size_t		w;
@@ -76,6 +83,7 @@ typedef struct	s_cub3d
 	int			color_floor;
 	t_point		def;
 	double		*z_buf;
+	t_sprite	*sprite;
 }				t_cub3d;
 
 void			init_temp(t_temp *temp);
@@ -87,5 +95,7 @@ void			init_point(t_point *point);
 void			init_map(t_map *map);
 void			free_map(t_map *map);
 void			init_mlx(t_mlx *mlx);
+void			init_sprite(t_sprite *s);
+void			free_sprite(t_sprite *sprite);
 
 #endif

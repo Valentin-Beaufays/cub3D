@@ -16,6 +16,9 @@ int			render(t_cub3d *data)
 		data->ray.angle = round_rad(data->ray.angle - data->step_rad);
 		x++;
 	}
+	//print sprite
+	free_sprite(data->sprite);
+	data->sprite = NULL;
 	mlx_put_image_to_window(data->mlx.ptr, data->mlx.win, data->mlx.img, 0, 0);
 	return (0);
 }

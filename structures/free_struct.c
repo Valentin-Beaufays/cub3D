@@ -19,6 +19,18 @@ void	free_map(t_map *map)
 	}
 }
 
+void	free_sprite(t_sprite *sprite)
+{
+	t_sprite *next;
+
+	while (sprite)
+	{
+		next = sprite->next;
+		free(sprite);
+		sprite = next;
+	}
+}
+
 void	free_data(t_cub3d *data)
 {
 	free_map(&data->map);
@@ -34,6 +46,7 @@ void	free_data(t_cub3d *data)
 		free(data->text_w);
 	if (data->z_buf)
 		free(data->z_buf);
+	free_sprite(data->sprite);
 	free(data);
 }
 

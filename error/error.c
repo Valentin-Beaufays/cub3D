@@ -21,7 +21,8 @@ void	free_tmp_err(char *error, t_temp *temp, int select)
 void	free_data_err(char *error, t_temp *temp, t_cub3d *data)
 {
 	free_data(data);
-	free_temp(temp);
+	if (temp)
+		free_temp(temp);
 	free_map(&temp->map);
 	ft_error(error);
 }
