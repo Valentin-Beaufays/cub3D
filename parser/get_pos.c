@@ -10,7 +10,7 @@ static double	set_angle(char dir)
 		return (deg2rad(270));
 	else if (dir == 'E')
 		return (deg2rad(0));
-	else if (dir == 'W')
+	else
 		return (deg2rad(180));
 }
 

@@ -33,6 +33,7 @@ FILES=			error/error.c\
 				utils/rad_utils.c\
 				utils/mlx_utils.c\
 				utils/ft_abs.c\
+				utils/sprite_utils.c\
 				get_next_line/get_next_line.c\
 				get_next_line/get_next_line_utils.c\
 				main.c
@@ -42,7 +43,7 @@ LIB=			libft/libft.a -lm -lmlx -lXext -lX11
 all: $(NAME)
 
 $(NAME):
-	$(CC) -o $(NAME) $(INCLUDES) -D BUFFER_SIZE=$(BUFFER_SIZE) $(FILES) $(LIB)
+	$(CC) $(CFLAGS) -o $(NAME) $(INCLUDES) -D BUFFER_SIZE=$(BUFFER_SIZE) $(FILES) $(LIB)
 
 clean:
 	@rm -rf $(NAME)

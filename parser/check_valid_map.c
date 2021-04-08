@@ -41,7 +41,7 @@ static int	check_valid_line(char *line)
 		else if ((in == 0 || in == 2) && line[x] == '1')
 			in = 1;
 		else if (in == 1 && (line[x] == '0' || line[x] == '2'))
-			in == 2;
+			in = 2;
 		else if (in == 1 && line[x] == ' ')
 			in = 0;
 		x++;
@@ -67,7 +67,7 @@ static int	check_valid_col(char **map, size_t x)
 		else if ((in == 0 || in == 2) && map[y][x] == '1')
 			in = 1;
 		else if (in == 1 && (map[y][x] == '0' || map[y][x] == '2'))
-			in == 2;
+			in = 2;
 		else if (in == 1 && map[y][x] == ' ')
 			in = 0;
 		y++;
