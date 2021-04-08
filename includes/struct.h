@@ -9,6 +9,15 @@ typedef struct	s_point
 	double		y;
 }				t_point;
 
+typedef struct	s_text
+{
+	char		*path;
+	int			w;
+	int			h;
+	void		*img;
+}				t_text;
+
+
 typedef struct	s_sprite
 {
 	t_point		pos;
@@ -74,11 +83,11 @@ typedef struct	s_cub3d
 	t_ray		ray;
 	double		step_rad;
 	t_map		map;
-	char		*text_sprite;
-	char		*text_n;
-	char		*text_s;
-	char		*text_e;
-	char		*text_w;
+	t_text		text_sprite;
+	t_text		text_n;
+	t_text		text_s;
+	t_text		text_e;
+	t_text		text_w;
 	int			color_ceil;
 	int			color_floor;
 	t_point		def;
@@ -95,7 +104,10 @@ void			init_point(t_point *point);
 void			init_map(t_map *map);
 void			free_map(t_map *map);
 void			init_mlx(t_mlx *mlx);
+void			free_mlx(t_mlx	*mlx);
 void			init_sprite(t_sprite *s);
 void			free_sprite(t_sprite *sprite);
+void			init_text(t_text *t);
+void			free_text(t_mlx *m, t_text *t);
 
 #endif

@@ -1,5 +1,4 @@
 #include "struct.h"
-#include "utils.h"
 
 void	init_point(t_point *point)
 {
@@ -18,6 +17,14 @@ void	init_mlx(t_mlx *mlx)
 	mlx->endian = 0;
 }
 
+void	init_text(t_text *t)
+{
+	t->path = NULL;
+	t->w = 0;
+	t->h = 0;
+	t->img = NULL;
+}
+
 void	init_ray(t_ray *ray)
 {
 	ray->up = 0;
@@ -32,48 +39,4 @@ void	init_ray(t_ray *ray)
 	ray->dir = 0;
 }
 
-void	init_temp(t_temp *temp)
-{
-	temp->fd = -1;
-	temp->line = NULL;
-	temp->trim = NULL;
-	temp->x = 0;
-	temp->y = 0;
-	temp->north = NULL;
-	temp->south = NULL;
-	temp->west = NULL;
-	temp->east = NULL;
-	temp->sprite = NULL;
-	temp->f[0] = -1;
-	temp->f[1] = -1;
-	temp->f[2] = -1;
-	temp->c[0] = -1;
-	temp->c[1] = -1;
-	temp->c[2] = -1;
-	temp->map.h = 0;
-	temp->map.w = 0;
-	temp->map.map = NULL;
-}
 
-void	init_cub3d(t_cub3d *data)
-{
-	init_mlx(&data->mlx);
-	init_point(&data->pos);
-	init_point(&data->def);
-	data->map.h = 0;
-	data->map.w = 0;
-	data->map.map = NULL;
-	data->angle = 0;
-	init_ray(&data->ray);
-	data->fov = round_rad(deg2rad(60));
-	data->step_rad = 0;
-	data->text_sprite = NULL;
-	data->text_n = NULL;
-	data->text_s = NULL;
-	data->text_e = NULL;
-	data->text_w = NULL;
-	data->color_ceil = 0;
-	data->color_floor = 0;
-	data->z_buf = NULL;
-	data->sprite = NULL;
-}

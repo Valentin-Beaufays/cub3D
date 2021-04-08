@@ -1,14 +1,14 @@
 R 960 480
 
-NO ./testN.xpm
+NO ./textures/red.xpm
 
-SO ./testS.xpm
+SO ./textures/purplestone.xpm
 
-WE ./testW.xpm
+WE ./textures/greystone.xpm
 
-EA ./testE.xpm
+EA ./textures/eagle.xpm
 
-S ./testSprite.xpm
+S ./textures/tonneau.xpm
 
 F 0,0,0
 

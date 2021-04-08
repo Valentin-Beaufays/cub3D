@@ -10,7 +10,9 @@ INCLUDES=		-I ./includes/ -I ./libft/ -I ./get_next_line/
 
 FILES=			error/error.c\
 				structures/struct.c\
+				structures/data_struct.c\
 				structures/free_struct.c\
+				structures/free_data_struct.c\
 				parser/parser.c\
 				parser/textures_parser.c\
 				parser/fc_parser.c\

@@ -75,8 +75,6 @@ int			key_hook(int key, t_cub3d *data)
 
 int			exit_hook(t_cub3d	*data)
 {
-	mlx_destroy_window(data->mlx.ptr, data->mlx.win);
-	mlx_destroy_image(data->mlx.ptr, data->mlx.img);
 	free_data(data);
 	exit(0);
 }

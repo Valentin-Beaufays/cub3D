@@ -9,7 +9,7 @@ double	deg2rad(double deg);
 double	rad2deg(double rad);
 double	round_rad(double rad);
 void	ft_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
-void	mlx_setup(t_mlx *m, t_cub3d *d);
+int		mlx_setup(t_mlx *m, t_cub3d *d);
 double	ft_abs(double val);
 
 #endif

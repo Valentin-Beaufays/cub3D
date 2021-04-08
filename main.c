@@ -35,7 +35,7 @@ static void print_data(t_cub3d *data)
 {
 	printf("resolution: %f x %f\n", data->def.x, data->def.y);
 	printf("pos: (%f;%f), angle: %f°\n", data->pos.x, data->pos.y, data->angle);
-	printf("n: %s, s: %s, e: %s, w: %s, sprite: %s\n", data->text_n, data->text_s, data->text_e, data->text_w, data->text_sprite);
+	//printf("n: %s, s: %s, e: %s, w: %s, sprite: %s\n", data->text_n, data->text_s, data->text_e, data->text_w, data->text_sprite);
 	printf("f_color: %i\nc_color: %i\n", data->color_floor, data->color_ceil);
 	print_map(&data->map);
 }

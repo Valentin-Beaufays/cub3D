@@ -22,9 +22,9 @@ void	check_missing_data(t_temp *temp)
 
 void	get_resolution(t_temp *temp, t_cub3d *data)
 {
-	if (temp->x < MIN_RES || temp->x > MAX_RES)
+	if (temp->x < 0)
 		free_data_err("invalid horizontal resolution", temp, data);
-	if (temp->y < MIN_RES || temp->y > MAX_RES)
+	if (temp->y < 0)
 		free_data_err("invalid vertical resolution", temp, data);
 	data->def.x = temp->x;
 	data->def.y = temp->y;
