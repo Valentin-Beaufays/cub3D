@@ -84,6 +84,6 @@ void		game_loop(t_cub3d *data)
 	mlx_setup(&data->mlx, data);
 	mlx_hook(data->mlx.win, 33, 1L << 17, &exit_hook, data);
 	mlx_key_hook(data->mlx.win, &key_hook, data);
-	mlx_loop_hook(data->mlx.ptr, &render, data);
+	//mlx_loop_hook(data->mlx.ptr, &render, data);
 	mlx_loop(data->mlx.ptr);
 }

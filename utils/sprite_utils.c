@@ -22,6 +22,9 @@ t_sprite	*create_sprite(double pos_x, double pos_y, double new_x, double new_y)
 	new->pos.x = new_x;
 	new->pos.y = new_y;
 	new->dist = sqrt(pow(pos_x - new_x, 2) + pow(pos_y - new_y, 2));
+	new->angle = acos((new_x - pos_x) / new->dist);
+	if ((asin((new_x - pos_x) / new->dist)) < 0)
+		new->angle = M_PI + (M_PI - new->angle);
 	new->next = NULL;
 	return (new);
 }

@@ -22,6 +22,7 @@ typedef struct	s_sprite
 {
 	t_point		pos;
 	double		dist;
+	double		angle;
 	void		*next;
 }				t_sprite;
 
@@ -92,6 +93,7 @@ typedef struct	s_cub3d
 	int			color_floor;
 	t_point		def;
 	double		*z_buf;
+	double		*angle_buf;
 	t_sprite	*sprite;
 }				t_cub3d;
 

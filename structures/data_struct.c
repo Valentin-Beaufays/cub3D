@@ -44,5 +44,6 @@ void	init_cub3d(t_cub3d *data)
 	data->color_ceil = 0;
 	data->color_floor = 0;
 	data->z_buf = NULL;
+	data->angle_buf = NULL;
 	data->sprite = NULL;
 }

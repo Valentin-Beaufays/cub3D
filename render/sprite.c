@@ -4,6 +4,8 @@
 #include "utils.h"
 #include "error.h"
 
+//void	find_sprite_col(t_cub3d *data){}
+
 void	sprite_found(t_cub3d *data, double x, double y)
 {
 	t_sprite	*new;

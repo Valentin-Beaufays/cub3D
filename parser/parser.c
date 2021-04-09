@@ -107,5 +107,7 @@ t_cub3d	*cub_parser(char *path)
 	data = get_data(&temp);
 	if (!(data->z_buf = ft_calloc(data->def.x, sizeof(double))))
 		free_data_err(strerror(errno), NULL, data);
+	if (!(data->angle_buf = ft_calloc(data->def.x, sizeof(double))))
+		free_data_err(strerror(errno), NULL, data);
 	return (data);
 }

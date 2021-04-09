@@ -13,6 +13,8 @@ void	free_data(t_cub3d *data)
 	free_mlx(&data->mlx);
 	if (data->z_buf)
 		free(data->z_buf);
+	if (data->angle_buf)
+		free(data->angle_buf);
 	free_sprite(data->sprite);
 	free(data);
 }
