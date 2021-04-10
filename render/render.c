@@ -24,7 +24,7 @@ int			render(t_cub3d *data)
 	while (cur)
 	{
 		printf("sprite: (%f;%f) dist: %f, angle:%f\n", cur->pos.x, cur->pos.y, cur->dist, rad2deg(cur->angle));
-		cur = NULL;
+		cur = cur->next;
 	}
 	free_sprite(data->sprite);
 	data->sprite = NULL;
