@@ -33,17 +33,17 @@ void    print_column(t_ray *ray, t_cub3d *data, int x)
 
 	while (y < start)
 	{
-		ft_mlx_pixel_put(&data->mlx, x, y, data->color_ceil);
+		ft_mlx_pixel_put(&data->mlx, &data->mlx.frame, x, y, data->color_ceil);
 		y++;
 	}
 	while (y < end && y < data->def.y)
 	{
-		ft_mlx_pixel_put(&data->mlx, x, y, wallColor);
+		ft_mlx_pixel_put(&data->mlx, &data->mlx.frame, x, y, wallColor);
 		y++;
 	}
 	while (y < data->def.y)
 	{
-		ft_mlx_pixel_put(&data->mlx, x, y, data->color_floor);
+		ft_mlx_pixel_put(&data->mlx, &data->mlx.frame, x, y, data->color_floor);
 		y++;
 	}
 }

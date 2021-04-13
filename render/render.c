@@ -3,6 +3,7 @@
 #include "render.h"
 #include "struct.h"
 #include "utils.h"
+#include "sprite.h"
 
 int			render(t_cub3d *data)
 {
@@ -18,16 +19,9 @@ int			render(t_cub3d *data)
 		data->ray.angle = round_rad(data->ray.angle - data->step_rad);
 		x++;
 	}
-	//print sprite
-	t_sprite	*cur;
-	cur = data->sprite;
-	while (cur)
-	{
-		printf("sprite: (%f;%f) dist: %f, angle:%f\n", cur->pos.x, cur->pos.y, cur->dist, rad2deg(cur->angle));
-		cur = cur->next;
-	}
+	print_sprite(data);
 	free_sprite(data->sprite);
 	data->sprite = NULL;
-	mlx_put_image_to_window(data->mlx.ptr, data->mlx.win, data->mlx.img, 0, 0);
+	mlx_put_image_to_window(data->mlx.ptr, data->mlx.win, data->mlx.frame.img, 0, 0);
 	return (0);
 }

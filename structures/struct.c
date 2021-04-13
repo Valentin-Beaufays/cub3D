@@ -10,11 +10,11 @@ void	init_mlx(t_mlx *mlx)
 {
 	mlx->ptr = NULL;
 	mlx->win = NULL;
-	mlx->img = NULL;
-	mlx->addr = NULL;
-	mlx->bpp = 0;
-	mlx->length = 0;
-	mlx->endian = 0;
+	mlx->frame.img = NULL;
+	mlx->frame.addr = NULL;
+	mlx->frame.bpp = 0;
+	mlx->frame.length = 0;
+	mlx->frame.endian = 0;
 }
 
 void	init_text(t_text *t)
@@ -22,7 +22,11 @@ void	init_text(t_text *t)
 	t->path = NULL;
 	t->w = 0;
 	t->h = 0;
-	t->img = NULL;
+	t->img.img = NULL;
+	t->img.addr = NULL;
+	t->img.bpp = 0;
+	t->img.length = 0;
+	t->img.endian = 0;
 }
 
 void	init_ray(t_ray *ray)

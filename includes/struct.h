@@ -9,12 +9,23 @@ typedef struct	s_point
 	double		y;
 }				t_point;
 
+typedef struct	s_img
+{
+	void		*img;
+	int			w;
+	int			h;
+	void		*addr;
+	int			bpp;
+	int			length;
+	int			endian;
+}				t_img;
+
 typedef struct	s_text
 {
 	char		*path;
 	int			w;
 	int			h;
-	void		*img;
+	t_img		img;
 }				t_text;
 
 
@@ -54,11 +65,7 @@ typedef struct	s_mlx
 {
 	void		*ptr;
 	void		*win;
-	void		*img;
-	void		*addr;
-	int			bpp;
-	int			length;
-	int			endian;
+	t_img		frame;
 }				t_mlx;
 
 typedef struct	s_ray

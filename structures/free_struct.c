@@ -24,8 +24,8 @@ void	free_mlx(t_mlx	*mlx)
 {
 	if (mlx->ptr && mlx->win)
 		mlx_destroy_window(mlx->ptr, mlx->win);
-	if (mlx->ptr && mlx->img)
-		mlx_destroy_image(mlx->ptr, mlx->img);
+	if (mlx->ptr && mlx->frame.img)
+		mlx_destroy_image(mlx->ptr, mlx->frame.img);
 }
 
 void	free_sprite(t_sprite *sprite)
@@ -44,6 +44,6 @@ void	free_text(t_mlx *m, t_text *t)
 {
 	if (t->path)
 		free(t->path);
-	if (t->img)
-		mlx_destroy_image(m->ptr, t->img);
+	if (t->img.img)
+		mlx_destroy_image(m->ptr, t->img.img);
 }

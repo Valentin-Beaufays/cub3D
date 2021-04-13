@@ -26,12 +26,16 @@ FILES=			error/error.c\
 				render/find_intersection.c\
 				render/check_hit.c\
 				render/render.c\
-				render/sprite.c\
+				sprite/sprite.c\
+				sprite/print_sprite.c\
+				sprite/find_sprite_col.c\
 				game/game_loop.c\
 				utils/check_path.c\
 				utils/rgb_to_int.c\
 				utils/rad_utils.c\
 				utils/mlx_utils.c\
+				utils/mlx_img_utils.c\
+				utils/resize_image.c\
 				utils/ft_abs.c\
 				utils/sprite_utils.c\
 				get_next_line/get_next_line.c\
@@ -43,7 +47,7 @@ LIB=			libft/libft.a -lm -lmlx -lXext -lX11
 all: $(NAME)
 
 $(NAME):
-	$(CC) $(CFLAGS) -o $(NAME) $(INCLUDES) -D BUFFER_SIZE=$(BUFFER_SIZE) $(FILES) $(LIB)
+	$(CC) -o $(NAME) $(INCLUDES) -D BUFFER_SIZE=$(BUFFER_SIZE) $(FILES) $(LIB)
 
 clean:
 	@rm -rf $(NAME)
