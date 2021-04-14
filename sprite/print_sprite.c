@@ -26,7 +26,7 @@ static void	print_sprite_col(t_cub3d *d, t_img *img, int x_img, int x)
 	{
 		color = ft_mlx_pixel_get(img, x_img, y_img);
 		//printf("%d %d %d\n",x, y, color);
-		if (color != 0)
+		if (color > 0)
 			ft_mlx_pixel_put(&d->mlx, &d->mlx.frame, x, y, color);
 		y++;
 		y_img++;

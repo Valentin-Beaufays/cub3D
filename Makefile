@@ -42,7 +42,7 @@ FILES=			error/error.c\
 				get_next_line/get_next_line_utils.c\
 				main.c
 
-LIB=			libft/libft.a mlx/libmlx.a -lm -framework OpenGL -framework AppKit
+LIB=			libft/libft.a mlx/libmlx.dylib -lm -framework OpenGL -framework AppKit
 
 all: $(NAME)
 
