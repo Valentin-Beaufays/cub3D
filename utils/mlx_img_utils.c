@@ -9,6 +9,8 @@ void	ft_mlx_pixel_put(t_mlx *mlx, t_img *img, int x, int y, int color)
 	*(unsigned int*)dst = mlx_get_color_value(mlx->ptr, color);
 }
 
+
+
 int		ft_mlx_pixel_get(t_img *img, int x, int y)
 {
 	int ret;
