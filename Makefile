@@ -6,7 +6,7 @@ BUFFER_SIZE=	10
 
 NAME=			cub3D
 
-INCLUDES=		-I ./includes/ -I ./libft/ -I ./get_next_line/
+INCLUDES=		-I ./includes/ -I ./libft/ -I ./get_next_line/ -I ./mlx/
 
 FILES=			error/error.c\
 				structures/struct.c\
@@ -42,7 +42,7 @@ FILES=			error/error.c\
 				get_next_line/get_next_line_utils.c\
 				main.c
 
-LIB=			libft/libft.a -lm -lmlx -lXext -lX11
+LIB=			libft/libft.a mlx/libmlx.a -lm -framework OpenGL -framework AppKit
 
 all: $(NAME)
 

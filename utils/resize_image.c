@@ -1,4 +1,4 @@
-#include <mlx.h>
+#include "mlx.h"
 #include <string.h>
 #include <math.h>
 #include <errno.h>
@@ -32,7 +32,6 @@ static void	fill_img(t_mlx *m, t_img *new, t_text *t)
 			old_x = (int)(floor((double)x) * ratio_w);
 			old_y = (int)(floor((double)y) * ratio_h);
 			color = ft_mlx_pixel_get(&t->img, old_x, old_y);
-			//printf("x: %d, y: %d, color: %d\n", x, y, color);
 			ft_mlx_pixel_put(m, new, x, y, color);
 			x++;
 		}

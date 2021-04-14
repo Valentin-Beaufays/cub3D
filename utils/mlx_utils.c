@@ -1,9 +1,9 @@
-#include <mlx.h>
+#include "mlx.h"
 #include <string.h>
 #include "struct.h"
 #include "error.h"
 
-static void	adjust_res(t_mlx *mlx, t_cub3d *data)
+/*static void	adjust_res(t_mlx *mlx, t_cub3d *data)
 {
 	int	screen_x;
 	int screen_y;
@@ -13,7 +13,7 @@ static void	adjust_res(t_mlx *mlx, t_cub3d *data)
 		data->def.x = screen_x;
 	if (screen_y < data->def.y)
 		data->def.y = screen_y;
-}
+}*/
 
 static int	open_mlx_text(t_mlx *m, t_text *t)
 {
@@ -46,7 +46,7 @@ void		mlx_setup(t_mlx *m, t_cub3d *d)
 {
 	if (!(m->ptr = mlx_init()))
 		free_data_err("fail to init mlx", NULL, d);
-	adjust_res(m, d);
+	//adjust_res(m, d);
 	if (!(open_text(m, d)))
 		free_data_err("fail to open textures", NULL, d);
 	if (!(m->win = mlx_new_window(m->ptr, (int)d->def.x, (int)d->def.y, "cub3D")))
