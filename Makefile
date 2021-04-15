@@ -1,62 +1,75 @@
-CC=				gcc
+UNAME := $(shell uname -s)
 
-CFLAGS=			-Wall -Wextra -Werror
+CC=                gcc
 
-BUFFER_SIZE=	10
+CFLAGS=            -Wall -Wextra -Werror
 
-NAME=			cub3D
+BUFFER_SIZE=    16
 
-INCLUDES=		-I ./includes/ -I ./libft/ -I ./get_next_line/ -I ./mlx/
+NAME=            cub3D
 
-FILES=			error/error.c\
-				structures/struct.c\
-				structures/data_struct.c\
-				structures/free_struct.c\
-				structures/free_data_struct.c\
-				parser/parser.c\
-				parser/textures_parser.c\
-				parser/fc_parser.c\
-				parser/map_parser.c\
-				parser/get_data.c\
-				parser/get_textures.c\
-				parser/get_map.c\
-				parser/get_pos.c\
-				parser/check_valid_map.c\
-				render/print_column.c\
-				render/find_intersection.c\
-				render/check_hit.c\
-				render/render.c\
-				sprite/sprite.c\
-				sprite/print_sprite.c\
-				sprite/find_sprite_col.c\
-				game/game_loop.c\
-				utils/check_path.c\
-				utils/rgb_to_int.c\
-				utils/rad_utils.c\
-				utils/mlx_utils.c\
-				utils/mlx_img_utils.c\
-				utils/resize_image.c\
-				utils/ft_abs.c\
-				utils/sprite_utils.c\
+INCLUDES:=        -I ./includes/ -I ./libft/ -I ./get_next_line/ 
+
+FILES=			./srcs/error/error.c\
+				./srcs/structures/struct.c\
+				./srcs/structures/data_struct.c\
+				./srcs/structures/free_struct.c\
+				./srcs/structures/free_data_struct.c\
+				./srcs/parser/parser.c\
+				./srcs/parser/textures_parser.c\
+				./srcs/parser/fc_parser.c\
+				./srcs/parser/map_parser.c\
+				./srcs/parser/get_data.c\
+				./srcs/parser/get_textures.c\
+				./srcs/parser/get_map.c\
+				./srcs/parser/get_pos.c\
+				./srcs/parser/check_valid_map.c\
+				./srcs/render/print_column.c\
+				./srcs/render/find_intersection.c\
+				./srcs/render/check_hit.c\
+				./srcs/render/render.c\
+				./srcs/sprite/sprite.c\
+				./srcs/sprite/print_sprite.c\
+				./srcs/sprite/find_sprite_col.c\
+				./srcs/game/game_loop.c\
+				./srcs/utils/check_path.c\
+				./srcs/utils/rgb_to_int.c\
+				./srcs/utils/rad_utils.c\
+				./srcs/utils/mlx_utils.c\
+				./srcs/utils/mlx_img_utils.c\
+				./srcs/utils/resize_image.c\
+				./srcs/utils/ft_abs.c\
+				./srcs/utils/sprite_utils.c\
 				get_next_line/get_next_line.c\
 				get_next_line/get_next_line_utils.c\
 				main.c
 
-LIB=			libft/libft.a -lm -lmlx -lXext -lX11
+MLX :=
+
+
+ifeq ($(UNAME), Darwin)
+    MLX += libft/libft.a ./minilibX/mlx_mac/libmlx.a -lm -framework OpenGL -framework AppKit
+	INCLUDES += -I ./minilibX/mlx_mac/
+endif
+ifeq ($(UNAME), Linux)
+    MLX += libft/libft.a ./minilibX/mlx_linux/libmlx.a -lm 
+	INCLUDES += -I ./minilibX/mlx_linux/
+endif
+
+$(NAME): 
+	$(CC) -o $(NAME) $(INCLUDES) -D BUFFER_SIZE=$(BUFFER_SIZE) $(FILES) $(MLX)
 
 all: $(NAME)
 
-$(NAME):
-	$(CC) -o $(NAME) $(INCLUDES) -D BUFFER_SIZE=$(BUFFER_SIZE) $(FILES) $(LIB)
-
-clean:
+clean: 
 	@rm -rf $(NAME)
 
 fclean: clean
 
 re: fclean $(NAME)
 
+
 install:
-	git clone https://github.com/Valentin-Beaufays/libft.git libft
-	make -C ./libft
+	git clone https://github.com/Valentin-Beaufays/libft.git libft 
+	make -C ./libft 
 	git clone https://github.com/Valentin-Beaufays/get_next_line.git get_next_line
