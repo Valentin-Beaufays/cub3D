@@ -40,7 +40,7 @@ double	find_sprite_col(t_sprite *s, t_cub3d *d)
 	else
 	{
 		col = 0;
-		while (s->angle < d->angle_buf[col])
+		while (is_greater_angle(d->angle_buf[col], s->angle))
 			col++;
 	}
 	return (col);

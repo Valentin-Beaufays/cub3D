@@ -1,5 +1,5 @@
 #include <math.h>
-#include "mlx.h"
+#include <mlx.h>
 #include <stdlib.h>
 #include "render.h"
 #include "key.h"
@@ -13,7 +13,6 @@ static void	get_step(t_cub3d *data, double *step_x, double *step_y)
 
 	dist_x = ft_abs(data->ray.i.x - data->pos.x);
 	dist_y = ft_abs(data->ray.i.y - data->pos.y);
-	printf("dist : %f %f\n", dist_x, dist_y);
 	if (data->ray.dir == 1)
 	{
 		*step_y = sin(data->angle) * 0.1;
@@ -86,6 +85,6 @@ void		game_loop(t_cub3d *data)
 	mlx_setup(&data->mlx, data);
 	mlx_hook(data->mlx.win, 33, 1L << 17, &exit_hook, data);
 	mlx_key_hook(data->mlx.win, &key_hook, data);
-	//mlx_loop_hook(data->mlx.ptr, &render, data);
+	mlx_loop_hook(data->mlx.ptr, &render, data);
 	mlx_loop(data->mlx.ptr);
 }

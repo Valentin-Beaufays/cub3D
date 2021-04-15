@@ -1,4 +1,4 @@
-#include "mlx.h"
+#include <mlx.h>
 #include <string.h>
 #include <math.h>
 #include <errno.h>
@@ -23,7 +23,6 @@ static void	fill_img(t_mlx *m, t_img *new, t_text *t)
 	x = 0;
 	ratio_h = (double)t->h / (double)new->h;
 	ratio_w = (double)t->w / (double)new->w;
-	//printf("text\n	w: %d ,h: %d\nnew\n	w: %d, h: %d\nratio\nw: %f, h: %f\n", t->w, t->h, w, h, ratio_w, ratio_h);
 	while (y < new->h)
 	{
 		x = 0;

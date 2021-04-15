@@ -1,5 +1,5 @@
 #include <stddef.h>
-#include "mlx.h"
+#include <mlx.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include "struct.h"

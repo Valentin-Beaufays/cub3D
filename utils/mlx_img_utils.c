@@ -1,4 +1,4 @@
-#include "mlx.h"
+#include <mlx.h>
 #include "struct.h"
 
 void	ft_mlx_pixel_put(t_mlx *mlx, t_img *img, int x, int y, int color)

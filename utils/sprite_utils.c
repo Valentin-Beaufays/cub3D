@@ -23,8 +23,7 @@ t_sprite	*create_sprite(double pos_x, double pos_y, double new_x, double new_y)
 	new->pos.x = new_x;
 	new->pos.y = new_y;
 	new->dist = sqrt(pow(pos_x - new_x, 2) + pow(pos_y - new_y, 2));
-	new->angle = round_rad(atan2(new_y - pos_y, new_x - pos_x) * -1);
-	printf("angle: %f\n", rad2deg(new->angle));
+	new->angle = round_rad(atan2((new_y - pos_y)  * -1 , new_x - pos_x));
 	new->next = NULL;
 	return (new);
 }
