@@ -20,18 +20,11 @@ void	free_tmp_err(char *error, t_temp *temp, int select)
 
 void	free_data_err(char *error, t_temp *temp, t_cub3d *data)
 {
-	if (data->text_n)
-		free(data->text_n);
-	if (data->text_s)
-		free(data->text_s);
-	if (data->text_w)
-		free(data->text_w);
-	if (data->text_e)
-		free(data->text_e);
-	if (data->text_sprite)
-		free(data->text_sprite);
-	free(data);
-	free_temp(temp);
-	free_map(&temp->map);
+	if (temp)
+	{
+		free_temp(temp);
+		free_map(&temp->map);
+	}
+	free_data(data);
 	ft_error(error);
 }

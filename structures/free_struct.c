@@ -1,4 +1,5 @@
 #include <stddef.h>
+#include <mlx.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include "struct.h"
@@ -19,18 +20,30 @@ void	free_map(t_map *map)
 	}
 }
 
-void	free_temp(t_temp *temp)
+void	free_mlx(t_mlx	*mlx)
 {
-	if (temp->north)
-		free(temp->north);
-	if (temp->south)
-		free(temp->south);
-	if (temp->west)
-		free(temp->west);
-	if (temp->east)
-		free(temp->east);
-	if (temp->sprite)
-		free(temp->sprite);
-	if (temp->fd < 0)
-		close(temp->fd);
+	if (mlx->ptr && mlx->win)
+		mlx_destroy_window(mlx->ptr, mlx->win);
+	if (mlx->ptr && mlx->frame.img)
+		mlx_destroy_image(mlx->ptr, mlx->frame.img);
+}
+
+void	free_sprite(t_sprite *sprite)
+{
+	t_sprite *next;
+
+	while (sprite)
+	{
+		next = sprite->next;
+		free(sprite);
+		sprite = next;
+	}
+}
+
+void	free_text(t_mlx *m, t_text *t)
+{
+	if (t->path)
+		free(t->path);
+	if (t->img.img)
+		mlx_destroy_image(m->ptr, t->img.img);
 }

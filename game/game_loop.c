@@ -1,16 +1,10 @@
 #include <math.h>
 #include <mlx.h>
+#include <stdlib.h>
 #include "render.h"
 #include "key.h"
 #include "struct.h"
 #include "utils.h"
-
-double		ft_abs(double val)
-{
-	if (val < 0)
-		val *= -1;
-	return (val);
-}
 
 static void	get_step(t_cub3d *data, double *step_x, double *step_y)
 {
@@ -44,6 +38,7 @@ static void	update_pos(int key, t_cub3d *data)
 	double	step_x;
 	double	step_y;
 
+	data->ray.angle = data->angle;
 	if (key == DOWN)
 		data->ray.angle += M_PI;
 	find_intersection(&data->ray, data);
@@ -68,9 +63,9 @@ static void	update_pos(int key, t_cub3d *data)
 int			key_hook(int key, t_cub3d *data)
 {
 	if (key == LEFT)
-		data->angle = round_rad(data->angle + 0.05);
+		data->angle = round_rad(data->angle + 0.1);
 	else if (key == RIGHT)
-		data->angle = round_rad(data->angle - 0.05);
+		data->angle = round_rad(data->angle - 0.1);
 	if (key == UP || key == DOWN)
 	{
 		update_pos(key, data);
@@ -79,9 +74,16 @@ int			key_hook(int key, t_cub3d *data)
 	return (0);
 }
 
+int			exit_hook(t_cub3d	*data)
+{
+	free_data(data);
+	exit(0);
+}
+
 void		game_loop(t_cub3d *data)
 {
 	mlx_setup(&data->mlx, data);
+	mlx_hook(data->mlx.win, 33, 1L << 17, &exit_hook, data);
 	mlx_key_hook(data->mlx.win, &key_hook, data);
 	mlx_loop_hook(data->mlx.ptr, &render, data);
 	mlx_loop(data->mlx.ptr);

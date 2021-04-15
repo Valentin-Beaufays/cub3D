@@ -18,3 +18,15 @@ double	round_rad(double rad)
 		rad += 2 * M_PI;
 	return (rad);
 }
+
+int		is_greater_angle(double base, double cmp)
+{
+	double	left;
+	double	right;
+
+	left = round_rad(cmp - base);
+	right = round_rad(base - cmp);
+	if (left > right)
+		return (1);
+	return (0);
+}
