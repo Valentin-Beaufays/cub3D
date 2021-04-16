@@ -38,8 +38,6 @@ void    print_column(t_ray *ray, t_cub3d *data, int x)
 	}
 	while (y < end && y < data->def.y)
 	{
-		//img_x = get_img_col()
-		//wall_color = get_wall_pix_color(int img_x) //TO_DO
 		ft_mlx_pixel_put(&data->mlx, &data->mlx.frame, x, y, wallColor);
 		y++;
 	}

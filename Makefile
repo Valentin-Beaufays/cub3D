@@ -24,7 +24,7 @@ FILES=			./srcs/error/error.c\
 				./srcs/parser/get_map.c\
 				./srcs/parser/get_pos.c\
 				./srcs/parser/check_valid_map.c\
-				./srcs/render/print_column.c\
+				./srcs/render/print_columnv2.c\
 				./srcs/render/find_intersection.c\
 				./srcs/render/check_hit.c\
 				./srcs/render/render.c\
@@ -40,6 +40,7 @@ FILES=			./srcs/error/error.c\
 				./srcs/utils/resize_image.c\
 				./srcs/utils/ft_abs.c\
 				./srcs/utils/sprite_utils.c\
+				./srcs/utils/get_dist.c\
 				get_next_line/get_next_line.c\
 				get_next_line/get_next_line_utils.c\
 				main.c
@@ -52,7 +53,7 @@ ifeq ($(UNAME), Darwin)
 	INCLUDES += -I ./minilibX/mlx_mac/
 endif
 ifeq ($(UNAME), Linux)
-    MLX += libft/libft.a ./minilibX/mlx_linux/libmlx.a -lm 
+    MLX += libft/libft.a ./minilibX/mlx_linux/libmlx.a -lXext -lX11 -lm 
 	INCLUDES += -I ./minilibX/mlx_linux/
 endif
 
