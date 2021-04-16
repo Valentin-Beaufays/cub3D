@@ -1,9 +1,6 @@
 check mur/sprite trop loin cap a 1pxl (réglé?)
 
-texture mur
-
-corriger hitbox
-
 check plusieurs maps separée (uniquement vertical)
 
-refaire print column
+optionnel:
+	changer up et left en down right
