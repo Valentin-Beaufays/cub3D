@@ -78,8 +78,6 @@ void    print_column(t_ray *r, t_cub3d *d, int x)
 	dist_to_wall = get_dist(&d->pos, &r->i) * cos(r->angle - d->angle);
 	dist_to_screen = (d->def.x / 2) / tan(d->fov / 2);//TO_DO: store in t_cub3d
 	proj_size = (1 / dist_to_wall) * dist_to_screen;
-	if (proj_size > 20000)
-		proj_size = 20000;
 	d->z_buf[x] = dist_to_wall;
 	wall_text = get_wall_text(d, r->text_dir);
 	if (r->text_dir == 1 || r->text_dir == 3)
