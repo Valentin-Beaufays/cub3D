@@ -40,7 +40,7 @@ static void	update_pos(int key, t_cub3d *data)
 
 	data->ray.angle = data->angle;
 	if (key == DOWN)
-		data->ray.angle += M_PI;
+		data->ray.angle = round_rad(data->ray.angle + M_PI);
 	find_intersection(&data->ray, data);
 	get_step(data, &step_x, &step_y);
 	if (key == DOWN)
