@@ -24,7 +24,7 @@ FILES=			./srcs/error/error.c\
 				./srcs/parser/get_map.c\
 				./srcs/parser/get_pos.c\
 				./srcs/parser/check_valid_map.c\
-				./srcs/render/print_columnv2.c\
+				./srcs/render/print_column.c\
 				./srcs/render/find_intersection.c\
 				./srcs/render/check_hit.c\
 				./srcs/render/render.c\
