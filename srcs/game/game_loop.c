@@ -17,7 +17,7 @@ static void	get_step(t_cub3d *data, double *step_x, double *step_y)
 	{
 		*step_y = sin(data->angle) * 0.2;
 		if (ft_abs(dist_y) <= ft_abs(*step_y))
-			*step_y = dist_y - 0.05 * data->ray.up;
+			*step_y = dist_y - 0.05 * -data->ray.up;
 		*step_x = *step_y / tan(data->angle);
 		if (ft_abs(dist_x) <= ft_abs(*step_x))
 			*step_x = dist_x - 0.05 * data->ray.left;
@@ -40,7 +40,7 @@ static void	update_pos(int key, t_cub3d *data)
 
 	data->ray.angle = data->angle;
 	if (key == DOWN)
-		data->ray.angle += M_PI;
+		data->ray.angle = round_rad(data->ray.angle + M_PI);
 	find_intersection(&data->ray, data);
 	get_step(data, &step_x, &step_y);
 	if (key == DOWN)
