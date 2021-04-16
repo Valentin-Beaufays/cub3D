@@ -45,7 +45,7 @@ void	print_text(t_cub3d *data, t_text *text, double proj_size, int x, int text_x
 	ratio_h = (double)text->h / proj_size;
 	while (start < 0)
 	{
-		text_y += 1;
+		text_y++;
 		start++;
 	}
 	while (y < start)
@@ -53,11 +53,11 @@ void	print_text(t_cub3d *data, t_text *text, double proj_size, int x, int text_x
 		ft_mlx_pixel_put(&data->mlx, &data->mlx.frame, x, y, data->color_ceil);
 		y++;
 	}
-	while ((double)y < proj_size && y < (int)data->def.y)
+	while (y < start + (int)proj_size && y < (int)data->def.y)
 	{
 		color = ft_mlx_pixel_get(&text->img, text_x, (int)(text_y * ratio_h));
 		ft_mlx_pixel_put(&data->mlx, &data->mlx.frame, x, y, color);
-		text_y +=1;
+		text_y++;
 		y++;
 	}
 	while (y < (int)data->def.y)
@@ -78,8 +78,9 @@ void    print_column(t_ray *r, t_cub3d *d, int x)
 	dist_to_wall = get_dist(&d->pos, &r->i) * cos(r->angle - d->angle);
 	dist_to_screen = (d->def.x / 2) / tan(d->fov / 2);//TO_DO: store in t_cub3d
 	proj_size = (1 / dist_to_wall) * dist_to_screen;
-	if (x == 0)
-		printf("%f\n",proj_size);
+	d->z_buf[x] = dist_to_wall;
+	/*if (x == 0)
+		printf("%f\n",proj_size);*/
 	wall_text = get_wall_text(d, r->text_dir);
 	text_col = get_text_col(wall_text, proj_size, r->i.x);
 	print_text(d, wall_text, proj_size, x, text_col);
