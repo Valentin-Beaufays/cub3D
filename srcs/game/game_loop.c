@@ -58,7 +58,6 @@ static void	update_pos(int key, t_cub3d *data)
 		data->pos.x = step_x;
 		data->pos.y = step_y;
 	}
-	printf("pos: (%f;%f) dist: (%f;%f) angle: %f°\n", data->pos.x, data->pos.y, data->ray.i.x, data->ray.i.y, rad2deg(data->ray.angle));
 }
 
 int			key_hook(int key, t_cub3d *data)
