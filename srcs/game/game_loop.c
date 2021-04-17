@@ -17,19 +17,19 @@ static void	get_step(t_cub3d *data, double *step_x, double *step_y)
 	{
 		*step_y = sin(data->angle) * 0.2;
 		if (ft_abs(dist_y) <= ft_abs(*step_y))
-			*step_y = dist_y - 0.05 * -data->ray.up;
+			*step_y = dist_y - (sin(data->angle) * 0.2 * -1);
 		*step_x = *step_y / tan(data->angle);
 		if (ft_abs(dist_x) <= ft_abs(*step_x))
-			*step_x = dist_x - 0.05 * data->ray.left;
+			*step_x = dist_x - (cos(data->angle) * 0.2 * -1);
 	}
 	else
 	{
 		*step_x = cos(data->angle) * 0.2;
 		if (ft_abs(dist_x) <= ft_abs(*step_x))
-			*step_x = dist_x - 0.05 * data->ray.left;
+			*step_x = dist_x - (cos(data->angle) * 0.2 * -1);
 		*step_y = *step_x * tan(data->angle);
 		if (ft_abs(dist_y) <= ft_abs(*step_y))
-			*step_y = dist_y - 0.05 * data->ray.up;
+			*step_y = dist_y - (sin(data->angle) * 0.2 * -1);
 	}
 }
 
@@ -58,6 +58,7 @@ static void	update_pos(int key, t_cub3d *data)
 		data->pos.x = step_x;
 		data->pos.y = step_y;
 	}
+	printf("pos: (%f;%f) dist: (%f;%f) angle: %f°\n", data->pos.x, data->pos.y, data->ray.i.x, data->ray.i.y, rad2deg(data->ray.angle));
 }
 
 int			key_hook(int key, t_cub3d *data)
