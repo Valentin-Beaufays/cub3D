@@ -5,6 +5,8 @@
 #include "key.h"
 #include "struct.h"
 #include "utils.h"
+#include "error.h"
+#include "game.h"
 
 static void	get_step(t_cub3d *data, double *step_x, double *step_y)
 {
@@ -83,6 +85,12 @@ int			exit_hook(t_cub3d	*data)
 void		game_loop(t_cub3d *data)
 {
 	mlx_setup(&data->mlx, data);
+	if (data->save == 1)
+	{
+		data->save = 0;
+		render(data);
+		save_bmp(&data->mlx.frame, data);
+	}
 	mlx_hook(data->mlx.win, 33, 1L << 17, &exit_hook, data);
 	mlx_key_hook(data->mlx.win, &key_hook, data);
 	mlx_loop_hook(data->mlx.ptr, &render, data);

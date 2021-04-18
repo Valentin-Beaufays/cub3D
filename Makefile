@@ -32,6 +32,7 @@ FILES=			./srcs/error/error.c\
 				./srcs/sprite/print_sprite.c\
 				./srcs/sprite/find_sprite_col.c\
 				./srcs/game/game_loop.c\
+				./srcs/game/save_bmp.c\
 				./srcs/utils/check_path.c\
 				./srcs/utils/rgb_to_int.c\
 				./srcs/utils/rad_utils.c\
