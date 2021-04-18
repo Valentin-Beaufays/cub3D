@@ -36,9 +36,10 @@ void	save_info(int fd, t_img *frame)
 
 void save_img(int fd, t_img *frame)
 {
-	int	x;
-	int	y;
-	int	color;
+	int		x;
+	int		y;
+	int		color;
+	char	rgb;
 
 	y = frame->h -1;
 	while (y >= 0)
@@ -47,6 +48,7 @@ void save_img(int fd, t_img *frame)
 		while (x < frame->w)
 		{
 			color = ft_mlx_pixel_get(frame, x, y);
+			rgb = get_blue();
 			write(fd, &color, 4);
 			x++;
 		}

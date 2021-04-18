@@ -34,7 +34,7 @@ FILES=			./srcs/error/error.c\
 				./srcs/game/game_loop.c\
 				./srcs/game/save_bmp.c\
 				./srcs/utils/check_path.c\
-				./srcs/utils/rgb_to_int.c\
+				./srcs/utils/rgb_utils.c\
 				./srcs/utils/rad_utils.c\
 				./srcs/utils/mlx_utils.c\
 				./srcs/utils/mlx_img_utils.c\
