@@ -39,6 +39,8 @@ static int	setup_frame(t_mlx *m, t_cub3d *d, t_img *f)
 	if (!( f->img = mlx_new_image(m->ptr, (int)d->def.x, (int)d->def.y)))
 		return (0);
 	f->addr = mlx_get_data_addr(f->img, &f->bpp, &f->length, &f->endian);
+	f->h = (int)d->def.y;
+	f->w = (int)d->def.x;
 	return (1);
 }
 
