@@ -1,5 +1,7 @@
 check mur/sprite trop loin cap a 1pxl (réglé?)
 
+change significant bit
+
 check plusieurs maps separée (uniquement vertical)
 
 optionnel:

@@ -102,6 +102,7 @@ typedef struct	s_cub3d
 	double		*z_buf;
 	double		*angle_buf;
 	t_sprite	*sprite;
+	int			save;
 }				t_cub3d;
 
 void			init_temp(t_temp *temp);
