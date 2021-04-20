@@ -59,8 +59,8 @@ void		print_sprite(t_cub3d *d)
 	int			x;
 	t_img		*img;
 	double		dist_to_screen;
-	double		proj_h;
-	double		proj_w;
+	int			proj_h;
+	int			proj_w;
 	double		sprite_h;
 
 	sprite_h = 1;
@@ -69,12 +69,15 @@ void		print_sprite(t_cub3d *d)
 	{
 		x = (int)find_sprite_col(cur, d);
 		dist_to_screen = (d->def.x / 2) / tan(d->fov / 2);
-		proj_h = ((sprite_h / cur->dist) * dist_to_screen);
-		proj_w = d->text_sprite.w * (proj_h / d->text_sprite.h);
-		img = resize_image(d, &d->mlx, &d->text_sprite, proj_w, proj_h);
-		print_sprite_to_screen(d, img, x, cur->dist);
-		mlx_destroy_image(d->mlx.ptr, img->img);
-		free(img);
+		proj_h = (int)((sprite_h / cur->dist) * dist_to_screen);
+		proj_w = (int)(d->text_sprite.w * ((double)proj_h / d->text_sprite.h));
+		if (proj_h > 0 && proj_w > 0)
+		{
+			img = resize_image(d, &d->mlx, &d->text_sprite, proj_w, proj_h);
+			print_sprite_to_screen(d, img, x, cur->dist);
+			mlx_destroy_image(d->mlx.ptr, img->img);
+			free(img);
+		}
 		cur = cur->next;
 	}
 }
