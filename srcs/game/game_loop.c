@@ -19,19 +19,19 @@ static void	get_step(t_cub3d *data, double *step_x, double *step_y)
 	{
 		*step_y = sin(data->angle) * 0.2;
 		if (ft_abs(dist_y) <= ft_abs(*step_y))
-			*step_y = dist_y - (sin(data->angle) * 0.2 * -1);
-		*step_x = *step_y / tan(data->angle);
+			*step_y = dist_y - (sin(data->ray.angle) * 0.2 * -1);
+		*step_x = cos(data->angle) * 0.2;
 		if (ft_abs(dist_x) <= ft_abs(*step_x))
-			*step_x = dist_x - (cos(data->angle) * 0.2 * -1);
+			*step_x = dist_x - (cos(data->ray.angle) * 0.2 * -1);
 	}
 	else
 	{
 		*step_x = cos(data->angle) * 0.2;
 		if (ft_abs(dist_x) <= ft_abs(*step_x))
-			*step_x = dist_x - (cos(data->angle) * 0.2 * -1);
-		*step_y = *step_x * tan(data->angle);
+			*step_x = dist_x - (cos(data->ray.angle) * 0.2 * -1);
+		*step_y = sin(data->angle) * 0.2;
 		if (ft_abs(dist_y) <= ft_abs(*step_y))
-			*step_y = dist_y - (sin(data->angle) * 0.2 * -1);
+			*step_y = dist_y - (sin(data->ray.angle) * 0.2 * -1);
 	}
 }
 
