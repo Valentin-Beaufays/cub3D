@@ -33,11 +33,13 @@ static int	check_valid_line(char *line)
 
 	x = 0;
 	in = 0;
+	if (!line[x])
+		in = -1;
 	while (line[x])
 	{
 		if ((in == 0 && (line[x] == '0' || line[x] == '2'))
 			|| (in == 2 && line[x] == ' '))
-			return (0);
+			return (-1);
 		else if ((in == 0 || in == 2) && line[x] == '1')
 			in = 1;
 		else if (in == 1 && (line[x] == '0' || line[x] == '2'))
@@ -46,8 +48,10 @@ static int	check_valid_line(char *line)
 			in = 0;
 		x++;
 	}
-	if (in == 2)
+	if (in == -1)
 		return (0);
+	else if (in == 2)
+		return (-1);
 	else
 		return (1);
 }
@@ -83,14 +87,22 @@ static int	check_valid_map(char **map)
 	size_t	y;
 	size_t	x;
 	size_t	width;
+	int 	prev_ret;
+	int		ret;
 
 	y = 0;
 	x = 0;
 	width = ft_strlen(map[y]);
+	prev_ret = 1;
+	ret = 0;
 	while (map[y])
 	{
-		if (!check_valid_line(map[y]))
+		ret = check_valid_line(map[y]);
+		if (prev_ret == 0 && ret == 1)
 			return (0);
+		if (ret == -1)
+			return (0);
+		prev_ret = ret;
 		y++;
 	}
 	while (x < width)

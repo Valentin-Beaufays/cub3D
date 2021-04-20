@@ -18,28 +18,6 @@
 #include "game.h"
 #include "error.h"
 
-static void print_map(t_map *map)
-{
-	printf("map:\nh: %ld, w: %ld\n\n", map->h, map->w);
-	for(size_t i = 0; i < map->h; i++)
-	{
-		for(size_t j = 0; j < map->w; j++)
-		{
-			printf("%c",map->map[i][j] + 48);
-		}
-		printf("\n");
-	}
-}
-
-static void print_data(t_cub3d *data)
-{
-	printf("resolution: %f x %f\n", data->def.x, data->def.y);
-	printf("pos: (%f;%f), angle: %f°\n", data->pos.x, data->pos.y, data->angle);
-	//printf("n: %s, s: %s, e: %s, w: %s, sprite: %s\n", data->text_n, data->text_s, data->text_e, data->text_w, data->text_sprite);
-	printf("f_color: %i\nc_color: %i\n", data->color_floor, data->color_ceil);
-	print_map(&data->map);
-}
-
 int		main(int argc, char **argv)
 {
 	char	*test;
@@ -49,7 +27,6 @@ int		main(int argc, char **argv)
 	free(test);
 	if (argc <= 1 || argc > 3)
 		ft_error("usage: cub3d [--save] file");
-	printf("%d\n",ft_strcmp(argv[1], "--save"));
 	if (argc == 3 && ft_strcmp(argv[1], "--save"))
 		ft_error("usage: cub3d [--save] file");
 	if (argc == 2)
@@ -59,8 +36,6 @@ int		main(int argc, char **argv)
 		data = cub_parser(argv[2]);
 		data->save = 1;
 	}
-	print_data(data);
 	game_loop(data);
-	printf("done\n");
 	return (0);
 }
