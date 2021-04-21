@@ -1,14 +1,12 @@
-UNAME := $(shell uname -s)
+CC=				gcc
 
-CC=                gcc
+CFLAGS=			-Wall -Wextra -Werror
 
-CFLAGS=            -Wall -Wextra -Werror
+BUFFER_SIZE=	16
 
-BUFFER_SIZE=    16
+NAME=			cub3D
 
-NAME=            cub3D
-
-INCLUDES:=        -I ./includes/ -I ./libft/ -I ./get_next_line/ 
+INCLUDES:=		-I ./includes/ -I ./libft/ -I ./get_next_line/ -I ./minilibX/
 
 FILES=			./srcs/game_loop.c\
 				./srcs/save_bmp.c\
@@ -46,17 +44,7 @@ FILES=			./srcs/game_loop.c\
 				get_next_line/get_next_line_utils.c\
 				main.c
 
-MLX :=
-
-
-ifeq ($(UNAME), Darwin)
-    MLX += libft/libft.a ./minilibX/mlx_mac/libmlx.a -lm -framework OpenGL -framework AppKit
-	INCLUDES += -I ./minilibX/mlx_mac/
-endif
-ifeq ($(UNAME), Linux)
-    MLX += libft/libft.a ./minilibX/mlx_linux/libmlx.a -lXext -lX11 -lm 
-	INCLUDES += -I ./minilibX/mlx_linux/
-endif
+LIB=			./minilibX/libmlx.a -lXext -lX11 -lm 
 
 $(NAME): 
 	$(CC) -o $(NAME) $(INCLUDES) -D BUFFER_SIZE=$(BUFFER_SIZE) $(FILES) $(MLX)
@@ -69,7 +57,6 @@ clean:
 fclean: clean
 
 re: fclean $(NAME)
-
 
 install:
 	git clone https://github.com/Valentin-Beaufays/libft.git libft 
