@@ -21,8 +21,9 @@
 #include "parser.h"
 #include "struct.h"
 #include "error.h"
+#include "utils.h"
 
-void	parse_resolution(t_temp *temp)
+static void	parse_resolution(t_temp *temp)
 {
 	char	*line;
 
@@ -51,7 +52,7 @@ void	parse_resolution(t_temp *temp)
 	}
 }
 
-int		get_arg(t_temp *temp)
+static int	get_arg(t_temp *temp)
 {
 	if (!ft_strncmp(temp->trim, "R", 1))
 		parse_resolution(temp);
@@ -76,7 +77,7 @@ int		get_arg(t_temp *temp)
 	return (1);
 }
 
-void	parse_args(t_temp *temp)
+static void	parse_args(t_temp *temp)
 {
 	int	is_map;
 	int	ret;
@@ -102,7 +103,7 @@ void	parse_args(t_temp *temp)
 	parse_map(temp);
 }
 
-t_cub3d	*cub_parser(char *path)
+t_cub3d		*cub_parser(char *path)
 {
 	t_temp	temp;
 	t_cub3d	*data;

@@ -13,12 +13,12 @@
 #include <mlx.h>
 #include "struct.h"
 
-void	ft_mlx_pixel_put(t_mlx *mlx, t_img *img, int *xy, int color)
+void	ft_mlx_pixel_put(t_mlx *mlx, t_img *img, int *xy, int col)
 {
 	char	*dst;
 
 	dst = img->addr + (xy[1] * img->len + xy[0] * (img->bpp / 8));
-	*(unsigned int*)dst = mlx_get_color_value(mlx->p, color);
+	*(unsigned int*)dst = mlx_get_color_value(mlx->p, col);
 }
 
 int		ft_mlx_pixel_get(t_img *img, int x, int y)

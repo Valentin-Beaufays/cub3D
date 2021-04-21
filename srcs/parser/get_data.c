@@ -20,7 +20,7 @@
 #include "utils.h"
 #include "error.h"
 
-void	check_missing_data(t_temp *temp)
+static void	check_missing_data(t_temp *temp)
 {
 	if (temp->x == 0 || temp->y == 0)
 		free_tmp_err("resolution is missing", temp, 0);
@@ -33,7 +33,7 @@ void	check_missing_data(t_temp *temp)
 		free_tmp_err("ceiling is missing", temp, 0);
 }
 
-void	get_resolution(t_temp *temp, t_cub3d *data)
+static void	get_resolution(t_temp *temp, t_cub3d *data)
 {
 	if (temp->x < 0)
 		free_data_err("invalid horizontal resolution", temp, data);
@@ -43,7 +43,7 @@ void	get_resolution(t_temp *temp, t_cub3d *data)
 	data->def.y = temp->y;
 }
 
-void	get_textures(t_temp *temp, t_cub3d *data)
+static void	get_textures(t_temp *temp, t_cub3d *data)
 {
 	get_no_texture(temp, data);
 	get_so_texture(temp, data);
@@ -52,7 +52,7 @@ void	get_textures(t_temp *temp, t_cub3d *data)
 	get_s_texture(temp, data);
 }
 
-void	get_fc(t_temp *temp, t_cub3d *data)
+static void	get_fc(t_temp *temp, t_cub3d *data)
 {
 	size_t	i;
 
@@ -69,7 +69,7 @@ void	get_fc(t_temp *temp, t_cub3d *data)
 	data->color_ceil = rgb_to_int(temp->c[0], temp->c[1], temp->c[2]);
 }
 
-t_cub3d	*get_data(t_temp *temp)
+t_cub3d		*get_data(t_temp *temp)
 {
 	t_cub3d *data;
 

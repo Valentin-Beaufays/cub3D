@@ -74,7 +74,7 @@ static void	update_pos(int key, t_cub3d *data)
 	}
 }
 
-int			key_hook(int key, t_cub3d *data)
+static int	key_hook(int key, t_cub3d *data)
 {
 	if (key == LEFT)
 		data->angle = round_rad(data->angle + 0.1);
@@ -88,7 +88,7 @@ int			key_hook(int key, t_cub3d *data)
 	return (0);
 }
 
-int			exit_hook(t_cub3d *data)
+static int	exit_hook(t_cub3d *data)
 {
 	free_data(data);
 	exit(0);

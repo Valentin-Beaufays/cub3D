@@ -119,18 +119,18 @@ typedef struct	s_cub3d
 }				t_cub3d;
 
 void			init_temp(t_temp *temp);
+void			init_cub3d(t_cub3d *data);
 void			free_temp(t_temp *temp);
 void			free_data(t_cub3d *data);
-void			init_cub3d(t_cub3d *data);
+void			free_map(t_map *map);
+void			free_mlx(t_mlx	*mlx);
+void			free_sprite(t_sprite *sprite);
+void			free_text(t_mlx *m, t_text *t);
 void			init_ray(t_ray *ray);
 void			init_point(t_point *point);
 void			init_map(t_map *map);
-void			free_map(t_map *map);
 void			init_mlx(t_mlx *mlx);
-void			free_mlx(t_mlx	*mlx);
 void			init_sprite(t_sprite *s);
-void			free_sprite(t_sprite *sprite);
 void			init_text(t_text *t);
-void			free_text(t_mlx *m, t_text *t);
 
 #endif
