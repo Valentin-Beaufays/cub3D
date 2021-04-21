@@ -5,7 +5,7 @@
 void	free_data(t_cub3d *data)
 {
 	free_map(&data->map);
-	free_text(&data->mlx, &data->text_sprite);
+	free_text(&data->mlx, &data->txt_sp);
 	free_text(&data->mlx, &data->text_n);
 	free_text(&data->mlx, &data->text_s);
 	free_text(&data->mlx, &data->text_w);

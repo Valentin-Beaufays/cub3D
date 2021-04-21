@@ -105,8 +105,8 @@ void	get_s_texture(t_temp *temp, t_cub3d *data)
 			free_data_err("S texture contains too many arguments", temp, data);
 		i++;
 	}
-	if (!(data->text_sprite.path = ft_strtrim(temp->sprite, " ")))
+	if (!(data->txt_sp.path = ft_strtrim(temp->sprite, " ")))
 		free_data_err(strerror(errno), temp, data);
-	if (!check_path(data->text_sprite.path, ".xpm"))
+	if (!check_path(data->txt_sp.path, ".xpm"))
 		free_data_err("S texture must be an xpm file", temp, data);
 }

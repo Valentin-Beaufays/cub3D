@@ -8,13 +8,13 @@ void	init_point(t_point *point)
 
 void	init_mlx(t_mlx *mlx)
 {
-	mlx->ptr = NULL;
-	mlx->win = NULL;
-	mlx->frame.img = NULL;
-	mlx->frame.addr = NULL;
-	mlx->frame.bpp = 0;
-	mlx->frame.length = 0;
-	mlx->frame.endian = 0;
+	mlx->p = NULL;
+	mlx->w = NULL;
+	mlx->fra.img = NULL;
+	mlx->fra.addr = NULL;
+	mlx->fra.bpp = 0;
+	mlx->fra.len = 0;
+	mlx->fra.end = 0;
 }
 
 void	init_text(t_text *t)
@@ -25,8 +25,8 @@ void	init_text(t_text *t)
 	t->img.img = NULL;
 	t->img.addr = NULL;
 	t->img.bpp = 0;
-	t->img.length = 0;
-	t->img.endian = 0;
+	t->img.len = 0;
+	t->img.end = 0;
 }
 
 void	init_ray(t_ray *ray)
@@ -42,5 +42,3 @@ void	init_ray(t_ray *ray)
 	ray->text_dir = 0;
 	ray->dir = 0;
 }
-
-

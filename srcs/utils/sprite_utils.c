@@ -14,7 +14,7 @@ int			is_new_sprite(t_sprite *sprite, double x, double y)
 	return (1);
 }
 
-t_sprite	*create_sprite(double pos_x, double pos_y, double new_x, double new_y)
+t_sprite	*create_sprite(double p_x, double p_y, double new_x, double new_y)
 {
 	t_sprite	*new;
 
@@ -22,8 +22,8 @@ t_sprite	*create_sprite(double pos_x, double pos_y, double new_x, double new_y)
 		return (NULL);
 	new->pos.x = new_x;
 	new->pos.y = new_y;
-	new->dist = sqrt(pow(pos_x - new_x, 2) + pow(pos_y - new_y, 2));
-	new->angle = round_rad(atan2((new_y - pos_y)  * -1 , new_x - pos_x));
+	new->dist = sqrt(pow(p_x - new_x, 2) + pow(p_y - new_y, 2));
+	new->angle = round_rad(atan2((new_y - p_y) * -1, new_x - p_x));
 	new->next = NULL;
 	return (new);
 }
@@ -39,12 +39,7 @@ t_sprite	*add_sprite(t_sprite *s, t_sprite *new)
 	prev = NULL;
 	while (cur)
 	{
-		if (cur->dist > new->dist)
-		{
-			prev = cur;
-			cur = cur->next;
-		}
-		else
+		if (cur->dist <= new->dist)
 		{
 			new->next = cur;
 			if (prev)
@@ -53,6 +48,8 @@ t_sprite	*add_sprite(t_sprite *s, t_sprite *new)
 				s = new;
 			return (s);
 		}
+		prev = cur;
+		cur = cur->next;
 	}
 	prev->next = new;
 	return (s);

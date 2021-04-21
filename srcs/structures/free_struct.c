@@ -20,12 +20,12 @@ void	free_map(t_map *map)
 	}
 }
 
-void	free_mlx(t_mlx	*mlx)
+void	free_mlx(t_mlx *mlx)
 {
-	if (mlx->ptr && mlx->win)
-		mlx_destroy_window(mlx->ptr, mlx->win);
-	if (mlx->ptr && mlx->frame.img)
-		mlx_destroy_image(mlx->ptr, mlx->frame.img);
+	if (mlx->p && mlx->w)
+		mlx_destroy_window(mlx->p, mlx->w);
+	if (mlx->p && mlx->fra.img)
+		mlx_destroy_image(mlx->p, mlx->fra.img);
 }
 
 void	free_sprite(t_sprite *sprite)
@@ -45,5 +45,5 @@ void	free_text(t_mlx *m, t_text *t)
 	if (t->path)
 		free(t->path);
 	if (t->img.img)
-		mlx_destroy_image(m->ptr, t->img.img);
+		mlx_destroy_image(m->p, t->img.img);
 }

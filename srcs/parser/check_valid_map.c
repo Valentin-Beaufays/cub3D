@@ -31,11 +31,11 @@ static int	check_valid_line(char *line)
 	size_t	x;
 	int		in;
 
-	x = 0;
+	x = -1;
 	in = 0;
-	if (!line[x])
+	if (!line[x + 1])
 		in = -1;
-	while (line[x])
+	while (line[++x])
 	{
 		if ((in == 0 && (line[x] == '0' || line[x] == '2'))
 			|| (in == 2 && line[x] == ' '))
@@ -46,7 +46,6 @@ static int	check_valid_line(char *line)
 			in = 2;
 		else if (in == 1 && line[x] == ' ')
 			in = 0;
-		x++;
 	}
 	if (in == -1)
 		return (0);
@@ -87,29 +86,25 @@ static int	check_valid_map(char **map)
 	size_t	y;
 	size_t	x;
 	size_t	width;
-	int 	prev_ret;
+	int		prev_ret;
 	int		ret;
 
-	y = 0;
-	x = 0;
-	width = ft_strlen(map[y]);
+	y = -1;
+	x = -1;
+	width = ft_strlen(map[y + 1]);
 	prev_ret = 1;
 	ret = 0;
-	while (map[y])
+	while (map[++y])
 	{
 		ret = check_valid_line(map[y]);
-		if (prev_ret == 0 && ret == 1)
-			return (0);
-		if (ret == -1)
+		if ((prev_ret == 0 && ret == 1) || ret == -1)
 			return (0);
 		prev_ret = ret;
-		y++;
 	}
-	while (x < width)
+	while (++x < width)
 	{
 		if (!check_valid_col(map, x))
 			return (0);
-		x++;
 	}
 	return (1);
 }
@@ -119,5 +114,5 @@ void		check_valid(t_temp *temp, t_cub3d *data)
 	if (!check_valid_map_char(temp->map.map))
 		free_data_err("invalid character found in map description", temp, data);
 	if (!check_valid_map(temp->map.map))
-		free_data_err("map is open", temp, data);
+		free_data_err("map is invalid", temp, data);
 }

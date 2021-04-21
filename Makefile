@@ -10,7 +10,9 @@ NAME=            cub3D
 
 INCLUDES:=        -I ./includes/ -I ./libft/ -I ./get_next_line/ 
 
-FILES=			./srcs/error/error.c\
+FILES=			./srcs/game_loop.c\
+				./srcs/save_bmp.c\
+				./srcs/error/error.c\
 				./srcs/structures/struct.c\
 				./srcs/structures/data_struct.c\
 				./srcs/structures/free_struct.c\
@@ -31,8 +33,6 @@ FILES=			./srcs/error/error.c\
 				./srcs/sprite/sprite.c\
 				./srcs/sprite/print_sprite.c\
 				./srcs/sprite/find_sprite_col.c\
-				./srcs/game/game_loop.c\
-				./srcs/game/save_bmp.c\
 				./srcs/utils/check_path.c\
 				./srcs/utils/rgb_utils.c\
 				./srcs/utils/rad_utils.c\

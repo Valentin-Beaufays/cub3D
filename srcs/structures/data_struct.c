@@ -36,7 +36,7 @@ void	init_cub3d(t_cub3d *data)
 	init_ray(&data->ray);
 	data->fov = round_rad(deg2rad(60));
 	data->step_rad = 0;
-	init_text(&data->text_sprite);
+	init_text(&data->txt_sp);
 	init_text(&data->text_n);
 	init_text(&data->text_s);
 	init_text(&data->text_e);

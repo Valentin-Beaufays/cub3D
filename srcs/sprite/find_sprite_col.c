@@ -29,7 +29,7 @@ static int	out_of_bound_sprite_col(t_sprite *s, t_cub3d *d, int dir)
 	return (col);
 }
 
-double	find_sprite_col(t_sprite *s, t_cub3d *d)
+double		find_sprite_col(t_sprite *s, t_cub3d *d)
 {
 	int col;
 

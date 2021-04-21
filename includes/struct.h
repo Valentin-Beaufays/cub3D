@@ -16,8 +16,8 @@ typedef struct	s_img
 	int			h;
 	void		*addr;
 	int			bpp;
-	int			length;
-	int			endian;
+	int			len;
+	int			end;
 }				t_img;
 
 typedef struct	s_text
@@ -27,7 +27,6 @@ typedef struct	s_text
 	int			h;
 	t_img		img;
 }				t_text;
-
 
 typedef struct	s_sprite
 {
@@ -63,9 +62,9 @@ typedef struct	s_temp
 
 typedef struct	s_mlx
 {
-	void		*ptr;
-	void		*win;
-	t_img		frame;
+	void		*p;
+	void		*w;
+	t_img		fra;
 }				t_mlx;
 
 typedef struct	s_ray
@@ -80,6 +79,7 @@ typedef struct	s_ray
 	double		step_y;
 	int			dir;
 	int			text_dir;
+	t_text		*wall;
 }				t_ray;
 
 typedef struct	s_cub3d
@@ -91,7 +91,7 @@ typedef struct	s_cub3d
 	t_ray		ray;
 	double		step_rad;
 	t_map		map;
-	t_text		text_sprite;
+	t_text		txt_sp;
 	t_text		text_n;
 	t_text		text_s;
 	t_text		text_e;
@@ -103,6 +103,7 @@ typedef struct	s_cub3d
 	double		*angle_buf;
 	t_sprite	*sprite;
 	int			save;
+	double		d_to_screen;
 }				t_cub3d;
 
 void			init_temp(t_temp *temp);
