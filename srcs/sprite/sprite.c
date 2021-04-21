@@ -7,6 +7,7 @@
 void	sprite_found(t_cub3d *data, double x, double y)
 {
 	t_sprite	*new;
+
 	if (is_new_sprite(data->sprite, x, y))
 	{
 		if (!(new = create_sprite(data->pos.x, data->pos.y, x, y)))

@@ -76,7 +76,7 @@ int			key_hook(int key, t_cub3d *data)
 	return (0);
 }
 
-int			exit_hook(t_cub3d	*data)
+int			exit_hook(t_cub3d *data)
 {
 	free_data(data);
 	exit(0);
@@ -89,10 +89,10 @@ void		game_loop(t_cub3d *data)
 	{
 		data->save = 0;
 		render(data);
-		save_bmp(&data->mlx.frame, data);
+		save_bmp(&data->mlx.fra, data);
 	}
-	mlx_hook(data->mlx.win, 33, 1L << 17, &exit_hook, data);
-	mlx_key_hook(data->mlx.win, &key_hook, data);
-	//mlx_loop_hook(data->mlx.ptr, &render, data);
-	mlx_loop(data->mlx.ptr);
+	mlx_hook(data->mlx.w, 33, 1L << 17, &exit_hook, data);
+	mlx_key_hook(data->mlx.w, &key_hook, data);
+	mlx_loop_hook(data->mlx.p, &render, data);
+	mlx_loop(data->mlx.p);
 }

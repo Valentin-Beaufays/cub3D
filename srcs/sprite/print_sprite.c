@@ -7,27 +7,28 @@
 
 static void	print_sprite_col(t_cub3d *d, t_img *img, int x_img, int x)
 {
-	int	y;
+	int	xy[2];
 	int	y_img;
 	int start;
 	int color;
 
-	y = 0;
+	xy[0] = x;
+	xy[1] = 0;
 	y_img = 0;
 	start = (d->def.y / 2) - (img->h / 2);
-	while (y < start)
-		y++;
-	while (y < 0)
+	while (xy[1] < start)
+		xy[1]++;
+	while (xy[1] < 0)
 	{
-		y++;
+		xy[1]++;
 		y_img++;
 	}
-	while (y_img < img->h && y < d->def.y)
+	while (y_img < img->h && xy[1] < d->def.y)
 	{
 		color = ft_mlx_pixel_get(img, x_img, y_img);
 		if (color > 0)
-			ft_mlx_pixel_put(&d->mlx, &d->mlx.frame, x, y, color);
-		y++;
+			ft_mlx_pixel_put(&d->mlx, &d->mlx.fra, xy, color);
+		xy[1]++;
 		y_img++;
 	}
 }
@@ -45,9 +46,10 @@ static void	print_sprite_to_screen(t_cub3d *d, t_img *img, int x, double dist)
 	}
 	while (x < d->def.x && x_img < img->w)
 	{
-		if (d->z_buf[x] > dist){
+		if (d->z_buf[x] > dist)
+		{
 			print_sprite_col(d, img, x_img, x);
-			}
+		}
 		x_img++;
 		x++;
 	}
@@ -58,24 +60,21 @@ void		print_sprite(t_cub3d *d)
 	t_sprite	*cur;
 	int			x;
 	t_img		*img;
-	double		dist_to_screen;
-	int			proj_h;
-	int			proj_w;
+	int			proj_hw[2];
 	double		sprite_h;
 
 	sprite_h = 1;
 	cur = d->sprite;
-	while(cur)
+	while (cur)
 	{
 		x = (int)find_sprite_col(cur, d);
-		dist_to_screen = (d->def.x / 2) / tan(d->fov / 2);
-		proj_h = (int)((sprite_h / cur->dist) * dist_to_screen);
-		proj_w = (int)(d->text_sprite.w * ((double)proj_h / d->text_sprite.h));
-		if (proj_h > 0 && proj_w > 0)
+		proj_hw[0] = (int)((sprite_h / cur->dist) * d->d_to_screen);
+		proj_hw[1] = (int)(d->txt_sp.w * ((double)proj_hw[0] / d->txt_sp.h));
+		if (proj_hw[0] > 0 && proj_hw[1] > 0)
 		{
-			img = resize_image(d, &d->mlx, &d->text_sprite, proj_w, proj_h);
+			img = resize_image(d, &d->txt_sp, proj_hw[1], proj_hw[0]);
 			print_sprite_to_screen(d, img, x, cur->dist);
-			mlx_destroy_image(d->mlx.ptr, img->img);
+			mlx_destroy_image(d->mlx.p, img->img);
 			free(img);
 		}
 		cur = cur->next;

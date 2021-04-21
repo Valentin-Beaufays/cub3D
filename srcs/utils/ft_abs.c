@@ -1,3 +1,4 @@
+
 double		ft_abs(double val)
 {
 	if (val < 0)

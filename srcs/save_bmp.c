@@ -7,25 +7,17 @@
 #include "utils.h"
 #include <stdint.h>
 
-uint32_t get_line_length(int initial)
-{
-	uint32_t	length;
-
-	length = initial * 3;
-	while (length % 4)
-		length++;
-	return (length);
-}
-
-uint32_t get_size(t_img *frame)
+uint32_t	get_size(t_img *frame)
 {
 	uint32_t	w;
 
-	w = get_line_length(frame->w);
+	w = frame->w * 3;
+	while (w % 4)
+		w++;
 	return (w * frame->h);
 }
 
-void	save_header(int fd, t_img *frame)
+void		save_header(int fd, t_img *frame)
 {
 	uint32_t	offset;
 	uint32_t	size;
@@ -38,7 +30,7 @@ void	save_header(int fd, t_img *frame)
 	write(fd, &offset, 4);
 }
 
-void	save_info(int fd, t_img *frame)
+void		save_info(int fd, t_img *frame)
 {
 	uint32_t	size;
 	uint16_t	plane;
@@ -59,18 +51,18 @@ void	save_info(int fd, t_img *frame)
 	write(fd, "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0", 16);
 }
 
-void save_img(int fd, t_img *frame)
+void		save_img(int fd, t_img *frame)
 {
 	int				x;
 	int				y;
 	uint32_t		color;
 	unsigned char	rgb;
 
-	y = frame->h -1;
-	while (y >= 0)
+	y = frame->h;
+	while (--y >= 0)
 	{
-		x = 0;
-		while (x < frame->w)
+		x = -1;
+		while (++x < frame->w)
 		{
 			color = (uint32_t)ft_mlx_pixel_get(frame, x, y);
 			rgb = get_blue(color);
@@ -79,18 +71,16 @@ void save_img(int fd, t_img *frame)
 			write(fd, &rgb, 1);
 			rgb = get_red(color);
 			write(fd, &rgb, 1);
-			x++;
 		}
 		while (x % 4)
 		{
 			write(fd, "\0", 1);
 			x++;
 		}
-		y--;
 	}
 }
 
-int		save_bmp(t_img *frame, t_cub3d *data)
+int			save_bmp(t_img *frame, t_cub3d *data)
 {
 	int	fd;
 

@@ -1,8 +1,4 @@
-check mur/sprite trop loin cap a 1pxl (réglé?)
 
-change significant bit
 
-check plusieurs maps separée (uniquement vertical)
 
-optionnel:
-	changer up et left en down right
+

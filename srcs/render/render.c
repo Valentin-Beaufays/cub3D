@@ -22,6 +22,6 @@ int			render(t_cub3d *data)
 	print_sprite(data);
 	free_sprite(data->sprite);
 	data->sprite = NULL;
-	mlx_put_image_to_window(data->mlx.ptr, data->mlx.win, data->mlx.frame.img, 0, 0);
+	mlx_put_image_to_window(data->mlx.p, data->mlx.w, data->mlx.fra.img, 0, 0);
 	return (0);
 }

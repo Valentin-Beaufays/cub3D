@@ -2,7 +2,7 @@
 #include "struct.h"
 #include "utils.h"
 
-t_text	*get_wall_text(t_cub3d *data, int text_dir)
+static	t_text	*get_wall_text(t_cub3d *data, int text_dir)
 {
 	if (text_dir == 0)
 		return (&data->text_e);
@@ -16,75 +16,83 @@ t_text	*get_wall_text(t_cub3d *data, int text_dir)
 		return (NULL);
 }
 
-int		get_text_col(t_text *text, double new_w, double intersect)
+static	int		get_text_col(t_text *text, double new_w, double intersect)
 {
 	double	ratio_w;
-	double		col;
+	double	col;
 	double	col_size;
 
 	col = 0;
 	intersect = intersect - (int)intersect;
 	ratio_w = (double)text->w / new_w;
-	col_size = 1/new_w;
+	col_size = 1 / new_w;
 	while (intersect >= col_size * (double)(col + 1))
 		col++;
 	return ((int)(col * ratio_w));
 }
 
-void	print_text(t_cub3d *data, t_text *text, double proj_size, int x, int text_x)
+static void		print_loop(t_cub3d *d, int *xy_se, double proj, int *text)
 {
-	int		y;
-	int		start;
-	double	text_y;
-	double	ratio_h;
-	int		color;
+	int		c;
+	double	rat;
 
-	y = 0;
-	start = (int)((data->def.y / 2) - (proj_size / 2));
-	text_y = 0;
-	ratio_h = (double)text->h / proj_size;
-	while (start < 0)
+	rat = (double)d->ray.wall->h / proj;
+	while (xy_se[1] < xy_se[2])
 	{
-		text_y++;
-		start++;
+		ft_mlx_pixel_put(&d->mlx, &d->mlx.fra, xy_se, d->color_ceil);
+		xy_se[1]++;
 	}
-	while (y < start)
+	while (xy_se[1] < xy_se[3] && xy_se[1] < (int)d->def.y)
 	{
-		ft_mlx_pixel_put(&data->mlx, &data->mlx.frame, x, y, data->color_ceil);
-		y++;
+		c = ft_mlx_pixel_get(&d->ray.wall->img, text[0], (int)(text[1] * rat));
+		ft_mlx_pixel_put(&d->mlx, &d->mlx.fra, xy_se, c);
+		text[1]++;
+		xy_se[1]++;
 	}
-	while (y < start + (int)proj_size && y < (int)data->def.y)
+	while (xy_se[1] < (int)d->def.y)
 	{
-		color = ft_mlx_pixel_get(&text->img, text_x, (int)(text_y * ratio_h));
-		ft_mlx_pixel_put(&data->mlx, &data->mlx.frame, x, y, color);
-		text_y++;
-		y++;
-	}
-	while (y < (int)data->def.y)
-	{
-		ft_mlx_pixel_put(&data->mlx, &data->mlx.frame, x, y, data->color_floor);
-		y++;
+		ft_mlx_pixel_put(&d->mlx, &d->mlx.fra, xy_se, d->color_floor);
+		xy_se[1]++;
 	}
 }
 
-void    print_column(t_ray *r, t_cub3d *d, int x)
+static void		print_text(t_cub3d *d, double proj_size, int x, int text_x)
+{
+	int		xy_start_end[4];
+	int		text[2];
+	double	rat;
+
+	xy_start_end[0] = x;
+	xy_start_end[1] = 0;
+	xy_start_end[2] = (int)((d->def.y / 2) - (proj_size / 2));
+	xy_start_end[3] = xy_start_end[2] + proj_size;
+	text[0] = text_x;
+	text[1] = 0;
+	rat = (double)d->ray.wall->h / proj_size;
+	while (xy_start_end[2] < 0)
+	{
+		text[1]++;
+		xy_start_end[2]++;
+	}
+	print_loop(d, xy_start_end, proj_size, text);
+}
+
+void			print_column(t_ray *r, t_cub3d *d, int x)
 {
 	t_text	*wall_text;
 	int		text_col;
 	double	dist_to_wall;
-	double	dist_to_screen;
 	double	proj_size;
 
 	dist_to_wall = get_dist(&d->pos, &r->i) * cos(r->angle - d->angle);
 	d->z_buf[x] = dist_to_wall;
 	if (dist_to_wall < 0.1)
 		dist_to_wall = 0.1;
-	dist_to_screen = (d->def.x / 2) / tan(d->fov / 2);//TO_DO: store in t_cub3d
-	proj_size = (1 / dist_to_wall) * dist_to_screen;
-	wall_text = get_wall_text(d, r->text_dir);
+	proj_size = (1 / dist_to_wall) * d->d_to_screen;
+	r->wall = get_wall_text(d, r->text_dir);
 	if (r->text_dir == 1 || r->text_dir == 3)
-		text_col = get_text_col(wall_text, proj_size, r->i.x);
+		text_col = get_text_col(r->wall, proj_size, r->i.x);
 	else
-		text_col = get_text_col(wall_text, proj_size, r->i.y);
-	print_text(d, wall_text, proj_size, x, text_col);
+		text_col = get_text_col(r->wall, proj_size, r->i.y);
+	print_text(d, proj_size, x, text_col);
 }

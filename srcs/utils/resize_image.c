@@ -7,38 +7,32 @@
 #include "error.h"
 #include "struct.h"
 
-#include <stdio.h>
-
 static void	fill_img(t_mlx *m, t_img *new, t_text *t)
 {
-	int		y;
-	int		x;
-	int 	old_x;
-	int		old_y;
+	int		xy[2];
+	int		old[2];
 	int		color;
-	double	ratio_h;
-	double	ratio_w;
-	
-	y = 0;
-	x = 0;
-	ratio_h = (double)t->h / (double)new->h;
-	ratio_w = (double)t->w / (double)new->w;
-	while (y < new->h)
+	double	ratio[2];
+
+	xy[1] = 0;
+	ratio[0] = (double)t->h / (double)new->h;
+	ratio[1] = (double)t->w / (double)new->w;
+	while (xy[1] < new->h)
 	{
-		x = 0;
-		while (x < new->w)
+		xy[0] = 0;
+		while (xy[0] < new->w)
 		{
-			old_x = (int)(floor((double)x) * ratio_w);
-			old_y = (int)(floor((double)y) * ratio_h);
-			color = ft_mlx_pixel_get(&t->img, old_x, old_y);
-			ft_mlx_pixel_put(m, new, x, y, color);
-			x++;
+			old[0] = (int)(floor((double)xy[0]) * ratio[0]);
+			old[1] = (int)(floor((double)xy[1]) * ratio[1]);
+			color = ft_mlx_pixel_get(&t->img, old[0], old[1]);
+			ft_mlx_pixel_put(m, new, xy, color);
+			xy[0]++;
 		}
-		y++;
+		xy[1]++;
 	}
 }
 
-t_img	*resize_image(t_cub3d *d, t_mlx *m, t_text *t, int w, int h)
+t_img		*resize_image(t_cub3d *d, t_text *t, int w, int h)
 {
 	t_img	*n;
 
@@ -46,12 +40,12 @@ t_img	*resize_image(t_cub3d *d, t_mlx *m, t_text *t, int w, int h)
 		free_data_err(strerror(errno), NULL, d);
 	n->h = h;
 	n->w = w;
-	if (!(n->img = mlx_new_image(m->ptr, w, h)))
+	if (!(n->img = mlx_new_image(d->mlx.p, w, h)))
 	{
 		free(n);
 		free_data_err("mlx fail to create image", NULL, d);
 	}
-	n->addr = mlx_get_data_addr(n->img, &n->bpp, &n->length, &n->endian);
-	fill_img(m, n, t);
+	n->addr = mlx_get_data_addr(n->img, &n->bpp, &n->len, &n->end);
+	fill_img(&d->mlx, n, t);
 	return (n);
 }
