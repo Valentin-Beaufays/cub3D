@@ -66,7 +66,3 @@ libft/libft.a:
 
 minilibX/libmlx.a:
 	make -C ./minilibX
-
-install:
-	git clone https://github.com/Valentin-Beaufays/libft.git libft 
-	git clone https://github.com/Valentin-Beaufays/get_next_line.git get_next_line

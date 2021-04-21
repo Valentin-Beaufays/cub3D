@@ -52,7 +52,6 @@ Module.symvers
 Mkfile.old
 dkms.conf
 # Libraries
-libft/
 *.tgz
 .vscode/
 *.bmp
