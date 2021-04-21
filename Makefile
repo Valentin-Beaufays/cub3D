@@ -47,7 +47,7 @@ FILES=			./srcs/game_loop.c\
 LIB=			./libft/libft.a ./minilibX/libmlx.a -lXext -lX11 -lm 
 
 $(NAME): 
-	$(CC) $(CFLAGS) -g -o $(NAME) $(INCLUDES) -D BUFFER_SIZE=$(BUFFER_SIZE) $(FILES) $(LIB)
+	$(CC) $(CFLAGS) -o $(NAME) $(INCLUDES) -D BUFFER_SIZE=$(BUFFER_SIZE) $(FILES) $(LIB)
 
 all: $(NAME)
 
