@@ -80,28 +80,27 @@ static int		square_map(t_map *map)
 void			parse_map(t_temp *temp)
 {
 	char	**tmp;
-	size_t	size;
 	int		ret;
 
-	size = 1;
-	if (!(temp->map.map = malloc(sizeof(char*) * (size + 1))))
+	temp->map.h = 1;
+	if (!(temp->map.map = malloc(sizeof(char*) * (temp->map.h + 1))))
 		free_tmp_err(strerror(errno), temp, 1);
-	temp->map.map[size] = NULL;
-	temp->map.map[size - 1] = temp->line;
-	while ((ret = get_next_line(temp->fd, &(temp->line))))
+	temp->map.map[temp->map.h] = NULL;
+	temp->map.map[temp->map.h - 1] = temp->line;
+	while ((ret = get_next_line(temp->fd, &temp->line)))
 	{
 		if (ret == -1)
 			free_tmp_err(strerror(errno), temp, 0);
-		size++;
-		if (!(tmp = malloc(sizeof(char*) * (size + 1))))
+		temp->map.h++;
+		if (!(tmp = malloc(sizeof(char*) * (temp->map.h + 1))))
 			free_tmp_err(strerror(errno), temp, 1);
-		tmp[size] = NULL;
+		tmp[temp->map.h] = NULL;
 		copy_map(tmp, temp->map.map);
-		tmp[size - 1] = temp->line;
+		tmp[temp->map.h - 1] = temp->line;
 		free(temp->map.map);
 		temp->map.map = tmp;
 	}
-	temp->map.h = size;
+	free(temp->line);
 	if (!(square_map(&temp->map)))
 		free_tmp_err(strerror(errno), temp, 0);
 }
