@@ -82,7 +82,6 @@ t_cub3d	*get_data(t_temp *temp)
 	get_textures(temp, data);
 	get_fc(temp, data);
 	get_map(temp, data);
-	data->step_rad = data->fov / data->def.x;
 	data->d_to_screen = (data->def.x / 2) / tan(data->fov / 2);
 	free_temp(temp);
 	return (data);

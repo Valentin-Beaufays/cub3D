@@ -37,5 +37,6 @@ int		main(int argc, char **argv)
 		data->save = 1;
 	}
 	game_loop(data);
+	free_data(data);
 	return (0);
 }

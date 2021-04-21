@@ -26,6 +26,7 @@ void	free_tmp_err(char *error, t_temp *temp, int select)
 		free(temp->line);
 	if ((select == 2 || select == 3) && temp->trim)
 		free(temp->trim);
+	free_map(&temp->map);
 	free_temp(temp);
 	ft_error(error);
 }

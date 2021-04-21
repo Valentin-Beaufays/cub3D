@@ -23,7 +23,7 @@ void	free_map(t_map *map)
 	i = 0;
 	if (map->map)
 	{
-		while (map->map[i])
+		while (i <= map->h)
 		{
 			free(map->map[i]);
 			i++;

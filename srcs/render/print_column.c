@@ -72,7 +72,6 @@ static void		print_text(t_cub3d *d, double proj_size, int x, int text_x)
 {
 	int		xy_start_end[4];
 	int		text[2];
-	double	rat;
 
 	xy_start_end[0] = x;
 	xy_start_end[1] = 0;
@@ -80,7 +79,6 @@ static void		print_text(t_cub3d *d, double proj_size, int x, int text_x)
 	xy_start_end[3] = xy_start_end[2] + proj_size;
 	text[0] = text_x;
 	text[1] = 0;
-	rat = (double)d->ray.wall->h / proj_size;
 	while (xy_start_end[2] < 0)
 	{
 		text[1]++;
@@ -91,7 +89,6 @@ static void		print_text(t_cub3d *d, double proj_size, int x, int text_x)
 
 void			print_column(t_ray *r, t_cub3d *d, int x)
 {
-	t_text	*wall_text;
 	int		text_col;
 	double	dist_to_wall;
 	double	proj_size;

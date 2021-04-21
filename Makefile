@@ -44,10 +44,10 @@ FILES=			./srcs/game_loop.c\
 				get_next_line/get_next_line_utils.c\
 				main.c
 
-LIB=			./minilibX/libmlx.a -lXext -lX11 -lm 
+LIB=			./libft/libft.a ./minilibX/libmlx.a -lXext -lX11 -lm 
 
 $(NAME): 
-	$(CC) -o $(NAME) $(INCLUDES) -D BUFFER_SIZE=$(BUFFER_SIZE) $(FILES) $(MLX)
+	$(CC) $(CFLAGS) -g -o $(NAME) $(INCLUDES) -D BUFFER_SIZE=$(BUFFER_SIZE) $(FILES) $(LIB)
 
 all: $(NAME)
 

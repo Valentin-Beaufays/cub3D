@@ -98,7 +98,7 @@ void	parse_args(t_temp *temp)
 		free(temp->trim);
 	}
 	if (!is_map)
-		free_tmp_err("no map has been found", temp, 0);
+		free_tmp_err("no map has been found", temp, 1);
 	parse_map(temp);
 }
 
