@@ -46,19 +46,27 @@ FILES=			./srcs/game_loop.c\
 
 LIB=			./libft/libft.a ./minilibX/libmlx.a -lXext -lX11 -lm 
 
-$(NAME): 
+$(NAME): libft/libft.a minilibX/libmlx.a
 	$(CC) $(CFLAGS) -o $(NAME) $(INCLUDES) -D BUFFER_SIZE=$(BUFFER_SIZE) $(FILES) $(LIB)
 
 all: $(NAME)
 
 clean: 
 	@rm -rf $(NAME)
+	make -C ./libft clean
 
 fclean: clean
+	make -C ./libft fclean
+	make -C ./minilibX clean
 
 re: fclean $(NAME)
 
+libft/libft.a:
+	make -C ./libft
+
+minilibX/libmlx.a:
+	make -C ./minilibX
+
 install:
 	git clone https://github.com/Valentin-Beaufays/libft.git libft 
-	make -C ./libft 
 	git clone https://github.com/Valentin-Beaufays/get_next_line.git get_next_line
