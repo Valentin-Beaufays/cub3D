@@ -14,7 +14,7 @@
 
 int	get_next_line(int fd, char **line)
 {
-	static char	buf[OPEN_MAX][BUFFER_SIZE + 1];
+	static char	buf[_SC_OPEN_MAX][BUFFER_SIZE + 1];
 	char		*res;
 	int			eof;
 
