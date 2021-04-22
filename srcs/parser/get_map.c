@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_map.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vbeaufay <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/21 14:19:49 by vbeaufay          #+#    #+#             */
+/*   Updated: 2021/04/21 14:19:51 by vbeaufay         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stddef.h>
 #include "parser.h"
 #include "struct.h"
@@ -27,11 +39,12 @@ static void	map_to_data(t_map *dst, t_map *src)
 	dst->map = src->map;
 }
 
-void		get_map(t_temp *temp, t_cub3d *data)
+void	get_map(t_temp *temp, t_cub3d *data)
 {
 	int	find_pos;
 
-	if (!(find_pos = get_pos(temp->map.map, data)))
+	find_pos = get_pos(temp->map.map, data);
+	if (!find_pos)
 		free_data_err("no start position was found", temp, data);
 	else if (find_pos > 1)
 		free_data_err("too many start positions were found", temp, data);

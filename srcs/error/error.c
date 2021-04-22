@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vbeaufay <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/21 14:18:44 by vbeaufay          #+#    #+#             */
+/*   Updated: 2021/04/21 14:19:17 by vbeaufay         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 #include <stdio.h>
 #include "struct.h"
@@ -14,6 +26,7 @@ void	free_tmp_err(char *error, t_temp *temp, int select)
 		free(temp->line);
 	if ((select == 2 || select == 3) && temp->trim)
 		free(temp->trim);
+	free_map(&temp->map);
 	free_temp(temp);
 	ft_error(error);
 }

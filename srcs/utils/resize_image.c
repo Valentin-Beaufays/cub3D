@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   resize_image.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vbeaufay <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/21 14:22:41 by vbeaufay          #+#    #+#             */
+/*   Updated: 2021/04/21 14:22:43 by vbeaufay         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <mlx.h>
 #include <string.h>
 #include <math.h>
@@ -32,15 +44,17 @@ static void	fill_img(t_mlx *m, t_img *new, t_text *t)
 	}
 }
 
-t_img		*resize_image(t_cub3d *d, t_text *t, int w, int h)
+t_img	*resize_image(t_cub3d *d, t_text *t, int w, int h)
 {
 	t_img	*n;
 
-	if (!(n = malloc(sizeof(t_img))))
+	n = malloc(sizeof(t_img));
+	if (!n)
 		free_data_err(strerror(errno), NULL, d);
 	n->h = h;
 	n->w = w;
-	if (!(n->img = mlx_new_image(d->mlx.p, w, h)))
+	n->img = mlx_new_image(d->mlx.p, w, h);
+	if (!n->img)
 	{
 		free(n);
 		free_data_err("mlx fail to create image", NULL, d);

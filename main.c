@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vbeaufay <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/21 17:03:23 by valentin          #+#    #+#             */
-/*   Updated: 2020/09/23 15:37:08 by vbeaufay         ###   ########.fr       */
+/*   Created: 2021/04/21 14:23:58 by vbeaufay          #+#    #+#             */
+/*   Updated: 2021/04/21 14:24:01 by vbeaufay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "game.h"
 #include "error.h"
 
-int		main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	char	*test;
 	t_cub3d	*data;
@@ -37,5 +37,6 @@ int		main(int argc, char **argv)
 		data->save = 1;
 	}
 	game_loop(data);
+	free_data(data);
 	return (0);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_data_struct.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vbeaufay <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/21 14:21:49 by vbeaufay          #+#    #+#             */
+/*   Updated: 2021/04/21 14:21:50 by vbeaufay         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 #include <unistd.h>
 #include "struct.h"
@@ -31,6 +43,6 @@ void	free_temp(t_temp *temp)
 		free(temp->east);
 	if (temp->sprite)
 		free(temp->sprite);
-	if (temp->fd >= 0)
+	if (temp->fd > 0)
 		close(temp->fd);
 }

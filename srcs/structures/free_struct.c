@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_struct.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vbeaufay <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/21 14:21:55 by vbeaufay          #+#    #+#             */
+/*   Updated: 2021/04/21 14:21:56 by vbeaufay         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stddef.h>
 #include <mlx.h>
 #include <unistd.h>
@@ -6,12 +18,12 @@
 
 void	free_map(t_map *map)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	if (map->map)
 	{
-		while (map->map[i])
+		while (i <= map->h)
 		{
 			free(map->map[i]);
 			i++;
@@ -30,7 +42,7 @@ void	free_mlx(t_mlx *mlx)
 
 void	free_sprite(t_sprite *sprite)
 {
-	t_sprite *next;
+	t_sprite	*next;
 
 	while (sprite)
 	{

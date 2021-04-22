@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   save_bmp.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vbeaufay <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/21 14:23:04 by vbeaufay          #+#    #+#             */
+/*   Updated: 2021/04/21 14:23:05 by vbeaufay         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <fcntl.h>
 #include <errno.h>
 #include <string.h>
@@ -7,7 +19,7 @@
 #include "utils.h"
 #include <stdint.h>
 
-uint32_t	get_size(t_img *frame)
+static uint32_t	get_size(t_img *frame)
 {
 	uint32_t	w;
 
@@ -17,7 +29,7 @@ uint32_t	get_size(t_img *frame)
 	return (w * frame->h);
 }
 
-void		save_header(int fd, t_img *frame)
+static void	save_header(int fd, t_img *frame)
 {
 	uint32_t	offset;
 	uint32_t	size;
@@ -30,7 +42,7 @@ void		save_header(int fd, t_img *frame)
 	write(fd, &offset, 4);
 }
 
-void		save_info(int fd, t_img *frame)
+static void	save_info(int fd, t_img *frame)
 {
 	uint32_t	size;
 	uint16_t	plane;
@@ -51,7 +63,7 @@ void		save_info(int fd, t_img *frame)
 	write(fd, "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0", 16);
 }
 
-void		save_img(int fd, t_img *frame)
+static void	save_img(int fd, t_img *frame)
 {
 	int				x;
 	int				y;
@@ -80,14 +92,16 @@ void		save_img(int fd, t_img *frame)
 	}
 }
 
-int			save_bmp(t_img *frame, t_cub3d *data)
+void	save_bmp(t_img *frame, t_cub3d *data)
 {
 	int	fd;
 
-	if ((fd = open("./image.bmp", O_CREAT | O_RDWR, 0666)) < 0)
+	fd = open("./image.bmp", O_CREAT | O_RDWR, 0666);
+	if (fd < 0)
 		free_data_err(strerror(errno), NULL, data);
 	save_header(fd, frame);
 	save_info(fd, frame);
 	save_img(fd, frame);
-	close(fd);
+	if ((close(fd)) < 0)
+		free_data_err(strerror(errno), NULL, data);
 }

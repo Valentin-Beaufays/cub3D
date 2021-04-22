@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_parser.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vbeaufay <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/21 14:20:08 by vbeaufay          #+#    #+#             */
+/*   Updated: 2021/04/21 14:20:11 by vbeaufay         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stddef.h>
 #include <stdlib.h>
 #include <string.h>
@@ -7,7 +19,7 @@
 #include "struct.h"
 #include "error.h"
 
-static void		copy_map(char **dest, char **src)
+static void	copy_map(char **dest, char **src, char *line)
 {
 	int	i;
 
@@ -17,6 +29,10 @@ static void		copy_map(char **dest, char **src)
 		dest[i] = src[i];
 		i++;
 	}
+	dest[i] = line;
+	i++;
+	dest[i] = NULL;
+	free(src);
 }
 
 static size_t	get_max_len(char **map)
@@ -37,13 +53,14 @@ static size_t	get_max_len(char **map)
 	return (max_len);
 }
 
-static char		*resize_line(char *line, size_t size)
+static char	*resize_line(char *line, size_t size)
 {
 	char	*new;
 	size_t	x;
 
 	x = 0;
-	if (!(new = malloc(sizeof(char*) * size + 1)))
+	new = malloc(sizeof(char *) * size + 1);
+	if (!new)
 		return (0);
 	while (line[x])
 	{
@@ -59,7 +76,7 @@ static char		*resize_line(char *line, size_t size)
 	return (new);
 }
 
-static int		square_map(t_map *map)
+static int	square_map(t_map *map)
 {
 	size_t	y;
 	char	*tmp;
@@ -68,7 +85,8 @@ static int		square_map(t_map *map)
 	map->w = get_max_len(map->map);
 	while (map->map[y])
 	{
-		if (!(tmp = resize_line(map->map[y], map->w)))
+		tmp = resize_line(map->map[y], map->w);
+		if (!tmp)
 			return (0);
 		free(map->map[y]);
 		map->map[y] = tmp;
@@ -77,28 +95,29 @@ static int		square_map(t_map *map)
 	return (1);
 }
 
-void			parse_map(t_temp *temp)
+void	parse_map(t_temp *temp)
 {
 	char	**tmp;
 	int		ret;
 
 	temp->map.h = 1;
-	if (!(temp->map.map = malloc(sizeof(char*) * (temp->map.h + 1))))
+	temp->map.map = malloc(sizeof(char *) * (temp->map.h + 1));
+	if (!temp->map.map)
 		free_tmp_err(strerror(errno), temp, 1);
 	temp->map.map[temp->map.h] = NULL;
 	temp->map.map[temp->map.h - 1] = temp->line;
-	while ((ret = get_next_line(temp->fd, &temp->line)))
+	ret = get_next_line(temp->fd, &temp->line);
+	while (ret)
 	{
 		if (ret == -1)
 			free_tmp_err(strerror(errno), temp, 0);
 		temp->map.h++;
-		if (!(tmp = malloc(sizeof(char*) * (temp->map.h + 1))))
+		tmp = malloc(sizeof(char *) * (temp->map.h + 1));
+		if (!tmp)
 			free_tmp_err(strerror(errno), temp, 1);
-		tmp[temp->map.h] = NULL;
-		copy_map(tmp, temp->map.map);
-		tmp[temp->map.h - 1] = temp->line;
-		free(temp->map.map);
+		copy_map(tmp, temp->map.map, temp->line);
 		temp->map.map = tmp;
+		ret = get_next_line(temp->fd, &temp->line);
 	}
 	free(temp->line);
 	if (!(square_map(&temp->map)))

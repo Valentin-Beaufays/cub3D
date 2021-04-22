@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sprite_utils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vbeaufay <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/21 14:22:53 by vbeaufay          #+#    #+#             */
+/*   Updated: 2021/04/21 14:22:55 by vbeaufay         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 #include <math.h>
 #include "struct.h"
 #include "utils.h"
 
-int			is_new_sprite(t_sprite *sprite, double x, double y)
+int	is_new_sprite(t_sprite *sprite, double x, double y)
 {
 	while (sprite)
 	{
@@ -18,7 +30,8 @@ t_sprite	*create_sprite(double p_x, double p_y, double new_x, double new_y)
 {
 	t_sprite	*new;
 
-	if (!(new = malloc(sizeof(t_sprite))))
+	new = malloc(sizeof(t_sprite));
+	if (!new)
 		return (NULL);
 	new->pos.x = new_x;
 	new->pos.y = new_y;

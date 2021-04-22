@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rad_utils.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vbeaufay <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/21 14:22:36 by vbeaufay          #+#    #+#             */
+/*   Updated: 2021/04/21 14:22:38 by vbeaufay         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <math.h>
 
 double	deg2rad(double deg)
@@ -19,7 +31,7 @@ double	round_rad(double rad)
 	return (rad);
 }
 
-int		is_greater_angle(double base, double cmp)
+int	is_greater_angle(double base, double cmp)
 {
 	double	left;
 	double	right;
