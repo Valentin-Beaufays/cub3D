@@ -14,7 +14,7 @@
 #include "struct.h"
 #include "utils.h"
 
-static	t_text	*get_wall_text(t_cub3d *data, int text_dir)
+static t_text	*get_wall_text(t_cub3d *data, int text_dir)
 {
 	if (text_dir == 0)
 		return (&data->text_e);
@@ -28,7 +28,7 @@ static	t_text	*get_wall_text(t_cub3d *data, int text_dir)
 		return (NULL);
 }
 
-static	int		get_text_col(t_text *text, double new_w, double intersect)
+static int	get_text_col(t_text *text, double new_w, double intersect)
 {
 	double	ratio_w;
 	double	col;
@@ -43,7 +43,7 @@ static	int		get_text_col(t_text *text, double new_w, double intersect)
 	return ((int)(col * ratio_w));
 }
 
-static void		print_loop(t_cub3d *d, int *xy_se, double proj, int *text)
+static void	print_loop(t_cub3d *d, int *xy_se, double proj, int *text)
 {
 	int		c;
 	double	rat;
@@ -68,7 +68,7 @@ static void		print_loop(t_cub3d *d, int *xy_se, double proj, int *text)
 	}
 }
 
-static void		print_text(t_cub3d *d, double proj_size, int x, int text_x)
+static void	print_text(t_cub3d *d, double proj_size, int x, int text_x)
 {
 	int		xy_start_end[4];
 	int		text[2];
@@ -87,7 +87,7 @@ static void		print_text(t_cub3d *d, double proj_size, int x, int text_x)
 	print_loop(d, xy_start_end, proj_size, text);
 }
 
-void			print_column(t_ray *r, t_cub3d *d, int x)
+void	print_column(t_ray *r, t_cub3d *d, int x)
 {
 	int		text_col;
 	double	dist_to_wall;

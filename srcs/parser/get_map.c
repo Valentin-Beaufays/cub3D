@@ -39,11 +39,12 @@ static void	map_to_data(t_map *dst, t_map *src)
 	dst->map = src->map;
 }
 
-void		get_map(t_temp *temp, t_cub3d *data)
+void	get_map(t_temp *temp, t_cub3d *data)
 {
 	int	find_pos;
 
-	if (!(find_pos = get_pos(temp->map.map, data)))
+	find_pos = get_pos(temp->map.map, data);
+	if (!find_pos)
 		free_data_err("no start position was found", temp, data);
 	else if (find_pos > 1)
 		free_data_err("too many start positions were found", temp, data);

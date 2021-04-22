@@ -22,7 +22,8 @@ void	sprite_found(t_cub3d *data, double x, double y)
 
 	if (is_new_sprite(data->sprite, x, y))
 	{
-		if (!(new = create_sprite(data->pos.x, data->pos.y, x, y)))
+		new = create_sprite(data->pos.x, data->pos.y, x, y);
+		if (!new)
 			free_data_err(strerror(errno), NULL, data);
 		if (data->sprite)
 			data->sprite = add_sprite(data->sprite, new);

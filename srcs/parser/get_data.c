@@ -24,8 +24,8 @@ static void	check_missing_data(t_temp *temp)
 {
 	if (temp->x == 0 || temp->y == 0)
 		free_tmp_err("resolution is missing", temp, 0);
-	if (!temp->north || !temp->south ||
-		!temp->west || !temp->east || !temp->sprite)
+	if (!temp->north || !temp->south
+		|| !temp->west || !temp->east || !temp->sprite)
 		free_tmp_err("a texture is missing", temp, 0);
 	if (temp->f[0] == -1)
 		free_tmp_err("floor is missing", temp, 0);
@@ -69,12 +69,13 @@ static void	get_fc(t_temp *temp, t_cub3d *data)
 	data->color_ceil = rgb_to_int(temp->c[0], temp->c[1], temp->c[2]);
 }
 
-t_cub3d		*get_data(t_temp *temp)
+t_cub3d	*get_data(t_temp *temp)
 {
-	t_cub3d *data;
+	t_cub3d	*data;
 
 	check_missing_data(temp);
-	if (!(data = malloc(sizeof(*data))))
+	data = malloc(sizeof(*data));
+	if (!data)
 		free_tmp_err(strerror(errno), temp, 0);
 	init_cub3d(data);
 	get_resolution(temp, data);

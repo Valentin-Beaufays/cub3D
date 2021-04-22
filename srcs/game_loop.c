@@ -94,7 +94,7 @@ static int	exit_hook(t_cub3d *data)
 	exit(0);
 }
 
-void		game_loop(t_cub3d *data)
+void	game_loop(t_cub3d *data)
 {
 	mlx_setup(&data->mlx, data);
 	if (data->save == 1)

@@ -26,13 +26,13 @@ static double	set_angle(char dir)
 		return (deg2rad(180));
 }
 
-static void		set_pos(t_point *pos, double x, double y)
+static void	set_pos(t_point *pos, double x, double y)
 {
 	pos->x = x + 0.5;
 	pos->y = y + 0.5;
 }
 
-int				get_pos(char **map, t_cub3d *data)
+int	get_pos(char **map, t_cub3d *data)
 {
 	size_t	x;
 	size_t	y;

@@ -31,7 +31,7 @@ double	round_rad(double rad)
 	return (rad);
 }
 
-int		is_greater_angle(double base, double cmp)
+int	is_greater_angle(double base, double cmp)
 {
 	double	left;
 	double	right;

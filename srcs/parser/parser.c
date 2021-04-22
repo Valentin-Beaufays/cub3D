@@ -23,6 +23,14 @@
 #include "error.h"
 #include "utils.h"
 
+static int	get_num(int *num, char *line)
+{
+	*num = ft_atoi(line);
+	if (*line == '+' || *line == '-' || !(*num))
+		return (0);
+	return (1);
+}
+
 static void	parse_resolution(t_temp *temp)
 {
 	char	*line;
@@ -32,7 +40,7 @@ static void	parse_resolution(t_temp *temp)
 		free_tmp_err("invalid resolution line", temp, 3);
 	while (*line == ' ')
 		line++;
-	if (*line == '+' || *line == '-' || !(temp->x = ft_atoi(line)))
+	if (!get_num(&temp->x, line))
 		free_tmp_err("invalid resolution line", temp, 3);
 	while (ft_isdigit(*line))
 		line++;
@@ -40,7 +48,7 @@ static void	parse_resolution(t_temp *temp)
 		free_tmp_err("invalid R line", temp, 3);
 	while (*line == ' ')
 		line++;
-	if (*line == '+' || *line == '-' || !(temp->y = ft_atoi(line)))
+	if (!get_num(&temp->y, line))
 		free_tmp_err("invalid R line", temp, 3);
 	while (ft_isdigit(*line))
 		line++;
@@ -83,19 +91,20 @@ static void	parse_args(t_temp *temp)
 	int	ret;
 
 	is_map = 0;
-	while (!is_map && (ret = get_next_line(temp->fd, &(temp->line))))
+	ret = get_next_line(temp->fd, &(temp->line));
+	while (!is_map && ret)
 	{
 		if (ret == -1)
 			free_tmp_err(strerror(errno), temp, 0);
-		if ((temp->trim = ft_strtrim(temp->line, " ")) == 0)
+		temp->trim = ft_strtrim(temp->line, " ");
+		if (!temp->trim)
 			free_tmp_err(strerror(errno), temp, 1);
-		if (*(temp->trim) != 0)
-		{
-			if (!get_arg(temp))
-				is_map = 1;
-		}
+		if (*(temp->trim) != 0 && !get_arg(temp))
+			is_map = 1;
 		if (!is_map)
 			free(temp->line);
+		if (!is_map)
+			ret = get_next_line(temp->fd, &(temp->line));
 		free(temp->trim);
 	}
 	if (!is_map)
@@ -103,7 +112,7 @@ static void	parse_args(t_temp *temp)
 	parse_map(temp);
 }
 
-t_cub3d		*cub_parser(char *path)
+t_cub3d	*cub_parser(char *path)
 {
 	t_temp	temp;
 	t_cub3d	*data;
@@ -111,16 +120,19 @@ t_cub3d		*cub_parser(char *path)
 	init_temp(&temp);
 	if (!check_path(path, ".cub"))
 		ft_error("file must end with .cub");
-	if ((temp.fd = open(path, O_RDONLY)) == -1)
+	temp.fd = open(path, O_RDONLY);
+	if (temp.fd == -1)
 		ft_error(strerror(errno));
 	parse_args(&temp);
 	if (close(temp.fd))
 		free_tmp_err(strerror(errno), &temp, 0);
 	temp.fd = -1;
 	data = get_data(&temp);
-	if (!(data->z_buf = ft_calloc(data->def.x, sizeof(double))))
+	data->z_buf = ft_calloc(data->def.x, sizeof(double));
+	if (!data->z_buf)
 		free_data_err(strerror(errno), NULL, data);
-	if (!(data->angle_buf = ft_calloc(data->def.x, sizeof(double))))
+	data->angle_buf = ft_calloc(data->def.x, sizeof(double));
+	if (!data->angle_buf)
 		free_data_err(strerror(errno), NULL, data);
 	return (data);
 }

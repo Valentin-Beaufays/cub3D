@@ -84,8 +84,8 @@ static void	get_text_dir(t_ray *ray)
 
 static void	find_nearest_intersection(t_ray *ray, t_cub3d *d)
 {
-	double h;
-	double v;
+	double	h;
+	double	v;
 
 	h = sqrt(pow(d->pos.x - ray->h_i.x, 2) + pow(d->pos.y - ray->h_i.y, 2));
 	v = sqrt(pow(d->pos.x - ray->v_i.x, 2) + pow(d->pos.y - ray->v_i.y, 2));
@@ -101,7 +101,7 @@ static void	find_nearest_intersection(t_ray *ray, t_cub3d *d)
 	get_text_dir(ray);
 }
 
-void		find_intersection(t_ray *ray, t_cub3d *data)
+void	find_intersection(t_ray *ray, t_cub3d *data)
 {
 	ray->up = 0;
 	ray->left = 0;

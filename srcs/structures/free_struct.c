@@ -18,7 +18,7 @@
 
 void	free_map(t_map *map)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	if (map->map)
@@ -42,7 +42,7 @@ void	free_mlx(t_mlx *mlx)
 
 void	free_sprite(t_sprite *sprite)
 {
-	t_sprite *next;
+	t_sprite	*next;
 
 	while (sprite)
 	{

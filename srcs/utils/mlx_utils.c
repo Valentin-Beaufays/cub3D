@@ -18,7 +18,7 @@
 static void	adjust_res(t_mlx *mlx, t_cub3d *data)
 {
 	int	screen_x;
-	int screen_y;
+	int	screen_y;
 
 	mlx_get_screen_size(mlx->p, &screen_x, &screen_y);
 	if (screen_x < data->def.x)
@@ -29,7 +29,8 @@ static void	adjust_res(t_mlx *mlx, t_cub3d *data)
 
 static int	open_mlx_text(t_mlx *m, t_text *t, t_img *img)
 {
-	if (!(t->img.img = mlx_xpm_file_to_image(m->p, t->path, &t->w, &t->h)))
+	t->img.img = mlx_xpm_file_to_image(m->p, t->path, &t->w, &t->h);
+	if (!t->img.img)
 		return (0);
 	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->len, &img->end);
 	return (1);
@@ -48,7 +49,8 @@ static int	open_text(t_mlx *m, t_cub3d *d)
 
 static int	setup_frame(t_mlx *m, t_cub3d *d, t_img *f)
 {
-	if (!(f->img = mlx_new_image(m->p, (int)d->def.x, (int)d->def.y)))
+	f->img = mlx_new_image(m->p, (int)d->def.x, (int)d->def.y);
+	if (!f->img)
 		return (0);
 	f->addr = mlx_get_data_addr(f->img, &f->bpp, &f->len, &f->end);
 	f->h = (int)d->def.y;
@@ -56,14 +58,16 @@ static int	setup_frame(t_mlx *m, t_cub3d *d, t_img *f)
 	return (1);
 }
 
-void		mlx_setup(t_mlx *m, t_cub3d *d)
+void	mlx_setup(t_mlx *m, t_cub3d *d)
 {
-	if (!(m->p = mlx_init()))
+	m->p = mlx_init();
+	if (!m->p)
 		free_data_err("fail to init mlx", NULL, d);
 	adjust_res(m, d);
 	if (!(open_text(m, d)))
 		free_data_err("fail to open textures", NULL, d);
-	if (!(m->w = mlx_new_window(m->p, (int)d->def.x, (int)d->def.y, "cub3D")))
+	m->w = mlx_new_window(m->p, (int)d->def.x, (int)d->def.y, "cub3D");
+	if (!m->w)
 		free_data_err("fail to create window", NULL, d);
 	if (!(setup_frame(m, d, &m->fra)))
 		free_data_err("fail to create image", NULL, d);

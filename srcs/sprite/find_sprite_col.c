@@ -41,9 +41,9 @@ static int	out_of_bound_sprite_col(t_sprite *s, t_cub3d *d, int dir)
 	return (col);
 }
 
-double		find_sprite_col(t_sprite *s, t_cub3d *d)
+double	find_sprite_col(t_sprite *s, t_cub3d *d)
 {
-	int col;
+	int	col;
 
 	if (is_greater_angle(s->angle, d->angle_buf[0]))
 		col = out_of_bound_sprite_col(s, d, -1);

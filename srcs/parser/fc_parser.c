@@ -47,7 +47,24 @@ static int	next_value(char **line)
 	return (1);
 }
 
-void		parse_floor(t_temp *temp)
+static void	fill_value(t_temp *tmp, int *val, char **line)
+{
+	val[0] = get_value(line);
+	if (val[0] < 0)
+		free_tmp_err("invalid ceiling line", tmp, 3);
+	if (!(next_value(line)))
+		free_tmp_err("missing \',\' in ceiling line", tmp, 3);
+	val[1] = get_value(line);
+	if (val[1] < 0)
+		free_tmp_err("invalid ceiling line", tmp, 3);
+	if (!(next_value(line)))
+		free_tmp_err("missing \',\' in ceiling line", tmp, 3);
+	val[2] = get_value(line);
+	if (val[2] < 0)
+		free_tmp_err("invalid ceiling line", tmp, 3);
+}
+
+void	parse_floor(t_temp *temp)
 {
 	char	*line;
 
@@ -56,16 +73,7 @@ void		parse_floor(t_temp *temp)
 		free_tmp_err("invalid floor line", temp, 3);
 	while (*line == ' ')
 		line++;
-	if ((temp->f[0] = get_value(&line)) < 0)
-		free_tmp_err("invalid floor line", temp, 3);
-	if (!(next_value(&line)))
-		free_tmp_err("missing \',\' in floor line", temp, 3);
-	if ((temp->f[1] = get_value(&line)) < 0)
-		free_tmp_err("invalid floor line", temp, 3);
-	if (!(next_value(&line)))
-		free_tmp_err("missing \',\' in floor line", temp, 3);
-	if ((temp->f[2] = get_value(&line)) < 0)
-		free_tmp_err("invalid floor line", temp, 3);
+	fill_value(temp, temp->f, &line);
 	while (*line)
 	{
 		if (*line != ' ')
@@ -74,7 +82,7 @@ void		parse_floor(t_temp *temp)
 	}
 }
 
-void		parse_ceiling(t_temp *temp)
+void	parse_ceiling(t_temp *temp)
 {
 	char	*line;
 
@@ -83,16 +91,7 @@ void		parse_ceiling(t_temp *temp)
 		free_tmp_err("invalid ceiling line", temp, 3);
 	while (*line == ' ')
 		line++;
-	if ((temp->c[0] = get_value(&line)) < 0)
-		free_tmp_err("invalid ceiling line", temp, 3);
-	if (!(next_value(&line)))
-		free_tmp_err("missing \',\' in ceiling line", temp, 3);
-	if ((temp->c[1] = get_value(&line)) < 0)
-		free_tmp_err("invalid ceiling line", temp, 3);
-	if (!(next_value(&line)))
-		free_tmp_err("missing \',\' in ceiling line", temp, 3);
-	if ((temp->c[2] = get_value(&line)) < 0)
-		free_tmp_err("invalid ceiling line", temp, 3);
+	fill_value(temp, temp->c, &line);
 	while (*line)
 	{
 		if (*line != ' ')

@@ -29,7 +29,7 @@ static uint32_t	get_size(t_img *frame)
 	return (w * frame->h);
 }
 
-static void		save_header(int fd, t_img *frame)
+static void	save_header(int fd, t_img *frame)
 {
 	uint32_t	offset;
 	uint32_t	size;
@@ -42,7 +42,7 @@ static void		save_header(int fd, t_img *frame)
 	write(fd, &offset, 4);
 }
 
-static void		save_info(int fd, t_img *frame)
+static void	save_info(int fd, t_img *frame)
 {
 	uint32_t	size;
 	uint16_t	plane;
@@ -63,7 +63,7 @@ static void		save_info(int fd, t_img *frame)
 	write(fd, "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0", 16);
 }
 
-static void		save_img(int fd, t_img *frame)
+static void	save_img(int fd, t_img *frame)
 {
 	int				x;
 	int				y;
@@ -92,11 +92,12 @@ static void		save_img(int fd, t_img *frame)
 	}
 }
 
-void			save_bmp(t_img *frame, t_cub3d *data)
+void	save_bmp(t_img *frame, t_cub3d *data)
 {
 	int	fd;
 
-	if ((fd = open("./image.bmp", O_CREAT | O_RDWR, 0666)) < 0)
+	fd = open("./image.bmp", O_CREAT | O_RDWR, 0666);
+	if (fd < 0)
 		free_data_err(strerror(errno), NULL, data);
 	save_header(fd, frame);
 	save_info(fd, frame);

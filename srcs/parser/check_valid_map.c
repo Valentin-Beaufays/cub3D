@@ -121,7 +121,7 @@ static int	check_valid_map(char **map)
 	return (1);
 }
 
-void		check_valid(t_temp *temp, t_cub3d *data)
+void	check_valid(t_temp *temp, t_cub3d *data)
 {
 	if (!check_valid_map_char(temp->map.map))
 		free_data_err("invalid character found in map description", temp, data);

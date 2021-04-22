@@ -17,7 +17,7 @@
 #include "utils.h"
 #include "sprite.h"
 
-int			render(t_cub3d *data)
+int	render(t_cub3d *data)
 {
 	int		x;
 

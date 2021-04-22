@@ -13,7 +13,7 @@
 #include <stddef.h>
 #include "libft.h"
 
-int		check_path(char *path, char *ext)
+int	check_path(char *path, char *ext)
 {
 	size_t	len;
 	size_t	ext_len;

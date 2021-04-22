@@ -33,6 +33,6 @@ unsigned char	get_blue(int color);
 int				is_new_sprite(t_sprite *sprite, double x, double y);
 t_sprite		*add_sprite(t_sprite *s, t_sprite *new);
 t_sprite		*create_sprite(double p_x, double p_y,
-								double new_x, double new_y);
+					double new_x, double new_y);
 
 #endif
