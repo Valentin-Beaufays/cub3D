@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_path.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vbeaufay <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/21 14:22:05 by vbeaufay          #+#    #+#             */
+/*   Updated: 2021/04/21 14:22:07 by vbeaufay         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stddef.h>
 #include "libft.h"
 
-int		check_path(char *path, char *ext)
+int	check_path(char *path, char *ext)
 {
 	size_t	len;
 	size_t	ext_len;

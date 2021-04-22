@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_data.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vbeaufay <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/21 14:19:34 by vbeaufay          #+#    #+#             */
+/*   Updated: 2021/04/21 14:19:39 by vbeaufay         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stddef.h>
 #include <stdlib.h>
 #include <errno.h>
@@ -8,12 +20,12 @@
 #include "utils.h"
 #include "error.h"
 
-void	check_missing_data(t_temp *temp)
+static void	check_missing_data(t_temp *temp)
 {
 	if (temp->x == 0 || temp->y == 0)
 		free_tmp_err("resolution is missing", temp, 0);
-	if (!temp->north || !temp->south ||
-		!temp->west || !temp->east || !temp->sprite)
+	if (!temp->north || !temp->south
+		|| !temp->west || !temp->east || !temp->sprite)
 		free_tmp_err("a texture is missing", temp, 0);
 	if (temp->f[0] == -1)
 		free_tmp_err("floor is missing", temp, 0);
@@ -21,7 +33,7 @@ void	check_missing_data(t_temp *temp)
 		free_tmp_err("ceiling is missing", temp, 0);
 }
 
-void	get_resolution(t_temp *temp, t_cub3d *data)
+static void	get_resolution(t_temp *temp, t_cub3d *data)
 {
 	if (temp->x < 0)
 		free_data_err("invalid horizontal resolution", temp, data);
@@ -31,7 +43,7 @@ void	get_resolution(t_temp *temp, t_cub3d *data)
 	data->def.y = temp->y;
 }
 
-void	get_textures(t_temp *temp, t_cub3d *data)
+static void	get_textures(t_temp *temp, t_cub3d *data)
 {
 	get_no_texture(temp, data);
 	get_so_texture(temp, data);
@@ -40,7 +52,7 @@ void	get_textures(t_temp *temp, t_cub3d *data)
 	get_s_texture(temp, data);
 }
 
-void	get_fc(t_temp *temp, t_cub3d *data)
+static void	get_fc(t_temp *temp, t_cub3d *data)
 {
 	size_t	i;
 
@@ -59,10 +71,11 @@ void	get_fc(t_temp *temp, t_cub3d *data)
 
 t_cub3d	*get_data(t_temp *temp)
 {
-	t_cub3d *data;
+	t_cub3d	*data;
 
 	check_missing_data(temp);
-	if (!(data = malloc(sizeof(*data))))
+	data = malloc(sizeof(*data));
+	if (!data)
 		free_tmp_err(strerror(errno), temp, 0);
 	init_cub3d(data);
 	get_resolution(temp, data);
@@ -70,7 +83,6 @@ t_cub3d	*get_data(t_temp *temp)
 	get_textures(temp, data);
 	get_fc(temp, data);
 	get_map(temp, data);
-	data->step_rad = data->fov / data->def.x;
 	data->d_to_screen = (data->def.x / 2) / tan(data->fov / 2);
 	free_temp(temp);
 	return (data);

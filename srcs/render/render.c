@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vbeaufay <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/21 14:20:45 by vbeaufay          #+#    #+#             */
+/*   Updated: 2021/04/21 14:20:50 by vbeaufay         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <mlx.h>
 #include <stdio.h>
 #include "render.h"
@@ -5,7 +17,7 @@
 #include "utils.h"
 #include "sprite.h"
 
-int			render(t_cub3d *data)
+int	render(t_cub3d *data)
 {
 	int		x;
 

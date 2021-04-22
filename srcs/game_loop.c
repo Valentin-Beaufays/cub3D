@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   game_loop.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vbeaufay <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/21 14:22:58 by vbeaufay          #+#    #+#             */
+/*   Updated: 2021/04/21 14:23:01 by vbeaufay         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <math.h>
 #include <mlx.h>
 #include <stdlib.h>
@@ -62,7 +74,7 @@ static void	update_pos(int key, t_cub3d *data)
 	}
 }
 
-int			key_hook(int key, t_cub3d *data)
+static int	key_hook(int key, t_cub3d *data)
 {
 	if (key == LEFT)
 		data->angle = round_rad(data->angle + 0.1);
@@ -76,13 +88,13 @@ int			key_hook(int key, t_cub3d *data)
 	return (0);
 }
 
-int			exit_hook(t_cub3d *data)
+static int	exit_hook(t_cub3d *data)
 {
 	free_data(data);
 	exit(0);
 }
 
-void		game_loop(t_cub3d *data)
+void	game_loop(t_cub3d *data)
 {
 	mlx_setup(&data->mlx, data);
 	if (data->save == 1)

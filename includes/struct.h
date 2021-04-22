@@ -1,15 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   struct.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vbeaufay <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/21 14:24:59 by vbeaufay          #+#    #+#             */
+/*   Updated: 2021/04/21 14:25:01 by vbeaufay         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef STRUCT_H
 # define STRUCT_H
 
 # include <stddef.h>
 
-typedef struct	s_point
+typedef struct s_point
 {
 	double		x;
 	double		y;
 }				t_point;
 
-typedef struct	s_img
+typedef struct s_img
 {
 	void		*img;
 	int			w;
@@ -20,7 +32,7 @@ typedef struct	s_img
 	int			end;
 }				t_img;
 
-typedef struct	s_text
+typedef struct s_text
 {
 	char		*path;
 	int			w;
@@ -28,7 +40,7 @@ typedef struct	s_text
 	t_img		img;
 }				t_text;
 
-typedef struct	s_sprite
+typedef struct s_sprite
 {
 	t_point		pos;
 	double		dist;
@@ -36,14 +48,14 @@ typedef struct	s_sprite
 	void		*next;
 }				t_sprite;
 
-typedef struct	s_map
+typedef struct s_map
 {
 	size_t		w;
 	size_t		h;
 	char		**map;
 }				t_map;
 
-typedef struct	s_temp
+typedef struct s_temp
 {
 	int			fd;
 	char		*line;
@@ -60,14 +72,14 @@ typedef struct	s_temp
 	t_map		map;
 }				t_temp;
 
-typedef struct	s_mlx
+typedef struct s_mlx
 {
 	void		*p;
 	void		*w;
 	t_img		fra;
 }				t_mlx;
 
-typedef struct	s_ray
+typedef struct s_ray
 {
 	int			up;
 	int			left;
@@ -82,7 +94,7 @@ typedef struct	s_ray
 	t_text		*wall;
 }				t_ray;
 
-typedef struct	s_cub3d
+typedef struct s_cub3d
 {
 	t_mlx		mlx;
 	t_point		pos;
@@ -107,18 +119,18 @@ typedef struct	s_cub3d
 }				t_cub3d;
 
 void			init_temp(t_temp *temp);
+void			init_cub3d(t_cub3d *data);
 void			free_temp(t_temp *temp);
 void			free_data(t_cub3d *data);
-void			init_cub3d(t_cub3d *data);
+void			free_map(t_map *map);
+void			free_mlx(t_mlx	*mlx);
+void			free_sprite(t_sprite *sprite);
+void			free_text(t_mlx *m, t_text *t);
 void			init_ray(t_ray *ray);
 void			init_point(t_point *point);
 void			init_map(t_map *map);
-void			free_map(t_map *map);
 void			init_mlx(t_mlx *mlx);
-void			free_mlx(t_mlx	*mlx);
 void			init_sprite(t_sprite *s);
-void			free_sprite(t_sprite *sprite);
 void			init_text(t_text *t);
-void			free_text(t_mlx *m, t_text *t);
 
 #endif

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_sprite.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vbeaufay <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/21 14:21:33 by vbeaufay          #+#    #+#             */
+/*   Updated: 2021/04/21 14:21:34 by vbeaufay         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <math.h>
 #include <mlx.h>
 #include <stdlib.h>
@@ -9,8 +21,8 @@ static void	print_sprite_col(t_cub3d *d, t_img *img, int x_img, int x)
 {
 	int	xy[2];
 	int	y_img;
-	int start;
-	int color;
+	int	start;
+	int	color;
 
 	xy[0] = x;
 	xy[1] = 0;
@@ -55,7 +67,7 @@ static void	print_sprite_to_screen(t_cub3d *d, t_img *img, int x, double dist)
 	}
 }
 
-void		print_sprite(t_cub3d *d)
+void	print_sprite(t_cub3d *d)
 {
 	t_sprite	*cur;
 	int			x;

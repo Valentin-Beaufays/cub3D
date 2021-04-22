@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_hit.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vbeaufay <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/21 14:20:28 by vbeaufay          #+#    #+#             */
+/*   Updated: 2021/04/21 14:20:29 by vbeaufay         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <math.h>
 #include "struct.h"
 #include "sprite.h"
@@ -9,8 +21,8 @@ int	check_h_hit(t_cub3d *d, t_ray *ray, t_map *map)
 	up = 0;
 	if (ray->up == 1)
 		up = 1;
-	if (ray->i.x >= 0 && ray->i.y >= 0 &&
-		ray->i.x < map->w && ray->i.y < map->h)
+	if (ray->i.x >= 0 && ray->i.y >= 0
+		&& ray->i.x < map->w && ray->i.y < map->h)
 	{
 		if (map->map[(int)(ray->i.y - up)][(int)ray->i.x] == 1)
 			return (1);
@@ -28,8 +40,8 @@ int	check_v_hit(t_cub3d *d, t_ray *ray, t_map *map)
 	l = 0;
 	if (ray->left == 1)
 		l = 1;
-	if (ray->i.x >= 0 && ray->i.y >= 0 &&
-		ray->i.x < map->w && ray->i.y < map->h)
+	if (ray->i.x >= 0 && ray->i.y >= 0
+		&& ray->i.x < map->w && ray->i.y < map->h)
 	{
 		if (map->map[(int)ray->i.y][(int)(ray->i.x - l)] == 1)
 			return (1);
