@@ -28,13 +28,14 @@ static size_t	number_size(unsigned long int n)
 	return (size);
 }
 
-char			*ft_lutoa(unsigned long int n)
+char	*ft_lutoa(unsigned long int n)
 {
 	char	*res;
 	size_t	i;
 
 	i = number_size(n);
-	if (!(res = malloc(sizeof(*res) * (i + 1))))
+	res = malloc(sizeof(*res) * (i + 1));
+	if (!res)
 		return (0);
 	res[i] = 0;
 	i--;

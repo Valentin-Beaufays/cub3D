@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static void		freeall(char **s, size_t size)
+static void	freeall(char **s, size_t size)
 {
 	size_t	i;
 
@@ -25,9 +25,10 @@ static void		freeall(char **s, size_t size)
 	free(s);
 }
 
-static size_t	word_counter(char const *s, char c)
+static char	**get_res(char const *s, char c)
 {
 	size_t	count;
+	char	**res;
 	int		is_word;
 
 	count = 0;
@@ -43,22 +44,14 @@ static size_t	word_counter(char const *s, char c)
 			is_word = 0;
 		s++;
 	}
-	return (count);
-}
-
-static char		**get_res(char const *s, char c)
-{
-	size_t	count;
-	char	**res;
-
-	count = word_counter(s, c);
-	if (!(res = malloc(sizeof(*res) * (count + 1))))
+	res = malloc(sizeof(*res) * (count + 1));
+	if (!res)
 		return (0);
 	res[count] = 0;
 	return (res);
 }
 
-static char		*get_word(char const *s, char c)
+static char	*get_word(char const *s, char c)
 {
 	size_t	len;
 	char	*word;
@@ -66,36 +59,52 @@ static char		*get_word(char const *s, char c)
 	len = 0;
 	while (s[len] && s[len] != c)
 		len++;
-	if (!(word = malloc(sizeof(*word) * (len + 1))))
+	word = malloc(sizeof(*word) * (len + 1));
+	if (!word)
 		return (0);
 	ft_strlcpy(word, s, len + 1);
 	return (word);
 }
 
-char			**ft_split(char const *s, char c)
+static char	**get_split(char **res, char const *s, char c)
 {
-	char	**res;
-	size_t	i;
 	size_t	word;
+	size_t	i;
 
-	i = 0;
 	word = 0;
-	if (!s)
-		return (0);
-	if (!(res = get_res(s, c)))
-		return (0);
+	i = 0;
 	while (s[i])
 	{
 		while (s[i] == c)
 			i++;
 		if (s[i])
-			if (!(res[word++] = get_word(s + i, c)))
+		{
+			res[word] = get_word(s + i, c);
+			if (!res[word])
 			{
+				word++;
 				freeall(res, word);
 				return (0);
 			}
+			word++;
+		}
 		while (s[i] && s[i] != c)
 			i++;
 	}
+	return (res);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**res;
+
+	if (!s)
+		return (0);
+	res = get_res(s, c);
+	if (!res)
+		return (0);
+	res = get_split(res, s, c);
+	if (!res)
+		return (0);
 	return (res);
 }

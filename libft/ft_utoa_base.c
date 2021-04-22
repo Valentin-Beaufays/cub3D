@@ -28,7 +28,7 @@ static size_t	number_size(unsigned int n, int base)
 	return (size);
 }
 
-char			*ft_utoa_base(unsigned int n, const char *base)
+char	*ft_utoa_base(unsigned int n, const char *base)
 {
 	char	*res;
 	size_t	base_len;
@@ -36,7 +36,8 @@ char			*ft_utoa_base(unsigned int n, const char *base)
 
 	base_len = ft_strlen(base);
 	i = number_size(n, base_len);
-	if (!(res = malloc(sizeof(*res) * (i + 1))))
+	res = malloc(sizeof(*res) * (i + 1));
+	if (!res)
 		return (0);
 	res[i] = 0;
 	i--;

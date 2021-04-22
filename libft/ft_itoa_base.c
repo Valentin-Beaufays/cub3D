@@ -27,7 +27,7 @@ static size_t	number_size(int n, size_t base)
 	return (size);
 }
 
-char			*ft_itoa_base(int n, const char *base)
+char	*ft_itoa_base(int n, const char *base)
 {
 	char	*res;
 	int		sign;
@@ -35,11 +35,11 @@ char			*ft_itoa_base(int n, const char *base)
 	size_t	i;
 
 	base_len = ft_strlen(base);
-	i = number_size(n, base_len);
+	i = number_size(n, base_len) - 1;
 	sign = 1;
-	if (!(res = ft_calloc(i + 1, sizeof(*res))))
+	res = ft_calloc(i + 2, sizeof(*res));
+	if (!res)
 		return (0);
-	i--;
 	if (n < 0)
 	{
 		sign *= -1;
@@ -49,7 +49,7 @@ char			*ft_itoa_base(int n, const char *base)
 		res[i] = '0';
 	while (n != 0)
 	{
-		res[i] = base[(n % base_len) * sign];
+		res[i] = base[(n % base_len)] * sign;
 		n /= base_len;
 		i--;
 	}

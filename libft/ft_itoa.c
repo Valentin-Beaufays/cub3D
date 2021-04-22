@@ -27,7 +27,7 @@ static size_t	number_size(int n)
 	return (size);
 }
 
-char			*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char	*res;
 	int		sign;
@@ -35,7 +35,8 @@ char			*ft_itoa(int n)
 
 	i = number_size(n);
 	sign = 1;
-	if (!(res = malloc(sizeof(*res) * (i + 1))))
+	res = malloc(sizeof(*res) * (i + 1));
+	if (!res)
 		return (0);
 	res[i] = 0;
 	i--;

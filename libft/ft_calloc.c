@@ -18,7 +18,8 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	unsigned char	*result;
 
 	len = nmemb * size;
-	if (!(result = malloc(len)))
+	result = malloc(len);
+	if (!result)
 		return (0);
 	while (len > 0)
 	{
