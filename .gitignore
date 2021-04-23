@@ -57,3 +57,4 @@ get_next_line/
 *.tgz
 .vscode/
 *.bmp
+minilibX/test

@@ -21,12 +21,12 @@ static void	map_to_data(t_map *dst, t_map *src)
 	size_t	y;
 
 	y = 0;
-	while (src->map[y])
+	while (y < src->h)
 	{
 		x = 0;
-		while (src->map[y][x])
+		while (x < src->w)
 		{
-			if (src->map[y][x] == ' ')
+			if (src->map[y][x] == ' ' || src->map[y][x] == '\n')
 				src->map[y][x] = 1;
 			else
 				src->map[y][x] -= 48;

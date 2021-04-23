@@ -15,6 +15,13 @@
 
 # include <stddef.h>
 
+typedef struct s_vect
+{
+	double		x;
+	double		y;
+	double		len;
+}				t_vect;
+
 typedef struct s_point
 {
 	double		x;
