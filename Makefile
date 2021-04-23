@@ -46,32 +46,48 @@ FILES=			./srcs/game_loop.c\
 				get_next_line/get_next_line_utils.c\
 				main.c
 
-MLX :=
+OBJ=			$(FILES:.c=.o)
 
+LIB=			libft/libft.a -lm
+
+MLX_PATH :=
 
 ifeq ($(UNAME), Darwin)
-    MLX += libft/libft.a ./minilibX/mlx_mac/libmlx.a -lm -framework OpenGL -framework AppKit
+	MLX_PATH += ./minilibX/mlx_mac/
+    LIB += $(MLX_PATH)libmlx.a -framework OpenGL -framework AppKit
 	INCLUDES += -I ./minilibX/mlx_mac/
 endif
 ifeq ($(UNAME), Linux)
-    MLX += libft/libft.a ./minilibX/mlx_linux/libmlx.a -lXext -lX11 -lm 
-	INCLUDES += -I ./minilibX/mlx_linux/
+	MLX_PATH += ./minilibX/mlx_linux/
+    LIB += $(MLX_PATH)libmlx.a -lXext -lX11 
+	INCLUDES += -I $(MLX_PATH)
 endif
 
-$(NAME): 
-	$(CC) -o $(NAME) $(INCLUDES) -D BUFFER_SIZE=$(BUFFER_SIZE) $(FILES) $(MLX)
+$(NAME): libft/libft.a $(MLX_PATH)libmlx.a $(OBJ)
+	$(CC) -o $(NAME) $(INCLUDES) -D BUFFER_SIZE=$(BUFFER_SIZE) $(OBJ) $(LIB)
+
+%.o: %.c
+	$(CC) -c $(CFLAGS) $(INCLUDES) -D BUFFER_SIZE=$(BUFFER_SIZE) -o $@ $<
 
 all: $(NAME)
 
 clean: 
-	@rm -rf $(NAME)
+	@rm -rf $(OBJ)
+	make -C ./libft clean
 
 fclean: clean
+	@rm -rf $(NAME)
+	make -C ./libft fclean
+	make -C $(MLX_PATH) clean
 
 re: fclean $(NAME)
 
+libft/libft.a:
+	make -C ./libft
+
+$(MLX_PATH)libmlx.a:
+	make -C $(MLX_PATH)
 
 install:
 	git clone https://github.com/Valentin-Beaufays/libft.git libft 
-	make -C ./libft 
 	git clone https://github.com/Valentin-Beaufays/get_next_line.git get_next_line

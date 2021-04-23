@@ -88,6 +88,8 @@ static int	square_map(t_map *map)
 		tmp = resize_line(map->map[y], map->w);
 		if (!tmp)
 			return (0);
+		if (!map->map[y][0])
+			tmp[0] = 0;
 		free(map->map[y]);
 		map->map[y] = tmp;
 		y++;
