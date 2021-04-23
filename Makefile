@@ -44,18 +44,24 @@ FILES=			./srcs/game_loop.c\
 				get_next_line/get_next_line_utils.c\
 				main.c
 
+OBJ=			$(FILES:.c=.o)
+
 LIB=			./libft/libft.a ./minilibX/libmlx.a -lXext -lX11 -lm 
 
-$(NAME): libft/libft.a minilibX/libmlx.a
-	$(CC) $(CFLAGS) -o $(NAME) $(INCLUDES) -D BUFFER_SIZE=$(BUFFER_SIZE) $(FILES) $(LIB)
+$(NAME): libft/libft.a minilibX/libmlx.a $(OBJ)
+	$(CC) $(CFLAGS) -o $(NAME) $(INCLUDES) $(OBJ) $(LIB)
+
+%.o: %.c
+	$(CC) -c $(CFLAGS) $(INCLUDES) -D BUFFER_SIZE=$(BUFFER_SIZE) -o $@ $<
 
 all: $(NAME)
 
 clean: 
-	@rm -rf $(NAME)
+	@rm -rf $(OBJ)
 	make -C ./libft clean
 
 fclean: clean
+	@rm -rf $(NAME)
 	make -C ./libft fclean
 	make -C ./minilibX clean
 

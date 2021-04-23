@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include <math.h>
-#include <mlx.h>
 #include <stdlib.h>
+#include "mlx.h"
 #include "render.h"
 #include "key.h"
 #include "struct.h"

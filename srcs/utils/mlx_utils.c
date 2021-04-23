@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
+#include "mlx.h"
 #include <string.h>
 #include "struct.h"
 #include "error.h"
