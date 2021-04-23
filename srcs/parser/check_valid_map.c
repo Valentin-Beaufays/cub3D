@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <stddef.h>
+#include <stdio.h>
 #include "libft.h"
 #include "struct.h"
 #include "error.h"
