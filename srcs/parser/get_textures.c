@@ -36,8 +36,6 @@ void	get_no_texture(t_temp *temp, t_cub3d *data)
 	data->text_n.path = ft_strtrim(temp->north, " ");
 	if (!data->text_n.path)
 		free_data_err(strerror(errno), temp, data);
-	if (!check_path(data->text_n.path, ".xpm"))
-		free_data_err("NO texture must be an xpm file", temp, data);
 }
 
 void	get_so_texture(t_temp *temp, t_cub3d *data)
@@ -58,8 +56,6 @@ void	get_so_texture(t_temp *temp, t_cub3d *data)
 	data->text_s.path = ft_strtrim(temp->south, " ");
 	if (!data->text_s.path)
 		free_data_err(strerror(errno), temp, data);
-	if (!check_path(data->text_s.path, ".xpm"))
-		free_data_err("SO texture must be an xpm file", temp, data);
 }
 
 void	get_we_texture(t_temp *temp, t_cub3d *data)
@@ -80,8 +76,6 @@ void	get_we_texture(t_temp *temp, t_cub3d *data)
 	data->text_w.path = ft_strtrim(temp->west, " ");
 	if (!data->text_w.path)
 		free_data_err(strerror(errno), temp, data);
-	if (!check_path(data->text_w.path, ".xpm"))
-		free_data_err("WE texture must be an xpm file", temp, data);
 }
 
 void	get_ea_texture(t_temp *temp, t_cub3d *data)
@@ -102,8 +96,6 @@ void	get_ea_texture(t_temp *temp, t_cub3d *data)
 	data->text_e.path = ft_strtrim(temp->east, " ");
 	if (!data->text_e.path)
 		free_data_err(strerror(errno), temp, data);
-	if (!check_path(data->text_e.path, ".xpm"))
-		free_data_err("EA texture must be an xpm file", temp, data);
 }
 
 void	get_s_texture(t_temp *temp, t_cub3d *data)
@@ -124,6 +116,4 @@ void	get_s_texture(t_temp *temp, t_cub3d *data)
 	data->txt_sp.path = ft_strtrim(temp->sprite, " ");
 	if (!data->txt_sp.path)
 		free_data_err(strerror(errno), temp, data);
-	if (!check_path(data->txt_sp.path, ".xpm"))
-		free_data_err("S texture must be an xpm file", temp, data);
 }
