@@ -1,3 +1,5 @@
+UNAME := 		$(shell uname -s)
+
 CC=				gcc
 
 CFLAGS=			-Wall -Wextra -Werror
