@@ -16,6 +16,7 @@
 #include <errno.h>
 #include <unistd.h>
 #include <errno.h>
+#include <stdio.h>
 #include "libft.h"
 #include "get_next_line.h"
 #include "parser.h"
@@ -23,42 +24,10 @@
 #include "error.h"
 #include "utils.h"
 
-static int	get_num(int *num, char *line)
+void	check_only_space(t_temp *temp)
 {
-	*num = ft_atoi(line);
-	if (*line == '+' || *line == '-' || !(*num))
-		return (0);
-	return (1);
-}
-
-static void	parse_resolution(t_temp *temp)
-{
-	char	*line;
-
-	line = temp->trim + 1;
-	if (!(*line == ' '))
-		free_tmp_err("invalid R line", temp, 3);
-	while (*line == ' ')
-		line++;
-	if (!get_num(&temp->x, line))
-		free_tmp_err("invalid R line", temp, 3);
-	while (ft_isdigit(*line))
-		line++;
-	if (!(*line == ' '))
-		free_tmp_err("invalid R line", temp, 3);
-	while (*line == ' ')
-		line++;
-	if (!get_num(&temp->y, line))
-		free_tmp_err("invalid R line", temp, 3);
-	while (ft_isdigit(*line))
-		line++;
-	while (*line)
-	{
-		if (!(*line == ' '))
-			free_tmp_err("invalid R line", temp, 3);
-		line++;
-	}
-	temp->count++;
+	if (temp->line[0] == ' ')
+		free_tmp_err("invalid line found", temp, 3);
 }
 
 static int	get_arg(t_temp *temp)
@@ -82,7 +51,7 @@ static int	get_arg(t_temp *temp)
 	else if (!ft_strncmp(temp->trim, "1", 1) || !ft_strncmp(temp->trim, "0", 1))
 		return (0);
 	else
-		free_tmp_err("invalid line found", temp, 3);
+		check_only_space(temp);
 	return (1);
 }
 
@@ -100,7 +69,7 @@ static void	parse_args(t_temp *temp)
 		temp->trim = ft_strtrim(temp->line, " ");
 		if (!temp->trim)
 			free_tmp_err(strerror(errno), temp, 1);
-		if (*(temp->trim) != 0 && !get_arg(temp))
+		if (!get_arg(temp))
 			is_map = 1;
 		if (!is_map)
 			free(temp->line);

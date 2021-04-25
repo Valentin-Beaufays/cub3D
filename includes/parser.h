@@ -28,6 +28,7 @@ void		get_ea_texture(t_temp *temp, t_cub3d *data);
 void		get_s_texture(t_temp *temp, t_cub3d *data);
 void		parse_map(t_temp *temp);
 t_cub3d		*cub_parser(char *path);
+void		parse_resolution(t_temp *temp);
 void		parse_no_texture(t_temp *temp);
 void		parse_so_texture(t_temp *temp);
 void		parse_we_texture(t_temp *temp);

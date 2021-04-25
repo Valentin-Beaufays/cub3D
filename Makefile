@@ -16,6 +16,7 @@ FILES=			./srcs/game_loop.c\
 				./srcs/structures/free_struct.c\
 				./srcs/structures/free_data_struct.c\
 				./srcs/parser/parser.c\
+				./srcs/parser/res_parser.c\
 				./srcs/parser/textures_parser.c\
 				./srcs/parser/fc_parser.c\
 				./srcs/parser/map_parser.c\
