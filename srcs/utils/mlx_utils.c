@@ -66,9 +66,12 @@ void	mlx_setup(t_mlx *m, t_cub3d *d)
 	adjust_res(m, d);
 	if (!(open_text(m, d)))
 		free_data_err("fail to open textures", NULL, d);
-	m->w = mlx_new_window(m->p, (int)d->def.x, (int)d->def.y, "cub3D");
-	if (!m->w)
-		free_data_err("fail to create window", NULL, d);
+	if (d->save != 1)
+	{
+		m->w = mlx_new_window(m->p, (int)d->def.x, (int)d->def.y, "cub3D");
+		if (!m->w)
+			free_data_err("fail to create window", NULL, d);
+	}
 	if (!(setup_frame(m, d, &m->fra)))
 		free_data_err("fail to create image", NULL, d);
 }

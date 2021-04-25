@@ -26,16 +26,13 @@ int	main(int argc, char **argv)
 	test = NULL;
 	free(test);
 	if (argc <= 1 || argc > 3)
+		ft_error("usage: cub3d file [--save]");
+	if (argc == 3 && ft_strcmp(argv[2], "--save"))
 		ft_error("usage: cub3d [--save] file");
-	if (argc == 3 && ft_strcmp(argv[1], "--save"))
-		ft_error("usage: cub3d [--save] file");
-	if (argc == 2)
+	if (argc == 2 || argc == 3)
 		data = cub_parser(argv[1]);
-	else if (argc == 3)
-	{
-		data = cub_parser(argv[2]);
+	if (argc == 3)
 		data->save = 1;
-	}
 	game_loop(data);
 	free_data(data);
 	return (0);

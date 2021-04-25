@@ -22,5 +22,6 @@ int		check_hit_loop(t_ray *ray, t_cub3d *data,
 void	find_intersection(t_ray *ray, t_cub3d *data);
 void	print_column(t_ray *r, t_cub3d *d, int x);
 int		render(t_cub3d *data);
+void	render_no_window(t_cub3d *data);
 
 #endif

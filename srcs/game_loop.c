@@ -92,8 +92,9 @@ void	game_loop(t_cub3d *data)
 	if (data->save == 1)
 	{
 		data->save = 0;
-		render(data);
+		render_no_window(data);
 		save_bmp(&data->mlx.fra, data);
+		return ;
 	}
 	mlx_hook(data->mlx.w, 33, 1L << 17, &exit_hook, data);
 	mlx_key_hook(data->mlx.w, &key_hook, data);
