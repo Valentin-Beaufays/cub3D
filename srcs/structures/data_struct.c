@@ -34,6 +34,7 @@ void	init_temp(t_temp *temp)
 	temp->map.h = 0;
 	temp->map.w = 0;
 	temp->map.map = NULL;
+	temp->count = 0;
 }
 
 void	init_cub3d(t_cub3d *data)

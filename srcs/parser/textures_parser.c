@@ -24,6 +24,7 @@ void	parse_no_texture(t_temp *temp)
 	while (*line == ' ')
 		line++;
 	temp->north = ft_strdup(line);
+	temp->count++;
 }
 
 void	parse_so_texture(t_temp *temp)
@@ -36,6 +37,7 @@ void	parse_so_texture(t_temp *temp)
 	while (*line == ' ')
 		line++;
 	temp->south = ft_strdup(line);
+	temp->count++;
 }
 
 void	parse_we_texture(t_temp *temp)
@@ -48,6 +50,7 @@ void	parse_we_texture(t_temp *temp)
 	while (*line == ' ')
 		line++;
 	temp->west = ft_strdup(line);
+	temp->count++;
 }
 
 void	parse_ea_texture(t_temp *temp)
@@ -60,6 +63,7 @@ void	parse_ea_texture(t_temp *temp)
 	while (*line == ' ')
 		line++;
 	temp->east = ft_strdup(line);
+	temp->count++;
 }
 
 void	parse_s_texture(t_temp *temp)
@@ -72,4 +76,5 @@ void	parse_s_texture(t_temp *temp)
 	while (*line == ' ')
 		line++;
 	temp->sprite = ft_strdup(line);
+	temp->count++;
 }

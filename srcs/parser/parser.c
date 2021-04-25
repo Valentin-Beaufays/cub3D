@@ -37,11 +37,11 @@ static void	parse_resolution(t_temp *temp)
 
 	line = temp->trim + 1;
 	if (!(*line == ' '))
-		free_tmp_err("invalid resolution line", temp, 3);
+		free_tmp_err("invalid R line", temp, 3);
 	while (*line == ' ')
 		line++;
 	if (!get_num(&temp->x, line))
-		free_tmp_err("invalid resolution line", temp, 3);
+		free_tmp_err("invalid R line", temp, 3);
 	while (ft_isdigit(*line))
 		line++;
 	if (!(*line == ' '))
@@ -58,6 +58,7 @@ static void	parse_resolution(t_temp *temp)
 			free_tmp_err("invalid R line", temp, 3);
 		line++;
 	}
+	temp->count++;
 }
 
 static int	get_arg(t_temp *temp)
@@ -126,6 +127,8 @@ t_cub3d	*cub_parser(char *path)
 	parse_args(&temp);
 	if (close(temp.fd))
 		free_tmp_err(strerror(errno), &temp, 0);
+	if (temp.count > 8)
+		free_tmp_err("some lines are doubled in file", &temp, 0);
 	temp.fd = -1;
 	data = get_data(&temp);
 	data->z_buf = ft_calloc(data->def.x, sizeof(double));
