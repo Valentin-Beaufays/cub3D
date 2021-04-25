@@ -26,13 +26,13 @@ static void	get_step(t_cub3d *data, double *step_x, double *step_y)
 	t_vect	unit;
 	double	step;
 
-	step = 0.2;
+	step = 0.5;
 	wall.x = data->ray.i.x - data->pos.x;
 	wall.y = data->ray.i.y - data->pos.y;
 	wall.len = sqrt(pow(wall.x, 2) + pow(wall.y, 2));
 	unit.x = wall.x / wall.len;
 	unit.y = wall.y / wall.len;
-	if (wall.len < step)
+	if (wall.len <= step)
 		step = wall.len - 0.2;
 	if (step < 0)
 		step = 0;
@@ -94,8 +94,9 @@ void	game_loop(t_cub3d *data)
 	if (data->save == 1)
 	{
 		data->save = 0;
-		render(data);
+		render_no_window(data);
 		save_bmp(&data->mlx.fra, data);
+		return ;
 	}
 	mlx_hook(data->mlx.w, 33, 1L << 17, &exit_hook, data);
 	mlx_key_hook(data->mlx.w, &key_hook, data);

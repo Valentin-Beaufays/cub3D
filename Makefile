@@ -1,14 +1,12 @@
-UNAME := $(shell uname -s)
+CC=				gcc
 
-CC=                gcc
+CFLAGS=			-Wall -Wextra -Werror
 
-CFLAGS=            -Wall -Wextra -Werror
+BUFFER_SIZE=	16
 
-BUFFER_SIZE=    16
+NAME=			cub3D
 
-NAME=            cub3D
-
-INCLUDES:=        -I ./includes/ -I ./libft/ -I ./get_next_line/ 
+INCLUDES:=		-I ./includes/ -I ./libft/ -I ./get_next_line/ -I ./minilibX/
 
 FILES=			./srcs/game_loop.c\
 				./srcs/save_bmp.c\
@@ -18,6 +16,7 @@ FILES=			./srcs/game_loop.c\
 				./srcs/structures/free_struct.c\
 				./srcs/structures/free_data_struct.c\
 				./srcs/parser/parser.c\
+				./srcs/parser/res_parser.c\
 				./srcs/parser/textures_parser.c\
 				./srcs/parser/fc_parser.c\
 				./srcs/parser/map_parser.c\

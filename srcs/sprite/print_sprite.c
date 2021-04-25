@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <math.h>
-#include <mlx.h>
+#include "mlx.h"
 #include <stdlib.h>
 #include "struct.h"
 #include "sprite.h"

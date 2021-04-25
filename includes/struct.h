@@ -77,6 +77,7 @@ typedef struct s_temp
 	int			f[3];
 	int			c[3];
 	t_map		map;
+	int			count;
 }				t_temp;
 
 typedef struct s_mlx

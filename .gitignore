@@ -51,9 +51,8 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
 # Libraries
-libft/
-get_next_line/
 *.tgz
 .vscode/
 *.bmp
