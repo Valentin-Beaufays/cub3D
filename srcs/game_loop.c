@@ -12,7 +12,6 @@
 
 #include <math.h>
 #include <stdlib.h>
-#include <stdio.h>
 #include "mlx.h"
 #include "render.h"
 #include "key.h"
@@ -39,7 +38,6 @@ static void	get_step(t_cub3d *data, double *step_x, double *step_y)
 		step = 0;
 	*step_x = unit.x * step;
 	*step_y = unit.y * step;
-	printf("wall: %f, step: %f\n", wall.len, step);
 }
 
 static void	update_pos(int key, t_cub3d *data)
@@ -58,7 +56,7 @@ static void	update_pos(int key, t_cub3d *data)
 	find_intersection(&data->ray, data);
 	get_step(data, &step_x, &step_y);
 	step_x += data->pos.x;
-	step_y += data->pos.y;;
+	step_y += data->pos.y;
 	if (data->map.map[(int)step_y][(int)step_x] != 1)
 	{
 		data->pos.x = step_x;

@@ -62,7 +62,6 @@ static void	fill_value(t_temp *tmp, int *val, char **line, char *err)
 	val[2] = get_value(line);
 	if (val[2] < 0)
 		free_tmp_err(err, tmp, 3);
-}
 
 void	parse_floor(t_temp *temp)
 {
