@@ -16,13 +16,13 @@
 
 static t_text	*get_wall_text(t_cub3d *data, int text_dir)
 {
-	if (text_dir == 2)
+	if (text_dir == 0)
 		return (&data->text_e);
-	else if (text_dir == 3)
-		return (&data->text_s);
-	else if (text_dir == 0)
-		return (&data->text_w);
 	else if (text_dir == 1)
+		return (&data->text_s);
+	else if (text_dir == 2)
+		return (&data->text_w);
+	else if (text_dir == 3)
 		return (&data->text_n);
 	else
 		return (NULL);
