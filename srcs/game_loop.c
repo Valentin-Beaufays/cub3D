@@ -33,7 +33,7 @@ static void	get_step(t_cub3d *data, double *step_x, double *step_y)
 	unit.x = wall.x / wall.len;
 	unit.y = wall.y / wall.len;
 	if (wall.len <= step)
-		step = wall.len - 0.2;
+		step = wall.len - 0.3;
 	if (step < 0)
 		step = 0;
 	*step_x = unit.x * step;
