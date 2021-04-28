@@ -28,7 +28,7 @@ int	main(int argc, char **argv)
 	if (argc <= 1 || argc > 3)
 		ft_error("usage: cub3d file [--save]");
 	if (argc == 3 && ft_strcmp(argv[2], "--save"))
-		ft_error("usage: cub3d [--save] file");
+		ft_error("usage: cub3d file [--save]");
 	if (argc == 2 || argc == 3)
 		data = cub_parser(argv[1]);
 	if (argc == 3)
