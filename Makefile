@@ -8,7 +8,8 @@ NAME=			cub3D
 
 INCLUDES:=		-I ./includes/ -I ./libft/ -I ./get_next_line/ -I ./minilibX/
 
-FILES=			./srcs/game_loop.c\
+FILES=			./srcs/main.c\
+				./srcs/game_loop.c\
 				./srcs/save_bmp.c\
 				./srcs/error/error.c\
 				./srcs/structures/struct.c\
@@ -42,8 +43,7 @@ FILES=			./srcs/game_loop.c\
 				./srcs/utils/sprite_utils.c\
 				./srcs/utils/get_dist.c\
 				get_next_line/get_next_line.c\
-				get_next_line/get_next_line_utils.c\
-				main.c
+				get_next_line/get_next_line_utils.c
 
 OBJ=			$(FILES:.c=.o)
 
