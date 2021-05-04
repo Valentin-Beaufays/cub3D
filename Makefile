@@ -42,7 +42,7 @@ FILES=			./srcs/main.c\
 				./srcs/utils/ft_abs.c\
 				./srcs/utils/sprite_utils.c\
 				./srcs/utils/get_dist.c\
-				./libft/get_next_line/ft_get_next_line.c\
+				./libft/srcs/get_next_line/ft_get_next_line.c\
 
 
 OBJ=			$(FILES:.c=.o)
