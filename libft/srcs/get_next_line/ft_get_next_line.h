@@ -6,7 +6,7 @@
 /*   By: naddino <naddino@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 14:16:13 by naddino           #+#    #+#             */
-/*   Updated: 2021/05/04 14:47:32 by naddino          ###   ########.fr       */
+/*   Updated: 2021/05/04 14:50:55 by naddino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <fcntl.h>
 
 
-int			    get_next_line(int fd, char **line);
+int	ft_get_next_line(int fd, char **line);
 
 
 # ifndef BUFFER_SIZE
