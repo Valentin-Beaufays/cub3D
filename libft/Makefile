@@ -73,7 +73,8 @@ SRCNAME		= 	ft_memset.c			\
 				ft_lstmap.c			\
 				ft_strcmp.c			\
 
-GNL_SRC		=	ft_get_next_line.c			\
+GNL_SRC		=	ft_get_next_line.c	\
+				ft_get_next_line_utils.c
 
 GNL			=	${addprefix ${GNLDIR}, ${GNL_SRC}}
 SRCS		= 	${addprefix ${SRCDIR}, ${SRCNAME}}
@@ -86,7 +87,7 @@ CFLAGS 		=	-Wall -Werror -Wextra
 
 .c.o        :
 				@echo "${ORANGE}Compilation of $<...${NC}"
-				${CC} ${CFLAGS} -I ./includes/ -c $< -o ${<:.c=.o}
+				${CC} -I ./includes/ -c $< -o ${<:.c=.o}
 
 
 

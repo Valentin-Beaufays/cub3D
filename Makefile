@@ -50,10 +50,10 @@ OBJ=			$(FILES:.c=.o)
 LIB=			./libft/libft.a ./minilibX/libmlx.a -lXext -lX11 -lm 
 
 $(NAME): libft/libft.a minilibX/libmlx.a $(OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(INCLUDES) $(OBJ) $(LIB)
+	$(CC) -o $(NAME) $(INCLUDES) $(OBJ) $(LIB)
 
 %.o: %.c
-	$(CC) -c $(CFLAGS) $(INCLUDES) -D BUFFER_SIZE=$(BUFFER_SIZE) -o $@ $<
+	$(CC) -c $(INCLUDES) -D BUFFER_SIZE=$(BUFFER_SIZE) -o $@ $<
 
 all: $(NAME)
 
