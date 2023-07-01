@@ -90,5 +90,6 @@ $(MLX_PATH)libmlx.a:
 	make -C $(MLX_PATH)
 
 install:
+	sudo apt install libxext-dev
 	git clone https://github.com/Valentin-Beaufays/libft.git libft 
 	git clone https://github.com/Valentin-Beaufays/get_next_line.git get_next_line
